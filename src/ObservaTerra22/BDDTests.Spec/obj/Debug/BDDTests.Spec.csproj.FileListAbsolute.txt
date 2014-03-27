@@ -1,0 +1,10 @@
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\Default.srprofile
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll.config
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\SpecRun.SpecFlowPlugin.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecFlow.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecRun.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
