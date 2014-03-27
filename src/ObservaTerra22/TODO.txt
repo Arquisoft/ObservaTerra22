@@ -1,0 +1,14 @@
+DISCUSS:
+	General:
+		Keep same names to same objects like SessionManager.Persistence and Backend.PersistenceManagement.
+
+	Backend:
+		Rename of some modules (AccessControl -> AccessCore, ConsultasManagement -> DataQuery).
+		Add a DataCommand instance of connect two modules to AccessControl
+
+TODO:
+	Backend:
+		Add ObservaTerra.Backend.WebService project.
+
+	SessionManager:
+		Add AdminModule and SessionProcessor modules.
