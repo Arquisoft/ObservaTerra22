@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.Core", "ObservaTerra.Core\ObservaTerra.Backend.Core.csproj", "{4B1A5082-DE55-48FB-A52F-D187844BA549}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.Core", "ObservaTerra.Backend.Core\ObservaTerra.Backend.Core.csproj", "{4B1A5082-DE55-48FB-A52F-D187844BA549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.AccessCore", "ObservaTerra.AccessCore\ObservaTerra.Backend.AccessCore.csproj", "{513FAAE8-8109-4867-BDB6-FE99BFC01A6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.AccessCore", "ObservaTerra.Backend.AccessCore\ObservaTerra.Backend.AccessCore.csproj", "{513FAAE8-8109-4867-BDB6-FE99BFC01A6B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.PersistenceManagement", "ObservaTerra.BackEnd.PersistenceManagement\ObservaTerra.Backend.PersistenceManagement.csproj", "{72C6BB91-7E19-4F56-8D51-DC4F83A478A4}"
 EndProject
