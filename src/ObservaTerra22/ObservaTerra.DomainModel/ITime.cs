@@ -12,7 +12,7 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Measure
+    public partial class ITime
     {
         public int Id { get; set; }
     

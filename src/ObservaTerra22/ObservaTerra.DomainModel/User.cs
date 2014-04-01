@@ -12,10 +12,17 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Measure
+    public partial class User
     {
+        public User()
+        {
+            this.Observations = new HashSet<Observation>();
+            this.Organizations = new HashSet<Organization>();
+        }
+    
         public int Id { get; set; }
     
-        public virtual Indicator Indicator { get; set; }
+        public virtual ICollection<Observation> Observations { get; set; }
+        public virtual ICollection<Organization> Organizations { get; set; }
     }
 }

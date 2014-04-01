@@ -26,9 +26,12 @@ namespace ObservaTerra.DomainModel
         }
     
         public DbSet<Area> Areas { get; set; }
-        public DbSet<Country> Countries { get; set; }
         public DbSet<Indicator> Indicators { get; set; }
         public DbSet<Measure> Measures { get; set; }
         public DbSet<Organization> Organizations { get; set; }
+        public DbSet<Observation> Observations { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<ITime> ITimes { get; set; }
+        public DbSet<IComponent> IComponents { get; set; }
     }
 }

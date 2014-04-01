@@ -14,7 +14,17 @@ namespace ObservaTerra.DomainModel
     
     public partial class Indicator
     {
+        public Indicator()
+        {
+            this.Observations = new HashSet<Observation>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
+    
+        public virtual Area Area { get; set; }
+        public virtual Measure Measure { get; set; }
+        public virtual ICollection<Observation> Observations { get; set; }
+        public virtual ITime ITime { get; set; }
     }
 }

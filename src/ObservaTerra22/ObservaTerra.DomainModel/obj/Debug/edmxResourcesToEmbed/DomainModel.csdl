@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DomainModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="DomainModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Areas" EntityType="DomainModel.Area" />
+    <EntitySet Name="Indicators" EntityType="DomainModel.Indicator" />
+    <EntitySet Name="Measures" EntityType="DomainModel.Measure" />
+    <EntitySet Name="Organizations" EntityType="DomainModel.Organization" />
+    <EntitySet Name="Observations" EntityType="DomainModel.Observation" />
+    <EntitySet Name="Users" EntityType="DomainModel.User" />
+    <EntitySet Name="ITimes" EntityType="DomainModel.ITime" />
+    <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
+  </EntityContainer>
+  <EntityType Name="Area">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country" BaseType="DomainModel.Area">
+    <Property Type="String" Name="Continent" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Indicator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Measure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Observation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="ITime">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="TimeInterval" BaseType="DomainModel.ITime" />
+  <EntityType Name="TimeInstant" BaseType="DomainModel.ITime" />
+  <EntityType Name="IComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent" />
+</Schema>

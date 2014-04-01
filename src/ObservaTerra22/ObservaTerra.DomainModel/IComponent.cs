@@ -12,10 +12,10 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Measure
+    public partial class IComponent
     {
         public int Id { get; set; }
     
-        public virtual Indicator Indicator { get; set; }
+        public virtual Observation Observation { get; set; }
     }
 }

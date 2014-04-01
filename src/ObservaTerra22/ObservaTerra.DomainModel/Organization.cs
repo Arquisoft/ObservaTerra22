@@ -14,6 +14,15 @@ namespace ObservaTerra.DomainModel
     
     public partial class Organization
     {
+        public Organization()
+        {
+            this.Observations = new HashSet<Observation>();
+            this.Users = new HashSet<User>();
+        }
+    
         public int Id { get; set; }
+    
+        public virtual ICollection<Observation> Observations { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

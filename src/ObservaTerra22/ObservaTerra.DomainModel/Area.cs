@@ -14,7 +14,17 @@ namespace ObservaTerra.DomainModel
     
     public partial class Area
     {
+        public Area()
+        {
+            this.ContainedAreas = new HashSet<Area>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
+        public int AreaId { get; set; }
+    
+        public virtual ICollection<Area> ContainedAreas { get; set; }
+        public virtual Area ContainerArea { get; set; }
+        public virtual Indicator Indicator { get; set; }
     }
 }
