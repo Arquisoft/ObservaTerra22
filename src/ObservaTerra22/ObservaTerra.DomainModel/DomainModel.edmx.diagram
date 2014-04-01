@@ -18,10 +18,10 @@
         <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="4.375" PointY="7" />
         <InheritanceConnector EntityType="DomainModel.TimeInstant" />
         <InheritanceConnector EntityType="DomainModel.Country" />
-        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="5.875" PointY="4.5" />
-        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="6.25" PointY="6" />
+        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="6.5" PointY="4.5" />
+        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="6.25" PointY="6.25" />
         <InheritanceConnector EntityType="DomainModel.ImageComponent" />
-        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="8.25" PointY="5.875" />
+        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="8.25" PointY="6" />
         <InheritanceConnector EntityType="DomainModel.GraphComponent" />
         <AssociationConnector Association="DomainModel.AreaArea" />
         <AssociationConnector Association="DomainModel.IndicatorArea" />

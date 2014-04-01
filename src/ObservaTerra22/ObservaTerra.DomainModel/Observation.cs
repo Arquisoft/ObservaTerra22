@@ -20,6 +20,7 @@ namespace ObservaTerra.DomainModel
         }
     
         public int Id { get; set; }
+        public System.TimeSpan CreationDate { get; set; }
     
         public virtual Indicator Indicator { get; set; }
         public virtual User UserAuthor { get; set; }

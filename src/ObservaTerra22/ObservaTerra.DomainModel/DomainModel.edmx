@@ -107,6 +107,7 @@
           <NavigationProperty Name="UserAuthor" Relationship="DomainModel.ObservationUser" FromRole="Observation" ToRole="User" />
           <NavigationProperty Name="SourceOrganization" Relationship="DomainModel.ObservationOrganization" FromRole="Observation" ToRole="Organization" />
           <NavigationProperty Name="IComponents" Relationship="DomainModel.IComponentObservation" FromRole="Observation" ToRole="IComponent" />
+          <Property Name="CreationDate" Type="Time" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
