@@ -12,3 +12,9 @@ TODO:
 
 	SessionManager:
 		Add AdminModule and SessionProcessor modules.
+
+ACTIONS REST:
+	POST->  /API/login/:username/:password		return: String:token
+	POST->  /API/register/:username/:password	
+	GET->   /API/observation/:observationId	
+	POST -> /API/observation/:titulo/:contenido 
