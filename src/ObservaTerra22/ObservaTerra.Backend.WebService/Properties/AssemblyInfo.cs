@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie los valores de estos atributos para modificar la información
-// asociada a un ensamblado.
+// asociada con un ensamblado.
 [assembly: AssemblyTitle("ObservaTerra.Backend.WebService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -14,13 +14,13 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Si ComVisible se establece en false, los componentes COM no verán los 
+// Si ComVisible se establece en False, los componentes COM no verán los 
 // tipos de este ensamblado. Si necesita obtener acceso a un tipo de este ensamblado desde 
-// COM, establezca el atributo ComVisible en true en este tipo.
+// COM, establezca el atributo ComVisible en True en este tipo.
 [assembly: ComVisible(false)]
 
-// El siguiente GUID es para el Id. typelib cuando este proyecto esté expuesto a COM
-[assembly: Guid("b9ec5f68-e1f8-4cc7-a2d1-051fc7a83de9")]
+// El siguiente GUID sirve como ID de typelib si este proyecto se expone a COM
+[assembly: Guid("c442ec60-6b5b-4bf1-a619-e3c85fafa316")]
 
 // La información de versión de un ensamblado consta de los siguientes cuatro valores:
 //
