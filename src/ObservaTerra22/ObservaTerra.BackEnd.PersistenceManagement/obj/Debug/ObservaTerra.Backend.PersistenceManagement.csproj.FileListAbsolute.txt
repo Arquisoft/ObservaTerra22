@@ -1,0 +1,10 @@
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\es\EntityFramework.resources.dll

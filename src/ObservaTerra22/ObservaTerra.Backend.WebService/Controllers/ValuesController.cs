@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObservaTerra.DomainModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,6 +19,12 @@ namespace ObservaTerra.Backend.WebService.Controllers
         // GET api/values/5
         public string Get(int id)
         {
+            DomainModelContainer dmc = new DomainModelContainer();
+
+            dmc.Users.Add(new User());
+
+            dmc.SaveChanges();
+
             return "value";
         }
 

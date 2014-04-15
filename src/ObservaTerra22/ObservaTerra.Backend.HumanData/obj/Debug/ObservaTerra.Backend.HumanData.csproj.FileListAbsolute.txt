@@ -1,0 +1,5 @@
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.pdb
