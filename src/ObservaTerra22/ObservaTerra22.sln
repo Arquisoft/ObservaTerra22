@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.Core", "ObservaTerra.Backend.Core\ObservaTerra.Backend.Core.csproj", "{4B1A5082-DE55-48FB-A52F-D187844BA549}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.AccessCore", "ObservaTerra.Backend.AccessCore\ObservaTerra.Backend.AccessCore.csproj", "{513FAAE8-8109-4867-BDB6-FE99BFC01A6B}"
@@ -18,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.HumanData", "ObservaTerra.Backend.HumanData\ObservaTerra.Backend.HumanData.csproj", "{83A2D38B-929C-4FA4-A0FE-FF0C73566540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.SessionManager.Persistence", "ObservaTerra.SessionManager.Persistence\ObservaTerra.SessionManager.Persistence.csproj", "{1ECFA83F-6AC5-490E-9894-28F8BF45D376}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.SessionManager", "ObservaTerra.SessionManager.Persistence\ObservaTerra.SessionManager.csproj", "{1ECFA83F-6AC5-490E-9894-28F8BF45D376}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDDTests.Spec", "BDDTests.Spec\BDDTests.Spec.csproj", "{DAA754A5-0C8F-4553-B41E-41197ED734BD}"
 EndProject
