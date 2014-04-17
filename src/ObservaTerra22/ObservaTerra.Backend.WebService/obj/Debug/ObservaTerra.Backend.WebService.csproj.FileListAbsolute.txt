@@ -42,6 +42,7 @@ C:\Users\uo228152\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backe
 C:\Users\uo228152\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\uo228152\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 C:\Users\uo228152\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.dll.config
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.pdb
@@ -49,6 +50,8 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\EntityFramework.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\Newtonsoft.Json.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataQuery.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.DomainModel.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Net.Http.Formatting.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.Helpers.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.Http.dll
@@ -61,6 +64,11 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.WebPages.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.WebPages.Razor.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\WebGrease.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Core.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataQuery.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.DomainModel.pdb
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\EntityFramework.xml
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\Newtonsoft.Json.xml
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Net.Http.Formatting.xml
@@ -72,6 +80,9 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.WebPages.xml
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.WebPages.Razor.xml
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Core.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.PersistenceManagement.pdb
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\EntityFramework.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.Helpers.resources.dll
@@ -84,16 +95,5 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.DomainModel.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.DomainModel.pdb
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataQuery.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.AccessCore.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Core.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.PersistenceManagement.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataQuery.pdb
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.AccessCore.pdb
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Core.pdb
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.PersistenceManagement.pdb

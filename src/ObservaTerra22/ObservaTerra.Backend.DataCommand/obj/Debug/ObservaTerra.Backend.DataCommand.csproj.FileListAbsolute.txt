@@ -1,4 +1,5 @@
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.DataCommand.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.pdb

@@ -10,5 +10,7 @@ namespace ObservaTerra.Core
     public interface IObservationCore
     {
         Observation GetObservation(int id);
+
+        IEnumerable<Observation> FindObservations(string partialname);
     }
 }

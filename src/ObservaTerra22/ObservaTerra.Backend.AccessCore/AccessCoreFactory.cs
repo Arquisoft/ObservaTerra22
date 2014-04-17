@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObservaTerra.DomainModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,14 @@ namespace ObservaTerra.Backend.AccessCore
 {
     public class AccessCoreFactory
     {
-        public static IObservationAccess GetObservationAccess()
+        public static IObservationAccess GetObservationAccess(User user)
         {
-            return new ObservationAccess();
+            return new ObservationAccess(user);
+        }
+
+        public static IIndicatorAccess GetIndicatorAccess(User user)
+        {
+            return new IndicatorAccess(user);
         }
     }
 }

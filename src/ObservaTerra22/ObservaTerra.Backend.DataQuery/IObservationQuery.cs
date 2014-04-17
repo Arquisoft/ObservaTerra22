@@ -9,6 +9,10 @@ namespace ObservaTerra.Backend.DataQuery
 {
     public interface IObservationQuery
     {
+        User User { get; }
+
         Observation GetObservation(int id);
+
+        IEnumerable<Observation> FindObservations(string partialname);
     }
 }

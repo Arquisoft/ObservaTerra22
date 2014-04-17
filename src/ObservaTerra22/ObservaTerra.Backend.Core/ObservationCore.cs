@@ -15,5 +15,12 @@ namespace ObservaTerra.Core
             IObservationPersistenceManagement persistence = PersistenceManagementFactory.GetObservationPersistenceManagement();
             return persistence.GetObservation(id);
         }
+
+
+        public IEnumerable<Observation> FindObservations(string partialname)
+        {
+            IObservationPersistenceManagement persistence = PersistenceManagementFactory.GetObservationPersistenceManagement();
+            return persistence.FindObservations(partialname);
+        }
     }
 }

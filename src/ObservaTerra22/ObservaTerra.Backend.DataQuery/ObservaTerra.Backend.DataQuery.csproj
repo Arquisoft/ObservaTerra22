@@ -40,7 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataQueryFactory.cs" />
-    <Compile Include="ObservationQueries.cs" />
+    <Compile Include="IIndicatorQuery.cs" />
+    <Compile Include="IndicatorQuery.cs" />
+    <Compile Include="ObservationQuery.cs" />
     <Compile Include="IObservationQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

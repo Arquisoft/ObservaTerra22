@@ -12,5 +12,10 @@ namespace ObservaTerra.Backend.PersistenceManagement
         {
             return new ObservationPersistenceManagement();
         }
+
+        public static IIndicatorPersistenceManagement GetIndicatorPersistenceManagement()
+        {
+            return new IndicatorPersistenceManagement();
+        }
     }
 }

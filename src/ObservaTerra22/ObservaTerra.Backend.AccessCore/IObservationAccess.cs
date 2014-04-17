@@ -9,6 +9,10 @@ namespace ObservaTerra.Backend.AccessCore
 {
     public interface IObservationAccess
     {
+        User User { get; }
+
         Observation GetObservation(int id);
+
+        IEnumerable<Observation> FindObservations(string partialname);
     }
 }

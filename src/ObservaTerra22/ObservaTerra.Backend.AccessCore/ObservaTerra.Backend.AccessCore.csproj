@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessCoreFactory.cs" />
+    <Compile Include="IIndicatorAccess.cs" />
+    <Compile Include="IndicatorAccess.cs" />
     <Compile Include="IObservationAccess.cs" />
     <Compile Include="ObservationAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,6 +11,5 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainM
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.xml
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\es\EntityFramework.resources.dll
-C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb

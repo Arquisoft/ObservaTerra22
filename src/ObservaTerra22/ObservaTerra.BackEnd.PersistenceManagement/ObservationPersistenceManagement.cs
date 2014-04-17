@@ -20,5 +20,18 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
             return result;
         }
+
+
+        public IEnumerable<Observation> FindObservations(string partialname)
+        {
+            IEnumerable<Observation> result = null;
+
+            using (var container = new DomainModelContainer())
+            {
+                result = container.Observations.Where(o => o.Indicator.Name.Contains(partialname));
+            }
+
+            return result;
+        }
     }
 }

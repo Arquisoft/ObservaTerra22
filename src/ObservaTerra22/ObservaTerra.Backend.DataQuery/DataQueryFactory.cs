@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObservaTerra.DomainModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,14 @@ namespace ObservaTerra.Backend.DataQuery
 {
     public class DataQueryFactory
     {
-        public static IObservationQuery GetObservationQueries()
+        public static IObservationQuery GetObservationQueries(User user)
         {
-            return new ObservationQuery();
+            return new ObservationQuery(user);
+        }
+
+        public static IIndicatorQuery GetIndicatorQuery(User user)
+        {
+            return new IndicatorQuery(user);
         }
     }
 }

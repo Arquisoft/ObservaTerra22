@@ -13,5 +13,10 @@ namespace ObservaTerra.Core
             return new ObservationCore();
         }
 
+        public static IIndicatorCore GetIndicatorCore()
+        {
+            return new IndicatorCore();
+        }
+
     }
 }
