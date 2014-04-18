@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IIndicatorPersistenceManagement.cs" />
-    <Compile Include="IndicatorPersistenceManagement.cs" />
-    <Compile Include="IObservationPersistenceManagement.cs" />
-    <Compile Include="ObservationPersistenceManagement.cs" />
+    <Compile Include="Component\ComponentPersistenceManagement.cs" />
+    <Compile Include="Component\IComponentPersistenceManagement.cs" />
+    <Compile Include="Indicator\IIndicatorPersistenceManagement.cs" />
+    <Compile Include="Indicator\IndicatorPersistenceManagement.cs" />
+    <Compile Include="Observation\IObservationPersistenceManagement.cs" />
+    <Compile Include="Observation\ObservationPersistenceManagement.cs" />
     <Compile Include="PersistenceManagementFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

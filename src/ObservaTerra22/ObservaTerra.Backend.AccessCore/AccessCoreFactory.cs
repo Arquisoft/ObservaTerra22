@@ -18,5 +18,10 @@ namespace ObservaTerra.Backend.AccessCore
         {
             return new IndicatorAccess(user);
         }
+
+        public static IComponentAccess GetComponentAccess(User user)
+        {
+            return new ComponentAccess(user);
+        }
     }
 }

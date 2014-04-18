@@ -9,7 +9,7 @@ using System.Web.Http;
 
 namespace ObservaTerra.Backend.WebService.Controllers
 {
-    public class IndicatorController : ApiController
+    public class ComponentController : ApiController
     {
         private User DefaultUser
         {

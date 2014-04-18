@@ -1,0 +1,2 @@
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll

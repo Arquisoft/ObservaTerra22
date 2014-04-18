@@ -18,5 +18,10 @@ namespace ObservaTerra.Backend.DataQuery
         {
             return new IndicatorQuery(user);
         }
+
+        public static IComponentQuery GetComponentQuery(User user)
+        {
+            return new ComponentQuery(user);
+        }
     }
 }
