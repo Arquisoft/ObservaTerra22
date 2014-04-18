@@ -1,4 +1,5 @@
 ﻿using ObservaTerra.Backend.DataQuery;
+using ObservaTerra.Backend.HumanData;
 using ObservaTerra.DomainModel;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,12 @@ namespace ObservaTerra.Backend.WebService.Controllers
         {
             IObservationQuery query = DataQueryFactory.GetObservationQueries(DefaultUser);
             return query.FindObservations(partialname);
+        }
+
+        public void Post(Observation observation)
+        {
+            IObservationHumanData humandata = HumanDataFactory.GetObservationHumanData(DefaultUser);
+            humandata.AddObservation(observation);
         }
     }
 }

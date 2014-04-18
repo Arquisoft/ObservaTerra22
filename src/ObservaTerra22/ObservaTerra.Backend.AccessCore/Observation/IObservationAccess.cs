@@ -14,5 +14,7 @@ namespace ObservaTerra.Backend.AccessCore
         Observation GetObservation(int id);
 
         IEnumerable<Observation> FindObservations(string partialname);
+
+        void AddObservation(Observation observation);
     }
 }

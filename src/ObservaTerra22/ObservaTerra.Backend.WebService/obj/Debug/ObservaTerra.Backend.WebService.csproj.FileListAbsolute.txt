@@ -97,3 +97,7 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.HumanData.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.DataCommand.pdb

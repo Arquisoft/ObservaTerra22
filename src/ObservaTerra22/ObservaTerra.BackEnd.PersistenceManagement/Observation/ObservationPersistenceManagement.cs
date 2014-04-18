@@ -33,5 +33,15 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
             return result;
         }
+
+
+        public void AddObservation(Observation observation)
+        {
+            using (var container = new DomainModelContainer())
+            {
+                container.Observations.Add(observation);
+                container.SaveChanges();
+            }
+        }
     }
 }

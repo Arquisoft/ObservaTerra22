@@ -143,6 +143,10 @@
       <Project>{0ad9cd41-89e3-4336-80b8-792a0bf636b5}</Project>
       <Name>ObservaTerra.Backend.DataQuery</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.Backend.HumanData\ObservaTerra.Backend.HumanData.csproj">
+      <Project>{83a2d38b-929c-4fa4-a0fe-ff0c73566540}</Project>
+      <Name>ObservaTerra.Backend.HumanData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
       <Project>{ca51c811-2c11-474c-8187-b2cef5f5327e}</Project>
       <Name>ObservaTerra.DomainModel</Name>

@@ -28,5 +28,11 @@ namespace ObservaTerra.Backend.AccessCore
             IObservationCore core = CoreFactory.GetObservationCore();
             return core.FindObservations(partialname);
         }
+
+        public void AddObservation(Observation observation)
+        {
+            IObservationCore core = CoreFactory.GetObservationCore();
+            core.AddObservation(observation);
+        }
     }
 }

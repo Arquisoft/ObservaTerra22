@@ -12,5 +12,7 @@ namespace ObservaTerra.Backend.PersistenceManagement
         Observation GetObservation(int id);
 
         IEnumerable<Observation> FindObservations(string partialname);
+
+        void AddObservation(Observation observation);
     }
 }
