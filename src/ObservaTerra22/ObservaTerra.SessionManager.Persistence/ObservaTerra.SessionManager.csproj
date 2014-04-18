@@ -42,6 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\TokenNotFoundException.cs" />
+    <Compile Include="Exceptions\UsernameAlreadyInUseException.cs" />
+    <Compile Include="Managers\AdminModule\AdminModuleServices.cs" />
+    <Compile Include="Managers\AdminModule\IAdminModuleServices.cs" />
+    <Compile Include="Managers\ManagersFactory.cs" />
+    <Compile Include="Managers\SessionProcessor\ISessionProcessorServices.cs" />
+    <Compile Include="Managers\SessionProcessor\SessionProcessorServices.cs" />
     <Compile Include="Persistence\IUserPersistenceManagement.cs" />
     <Compile Include="Persistence\PersistenceFactory.cs" />
     <Compile Include="Persistence\UserPersistenceManagement.cs" />
@@ -53,9 +61,7 @@
       <Name>ObservaTerra.DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Managers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

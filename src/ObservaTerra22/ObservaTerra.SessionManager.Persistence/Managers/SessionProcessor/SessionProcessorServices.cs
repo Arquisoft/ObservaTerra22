@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.SessionManager.Managers.SessionProcessor
 {
-    class SessionProcessor : ISessionProcessorServices
+    class SessionProcessorServices : ISessionProcessorServices
     {
         /// <summary>
         /// Table with all the active tokens representing active registered users
