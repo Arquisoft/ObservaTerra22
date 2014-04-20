@@ -9,25 +9,20 @@ using System.Web.Http;
 
 namespace ObservaTerra.Backend.WebService.Controllers
 {
-    public class IndicatorController : ApiController
+    public class IndicatorController : ApiControllerLogin
     {
-        private User DefaultUser
-        {
-            get
-            {
-                return new User();
-            }
-        }
 
-        public IComponent Get(int id)
+        public IComponent Get(string token, int id)
         {
-            IComponentQuery query = DataQueryFactory.GetComponentQuery(DefaultUser);
+            User user = GetUserByToken(token);
+            IComponentQuery query = DataQueryFactory.GetComponentQuery(user);
             return query.GetComponent(id);
         }
 
-        public IEnumerable<IComponent> Get(string partialname)
+        public IEnumerable<IComponent> Get(string token, string partialname)
         {
-            IComponentQuery query = DataQueryFactory.GetComponentQuery(DefaultUser);
+            User user = GetUserByToken(token);
+            IComponentQuery query = DataQueryFactory.GetComponentQuery(user);
             return query.FindComponents(partialname);
         }
     }
