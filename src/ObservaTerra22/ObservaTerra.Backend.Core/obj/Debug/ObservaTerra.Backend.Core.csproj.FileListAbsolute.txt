@@ -15,3 +15,15 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\obj\Debug\ObservaTerra.Core.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\obj\Debug\ObservaTerra.Core.pdb
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\EntityFramework.xml
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.Core.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.Core.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.DomainModel.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\EntityFramework.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\ObservaTerra.DomainModel.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\EntityFramework.xml
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\bin\Debug\es\EntityFramework.resources.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\obj\Debug\ObservaTerra.Backend.Core.csprojResolveAssemblyReference.cache
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\obj\Debug\ObservaTerra.Core.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.Core\obj\Debug\ObservaTerra.Core.pdb
