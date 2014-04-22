@@ -154,6 +154,10 @@
       <Project>{ca51c811-2c11-474c-8187-b2cef5f5327e}</Project>
       <Name>ObservaTerra.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.SessionManager.Persistence\ObservaTerra.SessionManager.csproj">
+      <Project>{1ecfa83f-6ac5-490e-9894-28f8bf45d376}</Project>
+      <Name>ObservaTerra.SessionManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

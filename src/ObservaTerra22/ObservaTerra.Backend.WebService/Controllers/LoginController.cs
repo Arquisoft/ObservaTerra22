@@ -1,5 +1,7 @@
 ﻿using ObservaTerra.Backend.DataQuery;
 using ObservaTerra.DomainModel;
+using ObservaTerra.SessionManager.Managers;
+using ObservaTerra.SessionManager.Managers.SessionProcessor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,8 +17,8 @@ namespace ObservaTerra.Backend.WebService.Controllers
         {
             try
             {
-                //Login, store parameters and retrieve token to return. Depends on SessionManager
-                return "TOKEN";
+                ISessionProcessorServices session = ManagersFactory.GetSessionProcessorServices();
+                return session.Login(user, pass);
             }
             catch (Exception)
             {

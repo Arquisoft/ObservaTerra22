@@ -1,5 +1,8 @@
 ﻿using ObservaTerra.Backend.DataQuery;
 using ObservaTerra.DomainModel;
+using ObservaTerra.SessionManager.Managers;
+using ObservaTerra.SessionManager.Managers.AdminModule;
+using ObservaTerra.SessionManager.Managers.SessionProcessor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +16,9 @@ namespace ObservaTerra.Backend.WebService.Controllers
     {
         public void Post(string username, string password)
         {
-            //Create user in SessionManager
+            IAdminModuleServices session = ManagersFactory.GetSessionProcessorServices();
+            User user = new User() { };
+            session.RegisterUser(user);            
         }
     }
 }

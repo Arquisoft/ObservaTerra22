@@ -22,3 +22,4 @@ D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\es
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.csprojResolveAssemblyReference.cache
