@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\..\..\..\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.WebService\bin\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,8 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\TokenNotFoundException.cs" />
+    <Compile Include="Exceptions\UsernameAlreadyInUseException.cs" />
+    <Compile Include="Managers\AdminModule\AdminModuleServices.cs" />
+    <Compile Include="Managers\AdminModule\IAdminModuleServices.cs" />
+    <Compile Include="Managers\ManagersFactory.cs" />
+    <Compile Include="Managers\SessionProcessor\ISessionProcessorServices.cs" />
+    <Compile Include="Managers\SessionProcessor\SessionProcessorServices.cs" />
+    <Compile Include="Persistence\IUserPersistenceManagement.cs" />
+    <Compile Include="Persistence\PersistenceFactory.cs" />
+    <Compile Include="Persistence\UserPersistenceManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
+      <Project>{ca51c811-2c11-474c-8187-b2cef5f5327e}</Project>
+      <Name>ObservaTerra.DomainModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
