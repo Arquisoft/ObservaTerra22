@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.Core", "ObservaTerra.Backend.Core\ObservaTerra.Backend.Core.csproj", "{4B1A5082-DE55-48FB-A52F-D187844BA549}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.AccessCore", "ObservaTerra.Backend.AccessCore\ObservaTerra.Backend.AccessCore.csproj", "{513FAAE8-8109-4867-BDB6-FE99BFC01A6B}"
@@ -30,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.DomainModel", "ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj", "{CA51C811-2C11-474C-8187-B2CEF5F5327E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.WebService", "ObservaTerra.Backend.WebService\ObservaTerra.Backend.WebService.csproj", "{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.DataAcquisition", "ObservaTerra.Backend.DataAcquisition\ObservaTerra.Backend.DataAcquisition.csproj", "{6744972A-D3EF-43BB-B356-60FF407DD9CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,10 @@ Global
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
