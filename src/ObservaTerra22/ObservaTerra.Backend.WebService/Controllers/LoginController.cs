@@ -13,17 +13,16 @@ namespace ObservaTerra.Backend.WebService.Controllers
 {
     public class LoginController : ApiController
     {
-        public string Get(string user, string pass)
+        public LoggedInUser Get(string user, string pass)
         {
             try
             {
                 ISessionProcessorServices session = ManagersFactory.GetSessionProcessorServices();
                 return session.Login(user, pass);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //Catch an exception when user specifies incorrect data
-                return "ERROR";
+                throw ex;
             }
 
         }

@@ -111,8 +111,8 @@
     <NavigationProperty Name="Organizations" Relationship="DomainModel.OrganizationUser" FromRole="User" ToRole="Organization" />
     <Property Name="Username" Type="String" Nullable="false" />
     <Property Name="Password" Type="String" Nullable="false" />
-    <NavigationProperty Name="Role" Relationship="DomainModel.UserRole" FromRole="User" ToRole="Role" />
     <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Roles" Relationship="DomainModel.UserRole" FromRole="User" ToRole="Role" />
   </EntityType>
   <EntityType Name="ITime">
     <Key>
@@ -184,8 +184,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="Users" Relationship="DomainModel.UserRole" FromRole="Role" ToRole="User" />
     <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="DomainModel.UserRole" FromRole="Role" ToRole="User" />
   </EntityType>
   <Association Name="UserRole">
     <End Type="DomainModel.User" Role="User" Multiplicity="*" />
