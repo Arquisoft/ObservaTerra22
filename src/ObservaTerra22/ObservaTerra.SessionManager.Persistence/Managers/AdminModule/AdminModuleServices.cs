@@ -23,10 +23,11 @@ namespace ObservaTerra.SessionManager.Managers.AdminModule
             {
                 throw new ArgumentNullException("The new user to add to the system cannot be null");
             }
-            if (management.FindByUsername(user.Username) == null)
+            if (management.FindByUsername(user.Username) != null)
             {
                 throw new Exceptions.UsernameAlreadyInUseException("There is already a user with the username " + user.Username);
             }
+            user.Password = HashingUtil.GenerateHash(user.Password);
             return management.SaveUser(user);
         }
 

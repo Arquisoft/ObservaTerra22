@@ -12,19 +12,16 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Area
+    public partial class Role
     {
-        public Area()
+        public Role()
         {
-            this.ContainedAreas = new HashSet<Area>();
+            this.Users = new HashSet<User>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AreaId { get; set; }
     
-        public virtual ICollection<Area> ContainedAreas { get; set; }
-        public virtual Area ContainerArea { get; set; }
-        public virtual Indicator Indicator { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

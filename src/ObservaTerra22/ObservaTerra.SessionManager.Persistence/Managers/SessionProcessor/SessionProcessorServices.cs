@@ -1,7 +1,7 @@
 ﻿using ObservaTerra.DomainModel;
-using System.Security.Cryptography;
 using System;
 using System.Collections.Generic;
+using ObservaTerra.SessionManager;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,30 +13,30 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// <summary>
         /// Table with all the active tokens representing active registered users
         /// </summary>
-        private IDictionary<String, User> activeTokens = new Dictionary<String, User>();
+        private IDictionary<string, User> activeTokens = new Dictionary<string, User>();
         /// <summary>
         /// Token for guest users that are not registered in the system.
         /// </summary>
-        private String guestToken = null;
+        private string guestToken = null;
 
         /// <summary>
         /// Performs the user login action and generates a token for that user
         /// </summary>
         /// <param name="username">The username of the user trying to login</param>
         /// <param name="password">The password of the user trying to login</param>
-        /// <returns>The token generated for the user</returns>
-        public String Login(string username, string password)
+        /// <returns>The loggedinUser instance generated for the user</returns>
+        public LoggedInUser Login(string username, string password)
         {
             if (String.IsNullOrWhiteSpace(username) || String.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentException("In order to login a user, the username and password cannot be null or empty");
             }
             User user = Persistence.PersistenceFactory.GetUserPersistenceManagement().FindByUsername(username);
-            if (user != null && user.Password.Equals(password))
+            if (user != null && user.Password.Equals(HashingUtil.GenerateHash(password)))
             {
-                String token = this.GenerateToken(username, new Random().Next(500));
+                string token = HashingUtil.GenerateHash(username, new Random().Next(500) + "");
                 this.activeTokens.Add(token, user);
-                return token;
+                return new LoggedInUser(token: token, username: user.Username, name: user.Name, roles: user.Role);
             }
             throw new Exceptions.EntityNotFoundException("No user with that username and password was found in the system");
         }
@@ -44,20 +44,20 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// <summary>
         /// Creates a default guest user token so that users that are not registered can access the system
         /// </summary>
-        /// <returns>A default guest token</returns>
-        public String Login()
+        /// <returns>A default user instance representing a guest</returns>
+        public LoggedInUser Login()
         {
             if (this.guestToken == null){
-                this.guestToken = this.GenerateToken("guest");
+                this.guestToken = HashingUtil.GenerateHash("guest");
             }
-            return this.guestToken;
+            return new LoggedInUser(token: this.guestToken, username: null, name: null, roles: new List<Role>());
         }
 
         /// <summary>
         /// Performs the user logout action. Deletes a valid token from the list of active tokens.
         /// </summary>
         /// <param name="token">The active token of the user</param>
-        public void Logout(String token)
+        public void Logout(string token)
         {
             if (String.IsNullOrWhiteSpace(token))
             {
@@ -71,24 +71,6 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
                 }
                 this.activeTokens.Remove(token);
             }
-        }
-
-        /// <summary>
-        /// Generates a token for the user login operation. This token represents the user in the following operations during this session
-        /// </summary>
-        /// <param name="username">The username of the user</param>
-        /// <param name="seed">The seed so that the same user gets two different tokens in two different login processes</param>
-        /// <returns>The token generated for the user</returns>
-        private String GenerateToken(String username, int seed = 0)
-        {
-            SHA256 mySHA = SHA256Managed.Create();
-            byte[] bytes = Encoding.UTF8.GetBytes(username + seed);
-            String token = String.Empty;
-            foreach (byte bit in bytes)
-            {
-                token += bit.ToString();
-            }
-            return token;
         }
     }
 }

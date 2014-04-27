@@ -14,17 +14,17 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// </summary>
         /// <param name="username">The username of the user trying to login</param>
         /// <param name="password">The password of the user trying to login</param>
-        /// <returns>The token generated for the user</returns>
-        String Login(string username, string password);
+        /// <returns>The loggedinUser instance generated for the user</returns>
+        LoggedInUser Login(string username, string password);
         /// <summary>
         /// Creates a default guest user token so that users that are not registered can access the system
         /// </summary>
-        /// <returns>A default guest token</returns>
-        String Login();
+        /// <returns>A default user instance representing a guest</returns>
+        LoggedInUser Login();
         /// <summary>
         /// Performs the user logout action. Deletes a valid token from the list of active tokens.
         /// </summary>
         /// <param name="token">The active token of the user</param>
-        void Logout(String token);
+        void Logout(string token);
     }
 }

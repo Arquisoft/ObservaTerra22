@@ -37,7 +37,7 @@ namespace ObservaTerra.SessionManager.Persistence
         /// </summary>
         /// <param name="username">The username of the user to look for</param>
         /// <returns>The user with that username, or null if no such user was found</returns>
-        public User FindByUsername(String username)
+        public User FindByUsername(string username)
         {
             if (String.IsNullOrWhiteSpace(username))
             {
