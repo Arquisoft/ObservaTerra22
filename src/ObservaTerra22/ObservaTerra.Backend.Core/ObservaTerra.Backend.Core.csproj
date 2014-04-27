@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\ComponentCore.cs" />
+    <Compile Include="Component\IComponentCore.cs" />
     <Compile Include="CoreFactory.cs" />
-    <Compile Include="IIndicatorCore.cs" />
-    <Compile Include="IndicatorCore.cs" />
-    <Compile Include="IObservationCore.cs" />
-    <Compile Include="ObservationCore.cs" />
+    <Compile Include="Indicator\IIndicatorCore.cs" />
+    <Compile Include="Indicator\IndicatorCore.cs" />
+    <Compile Include="Observation\IObservationCore.cs" />
+    <Compile Include="Observation\ObservationCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

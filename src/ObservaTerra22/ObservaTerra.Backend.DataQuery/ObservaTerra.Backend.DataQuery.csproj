@@ -39,11 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\ComponentQuery.cs" />
+    <Compile Include="Component\IComponentQuery.cs" />
     <Compile Include="DataQueryFactory.cs" />
-    <Compile Include="IIndicatorQuery.cs" />
-    <Compile Include="IndicatorQuery.cs" />
-    <Compile Include="ObservationQuery.cs" />
-    <Compile Include="IObservationQuery.cs" />
+    <Compile Include="Indicator\IIndicatorQuery.cs" />
+    <Compile Include="Indicator\IndicatorQuery.cs" />
+    <Compile Include="Observation\ObservationQuery.cs" />
+    <Compile Include="Observation\IObservationQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

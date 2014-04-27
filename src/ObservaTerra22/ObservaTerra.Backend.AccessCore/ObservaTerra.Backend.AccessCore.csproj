@@ -40,10 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessCoreFactory.cs" />
-    <Compile Include="IIndicatorAccess.cs" />
-    <Compile Include="IndicatorAccess.cs" />
-    <Compile Include="IObservationAccess.cs" />
-    <Compile Include="ObservationAccess.cs" />
+    <Compile Include="Component\ComponentAccess.cs" />
+    <Compile Include="Component\IComponentAccess.cs" />
+    <Compile Include="Indicator\IIndicatorAccess.cs" />
+    <Compile Include="Indicator\IndicatorAccess.cs" />
+    <Compile Include="Observation\IObservationAccess.cs" />
+    <Compile Include="Observation\ObservationAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

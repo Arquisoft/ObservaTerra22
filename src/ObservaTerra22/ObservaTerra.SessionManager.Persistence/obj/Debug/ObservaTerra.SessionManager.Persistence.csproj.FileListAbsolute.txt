@@ -3,3 +3,8 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Session
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.csprojResolveAssemblyReference.cache
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb

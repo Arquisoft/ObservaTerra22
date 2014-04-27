@@ -493,6 +493,11 @@
             <End Role="IComponent" EntitySet="IComponents" />
             <End Role="Observation" EntitySet="Observations" />
           </AssociationSet>
+          <EntitySet Name="RoleSet" EntityType="DomainModel.Role" />
+          <AssociationSet Name="UserRole" Association="DomainModel.UserRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Role" EntitySet="RoleSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Area">
           <Key>
@@ -552,6 +557,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Observations" Relationship="DomainModel.ObservationUser" FromRole="User" ToRole="Observation" />
           <NavigationProperty Name="Organizations" Relationship="DomainModel.OrganizationUser" FromRole="User" ToRole="Organization" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="DomainModel.UserRole" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="ITime">
           <Key>
@@ -618,6 +627,18 @@
         <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent" />
         <EntityType Name="TextComponent" BaseType="DomainModel.IComponent" />
         <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent" />
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="DomainModel.UserRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <Association Name="UserRole">
+          <End Type="DomainModel.User" Role="User" Multiplicity="*" />
+          <End Type="DomainModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

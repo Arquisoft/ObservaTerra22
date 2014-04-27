@@ -1,0 +1,1 @@
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web.Tests\obj\Debug\ObservaTerra.Web.Tests.csprojResolveAssemblyReference.cache

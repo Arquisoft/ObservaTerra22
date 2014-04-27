@@ -3,3 +3,52 @@ C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.dll
 C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Javier\Documents\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\es\EntityFramework.resources.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.xml
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\es\EntityFramework.resources.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.csprojResolveAssemblyReference.cache
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\EntityFramework.xml
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.csprojResolveAssemblyReference.cache
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\Debug\ObservaTerra.Backend.HumanData.pdb

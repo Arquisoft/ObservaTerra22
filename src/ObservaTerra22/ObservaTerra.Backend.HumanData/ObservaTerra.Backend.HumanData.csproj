@@ -39,7 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HumanDataFactory.cs" />
+    <Compile Include="Observation\IObservationHumanData.cs" />
+    <Compile Include="Observation\ObservationHumanData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataCommand\ObservaTerra.Backend.DataCommand.csproj">
+      <Project>{bec112c2-83e3-45b3-a9cf-04b033ca8ed7}</Project>
+      <Name>ObservaTerra.Backend.DataCommand</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
+      <Project>{ca51c811-2c11-474c-8187-b2cef5f5327e}</Project>
+      <Name>ObservaTerra.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
