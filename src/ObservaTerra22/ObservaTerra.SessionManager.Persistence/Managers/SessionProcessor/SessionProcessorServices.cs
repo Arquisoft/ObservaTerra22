@@ -36,7 +36,7 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
             {
                 string token = HashingUtil.GenerateHash(username, new Random().Next(500) + "");
                 this.activeTokens.Add(token, user);
-                return new LoggedInUser(token: token, username: user.Username, name: user.Name, roles: user.Role);
+                return new LoggedInUser(token: token, username: user.Username, name: user.Name, roles: user.Roles);
             }
             throw new Exceptions.EntityNotFoundException("No user with that username and password was found in the system");
         }
@@ -47,7 +47,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// <returns>A default user instance representing a guest</returns>
         public LoggedInUser Login()
         {
-            if (this.guestToken == null){
+            if (this.guestToken == null)
+            {
                 this.guestToken = HashingUtil.GenerateHash("guest");
             }
             return new LoggedInUser(token: this.guestToken, username: null, name: null, roles: new List<Role>());

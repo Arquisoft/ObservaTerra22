@@ -17,7 +17,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// and ask for some system services.
         /// </summary>
         private string token;
-        public string Token { 
+        public string Token
+        {
             get { return this.token; }
         }
 
@@ -25,7 +26,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// The username is the identifier of the user in the system, the identifier he/she logs in with.
         /// </summary>
         private string username;
-        public string Username { 
+        public string Username
+        {
             get { return this.username; }
         }
 
@@ -33,7 +35,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// The name attribute and property represent the real name of the person with this user account.
         /// </summary>
         private string name;
-        public string Name { 
+        public string Name
+        {
             get { return this.name; }
         }
 
@@ -42,7 +45,7 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// </summary>
         private ICollection<Role> roles;
         public ICollection<Role> Roles
-        { 
+        {
             get { return this.roles; }
         }
 

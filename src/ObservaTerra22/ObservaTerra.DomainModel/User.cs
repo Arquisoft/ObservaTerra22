@@ -18,7 +18,7 @@ namespace ObservaTerra.DomainModel
         {
             this.Observations = new HashSet<Observation>();
             this.Organizations = new HashSet<Organization>();
-            this.Role = new HashSet<Role>();
+            this.Roles = new HashSet<Role>();
         }
     
         public int Id { get; set; }
@@ -28,6 +28,6 @@ namespace ObservaTerra.DomainModel
     
         public virtual ICollection<Observation> Observations { get; set; }
         public virtual ICollection<Organization> Organizations { get; set; }
-        public virtual ICollection<Role> Role { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

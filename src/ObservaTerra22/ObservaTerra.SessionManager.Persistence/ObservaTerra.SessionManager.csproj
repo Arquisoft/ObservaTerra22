@@ -47,8 +47,10 @@
     <Compile Include="Exceptions\UsernameAlreadyInUseException.cs" />
     <Compile Include="Managers\AdminModule\AdminModuleServices.cs" />
     <Compile Include="Managers\AdminModule\IAdminModuleServices.cs" />
+    <Compile Include="Managers\HashingUtil.cs" />
     <Compile Include="Managers\ManagersFactory.cs" />
     <Compile Include="Managers\SessionProcessor\ISessionProcessorServices.cs" />
+    <Compile Include="Managers\SessionProcessor\LoggedInUser.cs" />
     <Compile Include="Managers\SessionProcessor\SessionProcessorServices.cs" />
     <Compile Include="Persistence\IUserPersistenceManagement.cs" />
     <Compile Include="Persistence\PersistenceFactory.cs" />
