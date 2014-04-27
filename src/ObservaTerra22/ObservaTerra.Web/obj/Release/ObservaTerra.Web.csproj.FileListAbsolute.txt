@@ -87,6 +87,6 @@ D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\bin\ko\System.Spatia
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\bin\ru\System.Spatial.resources.dll
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\bin\zh-Hans\System.Spatial.resources.dll
 D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\bin\zh-Hant\System.Spatial.resources.dll
-D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.csprojResolveAssemblyReference.cache
-D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.dll
-D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.pdb
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Release\ObservaTerra.Web.csprojResolveAssemblyReference.cache
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Release\ObservaTerra.Web.dll
+D:\Repos\ObservaTerra22\src\ObservaTerra22\ObservaTerra.Web\obj\Release\ObservaTerra.Web.pdb
