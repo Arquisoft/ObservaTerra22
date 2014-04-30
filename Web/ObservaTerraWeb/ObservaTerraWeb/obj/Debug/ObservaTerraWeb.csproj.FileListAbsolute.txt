@@ -1,2 +1,0 @@
-C:\Users\María\SkyDrive\Clase\Git Projects\ASW\ObservaTerra22\Web\ObservaTerraWeb\ObservaTerraWeb\obj\Debug\ObservaTerraWeb.csprojResolveAssemblyReference.cache
-D:\Repos\ObservaTerra22\Web\ObservaTerraWeb\ObservaTerraWeb\obj\Debug\ObservaTerraWeb.csprojResolveAssemblyReference.cache
