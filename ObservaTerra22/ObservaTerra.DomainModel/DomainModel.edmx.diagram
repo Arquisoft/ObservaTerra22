@@ -9,8 +9,8 @@
         <EntityTypeShape EntityType="DomainModel.Country" Width="1.5" PointX="1" PointY="4" />
         <EntityTypeShape EntityType="DomainModel.Indicator" Width="1.5" PointX="3.125" PointY="2.375" />
         <EntityTypeShape EntityType="DomainModel.Measure" Width="1.5" PointX="3.125" PointY="0.5" />
-        <EntityTypeShape EntityType="DomainModel.Organization" Width="1.5" PointX="7.125" PointY="1.375" />
-        <EntityTypeShape EntityType="DomainModel.Observation" Width="1.5" PointX="5.125" PointY="2.875" />
+        <EntityTypeShape EntityType="DomainModel.Organization" Width="1.5" PointX="7.125" PointY="1.5" />
+        <EntityTypeShape EntityType="DomainModel.Observation" Width="1.5" PointX="5.125" PointY="3" />
         <EntityTypeShape EntityType="DomainModel.User" Width="1.5" PointX="5.125" PointY="0.5" />
         <EntityTypeShape EntityType="DomainModel.ITime" Width="1.5" PointX="3.125" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="DomainModel.TimeInterval" Width="1.5" PointX="2.25" PointY="6.875" />
@@ -18,10 +18,10 @@
         <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="3.875" PointY="6.875" />
         <InheritanceConnector EntityType="DomainModel.TimeInstant" />
         <InheritanceConnector EntityType="DomainModel.Country" />
-        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="7.125" PointY="3.125" />
-        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="8" PointY="5" />
+        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="7.125" PointY="3.25" />
+        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="8.25" PointY="5.5" />
         <InheritanceConnector EntityType="DomainModel.ImageComponent" />
-        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="8" PointY="6.25" />
+        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="8.25" PointY="6.75" />
         <InheritanceConnector EntityType="DomainModel.GraphComponent" />
         <AssociationConnector Association="DomainModel.AreaArea" />
         <AssociationConnector Association="DomainModel.IndicatorArea" />
@@ -32,11 +32,12 @@
         <AssociationConnector Association="DomainModel.ObservationOrganization" />
         <AssociationConnector Association="DomainModel.OrganizationUser" />
         <AssociationConnector Association="DomainModel.IComponentObservation" />
-        <EntityTypeShape EntityType="DomainModel.VideoComponent" Width="1.5" PointX="6.25" PointY="7.5" />
+        <EntityTypeShape EntityType="DomainModel.VideoComponent" Width="1.5" PointX="7.125" PointY="8" />
         <InheritanceConnector EntityType="DomainModel.VideoComponent" />
-        <EntityTypeShape EntityType="DomainModel.TextComponent" Width="1.5" PointX="6.25" PointY="5" />
-        <InheritanceConnector EntityType="DomainModel.TextComponent" />
-        <EntityTypeShape EntityType="DomainModel.DocumentComponent" Width="1.5" PointX="6.25" PointY="6.25" />
+        <EntityTypeShape EntityType="DomainModel.TextComponent" Width="1.5" PointX="6" PointY="5.5" />
+        <InheritanceConnector EntityType="DomainModel.TextComponent" ManuallyRouted="false" >
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="DomainModel.DocumentComponent" Width="1.5" PointX="6" PointY="6.75" />
         <InheritanceConnector EntityType="DomainModel.DocumentComponent" />
         <EntityTypeShape EntityType="DomainModel.Role" Width="1.5" PointX="9.125" PointY="0.5" />
         <AssociationConnector Association="DomainModel.UserRole" />

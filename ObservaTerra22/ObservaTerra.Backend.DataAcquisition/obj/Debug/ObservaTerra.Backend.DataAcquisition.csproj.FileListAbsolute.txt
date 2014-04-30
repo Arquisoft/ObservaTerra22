@@ -1,0 +1,1 @@
+D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache

@@ -28,3 +28,13 @@ D:\Repos\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.Spec
 D:\Repos\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
 D:\Repos\ObservaTerra22\src\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\Default.srprofile
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll.config
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.pdb
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\SpecRun.SpecFlowPlugin.dll
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecFlow.dll
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecRun.dll
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
+D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
