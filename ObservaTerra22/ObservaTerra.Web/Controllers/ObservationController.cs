@@ -7,10 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Mvc;
 
 namespace ObservaTerra.Backend.WebService.Controllers
 {
-    public class ObservationController : ApiControllerLogin
+    public class ObservationController : Controller
     {
         public Observation Get(string token, int id)
         {
