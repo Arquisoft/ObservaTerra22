@@ -1,5 +1,4 @@
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
-C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll.config
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.pdb

@@ -15,7 +15,6 @@ namespace ObservaTerra.BackEnd.DataAcquisition
         {
             init();
         }
-  
 
         public CrawlResult crawl(Uri uri)
         {

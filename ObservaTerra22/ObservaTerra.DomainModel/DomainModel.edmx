@@ -14,6 +14,7 @@
     <EntitySet Name="Users" EntityType="DomainModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes" EntityType="DomainModel.Store.ITimes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents" EntityType="DomainModel.Store.IComponents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleSet" EntityType="DomainModel.Store.RoleSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Areas_Country" EntityType="DomainModel.Store.Areas_Country" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes_TimeInterval" EntityType="DomainModel.Store.ITimes_TimeInterval" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes_TimeInstant" EntityType="DomainModel.Store.ITimes_TimeInstant" store:Type="Tables" Schema="dbo" />
@@ -23,6 +24,7 @@
     <EntitySet Name="IComponents_TextComponent" EntityType="DomainModel.Store.IComponents_TextComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_DocumentComponent" EntityType="DomainModel.Store.IComponents_DocumentComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrganizationUser" EntityType="DomainModel.Store.OrganizationUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRole" EntityType="DomainModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="AreaArea" Association="DomainModel.Store.AreaArea">
       <End Role="Area" EntitySet="Areas" />
       <End Role="Area1" EntitySet="Areas" />
@@ -62,6 +64,14 @@
     <AssociationSet Name="IComponentObservation" Association="DomainModel.Store.IComponentObservation">
       <End Role="IComponent" EntitySet="IComponents" />
       <End Role="Observation" EntitySet="Observations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_User" Association="DomainModel.Store.FK_UserRole_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRole_Role" Association="DomainModel.Store.FK_UserRole_Role">
+      <End Role="Role" EntitySet="RoleSet" />
+      <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
     <AssociationSet Name="FK_Country_inherits_Area" Association="DomainModel.Store.FK_Country_inherits_Area">
       <End Role="Area" EntitySet="Areas" />
@@ -140,6 +150,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ITimes">
     <Key>
@@ -154,6 +167,13 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Observation_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoleSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Areas_Country">
     <Key>
@@ -211,6 +231,14 @@
     </Key>
     <Property Name="Organizations_Id" Type="int" Nullable="false" />
     <Property Name="Users_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="Roles_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="Roles_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AreaArea">
     <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="1" />
@@ -329,6 +357,30 @@
       </Principal>
       <Dependent Role="OrganizationUser">
         <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_User">
+    <End Role="User" Type="DomainModel.Store.Users" Multiplicity="1" />
+    <End Role="UserRole" Type="DomainModel.Store.UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRole_Role">
+    <End Role="UserRole" Type="DomainModel.Store.UserRole" Multiplicity="*" />
+    <End Role="Role" Type="DomainModel.Store.RoleSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="Roles_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -694,6 +746,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -743,6 +798,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
         <MappingFragment StoreEntitySet="IComponents_DocumentComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Role)">
+        <MappingFragment StoreEntitySet="RoleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -808,6 +871,14 @@
       </EndProperty>
       <EndProperty Name="IComponent">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="DomainModel.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

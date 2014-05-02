@@ -50,6 +50,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -99,6 +102,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
         <MappingFragment StoreEntitySet="IComponents_DocumentComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Role)">
+        <MappingFragment StoreEntitySet="RoleSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,6 +175,14 @@
       </EndProperty>
       <EndProperty Name="IComponent">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserRole" TypeName="DomainModel.UserRole" StoreEntitySet="UserRole">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
