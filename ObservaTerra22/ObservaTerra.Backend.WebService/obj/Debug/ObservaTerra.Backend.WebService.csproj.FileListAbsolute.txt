@@ -284,3 +284,4 @@ D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\Sy
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache

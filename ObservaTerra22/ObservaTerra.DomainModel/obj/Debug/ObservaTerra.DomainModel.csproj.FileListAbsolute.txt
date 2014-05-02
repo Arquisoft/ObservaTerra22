@@ -34,3 +34,4 @@ D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\Entity
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\es\EntityFramework.resources.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.csprojResolveAssemblyReference.cache

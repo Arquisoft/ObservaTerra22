@@ -1,1 +1,16 @@
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll.config
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Abot.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\HtmlAgilityPack.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Robots.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.xml
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.xml
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.xml
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.pdb

@@ -187,3 +187,4 @@ D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\zh-Hans\System.Spati
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\zh-Hant\System.Spatial.resources.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.csprojResolveAssemblyReference.cache

@@ -38,3 +38,4 @@ D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecRun.
 D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
 D:\Repos\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache

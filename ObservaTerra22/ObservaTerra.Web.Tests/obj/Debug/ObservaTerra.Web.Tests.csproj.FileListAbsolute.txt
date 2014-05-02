@@ -69,3 +69,4 @@ D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaT
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.Core.pdb
 D:\Repos\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\obj\Debug\ObservaTerra.Web.Tests.csprojResolveAssemblyReference.cache
