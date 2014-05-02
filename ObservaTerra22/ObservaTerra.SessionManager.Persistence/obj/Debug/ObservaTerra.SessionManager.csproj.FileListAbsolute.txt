@@ -31,3 +31,13 @@ C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionMa
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb

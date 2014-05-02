@@ -9,27 +9,27 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace ObservaTerra.Backend.WebService.Controllers
+namespace ObservaTerra.Web.Controllers
 {
     public class ObservationController : Controller
     {
         public Observation Get(string token, int id)
         {
-            User user = GetUserByToken(token);
+            User user = Util.GetUser(User);
             IObservationQuery query = DataQueryFactory.GetObservationQueries(user);
             return query.GetObservation(id);
         }
 
         public IEnumerable<Observation> Get(string token, string partialname)
         {
-            User user = GetUserByToken(token);
+            User user = Util.GetUser(User);
             IObservationQuery query = DataQueryFactory.GetObservationQueries(user);
             return query.FindObservations(partialname);
         }
 
         public void Post(string token, Observation observation)
         {
-            User user = GetUserByToken(token);
+            User user = Util.GetUser(User);
             IObservationHumanData humandata = HumanDataFactory.GetObservationHumanData(user);
             humandata.AddObservation(observation);
         }

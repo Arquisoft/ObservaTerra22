@@ -43,3 +43,12 @@ C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainMod
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.dll.config
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb
