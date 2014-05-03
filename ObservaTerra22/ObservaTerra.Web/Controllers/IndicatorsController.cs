@@ -1,5 +1,4 @@
-﻿using ObservaTerra.Backend.DataQuery;
-using ObservaTerra.DomainModel;
+﻿using ObservaTerra.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,18 +12,18 @@ namespace ObservaTerra.Web.Controllers
    
     public class IndicatorsController : Controller
     {
-        public Indicator Get(string token, int id)
+        /*public Indicator Get(int id)
         {
             User user = Util.GetUser(User);
             IIndicatorQuery query = DataQueryFactory.GetIndicatorQuery(user);
             return query.GetIndicator(id);
-        }
+        }*/
 
-        public IEnumerable<Indicator> Get(string token, string partialname)
+        public ViewResult Index(string partialname = "")
         {
             User user = Util.GetUser(User);
-            IIndicatorQuery query = DataQueryFactory.GetIndicatorQuery(user);
-            return query.FindIndicators(partialname);
+            //This is a test, source should be cleaner.
+            return View(new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(null, ""));
         }
     }
 }

@@ -1,15 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-<<<<<<< HEAD
 VisualStudioVersion = 12.0.21005.1
-=======
-<<<<<<< HEAD
-VisualStudioVersion = 12.0.30110.0
-=======
-VisualStudioVersion = 12.0.21005.1
->>>>>>> SessionManager
->>>>>>> master
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.Core", "ObservaTerra.Backend.Core\ObservaTerra.Backend.Core.csproj", "{4B1A5082-DE55-48FB-A52F-D187844BA549}"
 EndProject
@@ -37,17 +29,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B99BAA
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.DomainModel", "ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj", "{CA51C811-2C11-474C-8187-B2CEF5F5327E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.WebService", "ObservaTerra.Backend.WebService\ObservaTerra.Backend.WebService.csproj", "{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}"
 EndProject
-<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Backend.DataAcquisition", "ObservaTerra.Backend.DataAcquisition\ObservaTerra.Backend.DataAcquisition.csproj", "{6744972A-D3EF-43BB-B356-60FF407DD9CE}"
-=======
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Web", "ObservaTerra.Web\ObservaTerra.Web.csproj", "{F8712A13-1C3B-4173-A723-F061779B99CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.Web.Tests", "ObservaTerra.Web.Tests\ObservaTerra.Web.Tests.csproj", "{38B2E042-3505-4BD9-BF5C-95D763D175B2}"
->>>>>>> master
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObservaTerra.DomainModel", "ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj", "{EE49F442-1DD1-4A1B-8086-40E7594C7799}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,22 +75,17 @@ Global
 		{1ECFA83F-6AC5-490E-9894-28F8BF45D376}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAA754A5-0C8F-4553-B41E-41197ED734BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DAA754A5-0C8F-4553-B41E-41197ED734BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAA754A5-0C8F-4553-B41E-41197ED734BD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{DAA754A5-0C8F-4553-B41E-41197ED734BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA754A5-0C8F-4553-B41E-41197ED734BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA51C811-2C11-474C-8187-B2CEF5F5327E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA51C811-2C11-474C-8187-B2CEF5F5327E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA51C811-2C11-474C-8187-B2CEF5F5327E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA51C811-2C11-474C-8187-B2CEF5F5327E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DB31A82-7FB5-43D5-A341-54EBE5474EEC}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6744972A-D3EF-43BB-B356-60FF407DD9CE}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
 		{F8712A13-1C3B-4173-A723-F061779B99CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8712A13-1C3B-4173-A723-F061779B99CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8712A13-1C3B-4173-A723-F061779B99CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -109,7 +94,10 @@ Global
 		{38B2E042-3505-4BD9-BF5C-95D763D175B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38B2E042-3505-4BD9-BF5C-95D763D175B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38B2E042-3505-4BD9-BF5C-95D763D175B2}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> master
+		{EE49F442-1DD1-4A1B-8086-40E7594C7799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE49F442-1DD1-4A1B-8086-40E7594C7799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE49F442-1DD1-4A1B-8086-40E7594C7799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE49F442-1DD1-4A1B-8086-40E7594C7799}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

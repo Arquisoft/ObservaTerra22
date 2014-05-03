@@ -1,0 +1,11 @@
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\ObservaTerra.SessionManager.Persistence.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\x86\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\x86\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\x86\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\x86\Debug\ObservaTerra.SessionManager.Persistence.pdb

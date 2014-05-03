@@ -17,16 +17,16 @@ namespace ObservaTerra.Backend.WebService.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        /*public string Get(int id)
         {
-            DomainModelContainer dmc = new DomainModelContainer();
+           DomainModelContainer dmc = new DomainModelContainer();
 
             dmc.Users.Add(new User());
 
             dmc.SaveChanges();
 
             return "value";
-        }
+        }*/
 
         // POST api/values
         public void Post([FromBody]string value)

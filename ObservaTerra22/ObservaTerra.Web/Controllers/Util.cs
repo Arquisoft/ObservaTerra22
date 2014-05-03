@@ -11,8 +11,8 @@ namespace ObservaTerra.Web.Controllers
     {
         public static User GetUser(IPrincipal user)
         {
-            if (user == null)
-                throw new UnauthorizedAccessException();
+            if (!user.Identity.IsAuthenticated)
+                return null;
             return (User)user;
         }
     }

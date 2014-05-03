@@ -1,0 +1,17 @@
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.HumanData.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Core.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Core.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\bin\x86\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\x86\Debug\ObservaTerra.Backend.HumanData.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\x86\Debug\ObservaTerra.Backend.HumanData.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.HumanData\obj\x86\Debug\ObservaTerra.Backend.HumanData.pdb

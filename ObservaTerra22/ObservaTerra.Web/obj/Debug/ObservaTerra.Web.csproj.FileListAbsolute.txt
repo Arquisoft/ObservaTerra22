@@ -216,7 +216,6 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\Dot
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\DotNetOpenAuth.OpenId.UI.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\DotNetOpenAuth.OpenIdInfoCard.UI.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\DotNetOpenAuth.OpenIdOAuth.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\EntityFramework.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\Microsoft.Data.Edm.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\Microsoft.Data.OData.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\Microsoft.Web.Infrastructure.dll

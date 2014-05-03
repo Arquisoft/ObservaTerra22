@@ -14,6 +14,13 @@ namespace ObservaTerra.Backend.WebService
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "IndicatorSearch",
+                routeTemplate: "api/indicator/{token}/{partialname}",
+                defaults: new { controller = "Indicator", token = RouteParameter.Optional, partialname = RouteParameter.Optional }
+            );
+
         }
     }
 }
