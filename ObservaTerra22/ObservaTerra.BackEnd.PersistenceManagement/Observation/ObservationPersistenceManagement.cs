@@ -24,11 +24,12 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
         public IEnumerable<Observation> FindObservations(string partialname)
         {
-            IEnumerable<Observation> result = null;
+            ICollection<Observation> result = new List<Observation>();
 
             using (var container = new DomainModelContainer())
             {
-                result = container.Observations.Where(o => o.Indicator.Name.Contains(partialname));
+                foreach (var observation in container.Observations.Where(o => o.Indicator.Name.Contains(partialname)))
+                    result.Add(observation);
             }
 
             return result;

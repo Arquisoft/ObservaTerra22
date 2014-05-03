@@ -23,11 +23,12 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
         public IEnumerable<IComponent> FindComponents(string partialname)
         {
-            IEnumerable<IComponent> result = null;
+            ICollection<IComponent> result = new List<IComponent>();
 
             using (var container = new DomainModelContainer())
             {
-                result = container.IComponents.Where(c => c.Observation.Indicator.Name == partialname);
+                foreach (var component in container.IComponents.Where(c => c.Observation.Indicator.Name == partialname))
+                    result.Add(component);
             }
 
             return result;   

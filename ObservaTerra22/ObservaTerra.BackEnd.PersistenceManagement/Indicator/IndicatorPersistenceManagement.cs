@@ -23,11 +23,12 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
         public IEnumerable<Indicator> FindIndicators(string partialname)
         {
-            IEnumerable<Indicator> result = null;
+            ICollection<Indicator> result = new List<Indicator>();
 
             using (var container = new DomainModelContainer())
             {
-                result = container.Indicators.Where(i => i.Name.Contains(partialname));
+                foreach (var indicator in container.Indicators.Where(i => i.Name.Contains(partialname)))
+                    result.Add(indicator);
             }
 
             return result;

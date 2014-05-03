@@ -230,9 +230,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ComponentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndicatorsController.cs" />
-    <Compile Include="Controllers\ObservationController.cs" />
+    <Compile Include="Controllers\ObservationsController.cs" />
     <Compile Include="Controllers\Util.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -240,6 +241,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ObservationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -355,6 +357,8 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Indicators\Index.cshtml" />
     <Content Include="Views\Observations\Index.cshtml" />
+    <Content Include="Views\Observations\Create.cshtml" />
+    <Content Include="Views\Components\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

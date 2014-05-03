@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ObservaTerra.DomainModel.IComponent>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Componentes</h2>
+
+@Html.ActionLink("Nuevo", "Create", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
+
+<table class="table">
+    <tr>
+        <th>
+            <b>Título</b>
+        </th>
+        <th>
+            <b>Author</b>
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.ActionLink("ID" + item.Id , "Details", "Components", new { id = item.Id }, null)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+</table>

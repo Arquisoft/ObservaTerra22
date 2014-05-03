@@ -22,8 +22,8 @@ namespace ObservaTerra.Web.Controllers
         public ViewResult Index(string partialname = "")
         {
             User user = Util.GetUser(User);
-            //This is a test, source should be cleaner.
-            return View(new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(null, ""));
+            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(null, "");
+            return View(result);
         }
     }
 }

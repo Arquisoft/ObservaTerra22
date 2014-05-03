@@ -169,3 +169,7 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\o
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\obj\Debug\ObservaTerra.Web.Tests.pdb
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.Backend.WebService.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.Backend.WebService.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web.Tests\bin\Debug\ObservaTerra.SessionManager.Persistence.pdb
