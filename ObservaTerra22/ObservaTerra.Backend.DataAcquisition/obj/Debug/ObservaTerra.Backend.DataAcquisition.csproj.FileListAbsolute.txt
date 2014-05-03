@@ -28,3 +28,17 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.Dat
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll.config
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Abot.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\HtmlAgilityPack.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Robots.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.xml

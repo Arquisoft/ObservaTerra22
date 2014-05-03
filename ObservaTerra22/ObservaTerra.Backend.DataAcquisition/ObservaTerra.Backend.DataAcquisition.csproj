@@ -83,7 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrawlerMain.cs" />
+    <Compile Include="CrawlerService.cs" />
+    <Compile Include="DataSources.cs" />
     <Compile Include="WebCrawler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
