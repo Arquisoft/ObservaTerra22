@@ -34,7 +34,7 @@ namespace ObservaTerra.Backend.DataAcquisition
         private void UpdateFile()
         {
             XmlSerializer writer = new XmlSerializer(typeof(DataSources));
-            using (FileStream file = File.OpenWrite("sources.xml"))
+            using (FileStream file = File.OpenWrite("/sources/sources.xml"))
             {
                 writer.Serialize(file, ToCrawl);
             }
@@ -46,7 +46,6 @@ namespace ObservaTerra.Backend.DataAcquisition
         }
         public void Crawl()
         {
-            // ToCrawl= readFromFile();
             ToCrawl.Sources.ForEach(x => Crawler.crawl(new Uri(x)));
         }
 
@@ -54,7 +53,7 @@ namespace ObservaTerra.Backend.DataAcquisition
         {
 
             XmlSerializer reader = new XmlSerializer(typeof(DataSources));
-            using (FileStream input = File.OpenRead(Directory.GetCurrentDirectory() + "/sources/sources.xml"))
+            using (FileStream input = File.OpenRead("/sources/sources.xml"))
             {
                 return reader.Deserialize(input) as DataSources;
             }

@@ -7,3 +7,13 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.dll.config
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.csprojResolveAssemblyReference.cache
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\obj\Debug\ObservaTerra.DomainModel.pdb

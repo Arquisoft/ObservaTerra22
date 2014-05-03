@@ -42,3 +42,13 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionMana
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.xml
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\es\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
