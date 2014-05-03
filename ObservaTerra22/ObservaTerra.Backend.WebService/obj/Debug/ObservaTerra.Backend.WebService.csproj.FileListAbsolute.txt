@@ -50,7 +50,6 @@ C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.W
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.dll.config
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\ObservaTerra.Backend.WebService.pdb
@@ -102,5 +101,6 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.Web
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\obj\Debug\ObservaTerra.Backend.WebService.pdb

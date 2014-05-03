@@ -2,21 +2,12 @@
 <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DomainModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
   <EntityContainer Name="DomainModelContainer" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Areas" EntityType="DomainModel.Area" />
-    <EntitySet Name="CountrySet" EntityType="DomainModel.Country" />
     <EntitySet Name="Indicators" EntityType="DomainModel.Indicator" />
     <EntitySet Name="Measures" EntityType="DomainModel.Measure" />
     <EntitySet Name="Organizations" EntityType="DomainModel.Organization" />
     <EntitySet Name="Observations" EntityType="DomainModel.Observation" />
     <EntitySet Name="Users" EntityType="DomainModel.User" />
     <EntitySet Name="ITimes" EntityType="DomainModel.ITime" />
-    <EntitySet Name="TimeIntervalSet" EntityType="DomainModel.TimeInterval" />
-    <EntitySet Name="TimeInstantSet" EntityType="DomainModel.TimeInstant" />
-    <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
-    <EntitySet Name="ImageComponentSet" EntityType="DomainModel.ImageComponent" />
-    <EntitySet Name="GraphComponentSet" EntityType="DomainModel.GraphComponent" />
-    <EntitySet Name="VideoComponentSet" EntityType="DomainModel.VideoComponent" />
-    <EntitySet Name="TextComponentSet" EntityType="DomainModel.TextComponent" />
-    <EntitySet Name="DocumentComponentSet" EntityType="DomainModel.DocumentComponent" />
     <EntitySet Name="RoleSet" EntityType="DomainModel.Role" />
     <AssociationSet Name="AreaArea" Association="DomainModel.AreaArea">
       <End Role="Area" EntitySet="Areas" />
@@ -58,31 +49,28 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Role" EntitySet="RoleSet" />
     </AssociationSet>
+    <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
   </EntityContainer>
   <EntityType Name="Area">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="AreaId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ContainedAreas" Relationship="DomainModel.AreaArea" FromRole="Area" ToRole="Area1" />
     <NavigationProperty Name="ContainerArea" Relationship="DomainModel.AreaArea" FromRole="Area1" ToRole="Area" />
     <NavigationProperty Name="Indicator" Relationship="DomainModel.IndicatorArea" FromRole="Area" ToRole="Indicator" />
   </EntityType>
-  <EntityType Name="Country">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Continent" Type="String" Nullable="false" />
-    <Property Name="Id" Type="Int32" Nullable="false" />
+  <EntityType Name="Country" BaseType="DomainModel.Area">
+    <Property Name="Continent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <EntityType Name="Indicator">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Area" Relationship="DomainModel.IndicatorArea" FromRole="Indicator" ToRole="Area" />
     <NavigationProperty Name="Measure" Relationship="DomainModel.IndicatorMeasure" FromRole="Indicator" ToRole="Measure" />
     <NavigationProperty Name="Observations" Relationship="DomainModel.ObservationIndicator" FromRole="Indicator" ToRole="Observation" />
@@ -108,7 +96,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CreationDate" Type="Time" Nullable="false" />
+    <Property Name="CreationDate" Type="Time" Nullable="false" Precision="7" />
     <NavigationProperty Name="SourceOrganization" Relationship="DomainModel.ObservationOrganization" FromRole="Observation" ToRole="Organization" />
     <NavigationProperty Name="Indicator" Relationship="DomainModel.ObservationIndicator" FromRole="Observation" ToRole="Indicator" />
     <NavigationProperty Name="UserAuthor" Relationship="DomainModel.ObservationUser" FromRole="Observation" ToRole="User" />
@@ -119,9 +107,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" Nullable="false" />
-    <Property Name="Password" Type="String" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Organizations" Relationship="DomainModel.OrganizationUser" FromRole="User" ToRole="Organization" />
     <NavigationProperty Name="Observations" Relationship="DomainModel.ObservationUser" FromRole="User" ToRole="Observation" />
     <NavigationProperty Name="Roles" Relationship="DomainModel.UserRole" FromRole="User" ToRole="Role" />
@@ -133,18 +121,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Indicator" Relationship="DomainModel.ITimeIndicator" FromRole="ITime" ToRole="Indicator" />
   </EntityType>
-  <EntityType Name="TimeInterval">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TimeInstant">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
+  <EntityType Name="TimeInterval" BaseType="DomainModel.ITime" />
+  <EntityType Name="TimeInstant" BaseType="DomainModel.ITime" />
   <EntityType Name="IComponent">
     <Key>
       <PropertyRef Name="Id" />
@@ -152,42 +130,19 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Observation" Relationship="DomainModel.IComponentObservation" FromRole="IComponent" ToRole="Observation" />
   </EntityType>
-  <EntityType Name="ImageComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
+  <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="TextComponent" BaseType="DomainModel.IComponent">
+    <Property Name="Text" Type="String" Nullable="false" />
   </EntityType>
-  <EntityType Name="GraphComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="VideoComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TextComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DocumentComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-  </EntityType>
+  <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent" />
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Users" Relationship="DomainModel.UserRole" FromRole="Role" ToRole="User" />
   </EntityType>
   <Association Name="AreaArea">
@@ -232,7 +187,7 @@
   </Association>
   <Association Name="IComponentObservation">
     <End Type="DomainModel.IComponent" Role="IComponent" Multiplicity="*" />
-    <End Type="DomainModel.Observation" Role="Observation" Multiplicity="1" />
+    <End Type="DomainModel.Observation" Role="Observation" Multiplicity="0..1" />
   </Association>
   <Association Name="UserRole">
     <End Type="DomainModel.User" Role="User" Multiplicity="*" />

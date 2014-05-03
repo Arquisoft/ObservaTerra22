@@ -33,6 +33,6 @@ namespace ObservaTerra.DomainModel
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ITime> ITimes { get; set; }
         public virtual DbSet<Role> RoleSet { get; set; }
-        public virtual DbSet<IComponent> IComponentSet { get; set; }
+        public virtual DbSet<IComponent> IComponents { get; set; }
     }
 }

@@ -25,5 +25,12 @@ namespace ObservaTerra.Backend.WebService.Controllers
             IComponentQuery query = DataQueryFactory.GetComponentQuery(user);
             return query.FindComponents(partialname);
         }
+
+        public void Add(string token, IComponent component)
+        {
+            User user = GetUserByToken(token);
+            IComponentQuery query = DataQueryFactory.GetComponentQuery(user);
+            query.Add(component);
+        }
     }
 }

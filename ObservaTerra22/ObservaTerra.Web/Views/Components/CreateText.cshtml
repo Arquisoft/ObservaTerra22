@@ -1,0 +1,12 @@
+﻿@model ObservaTerra.DomainModel.TextComponent
+@{
+    ViewBag.Title = "CreateText";
+}
+
+<h2>CreateText</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.TextAreaFor(model => model.Text)
+    <input type="submit" value="Crear" class="btn btn-default" />
+}

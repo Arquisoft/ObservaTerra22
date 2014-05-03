@@ -28,5 +28,11 @@ namespace ObservaTerra.Backend.DataQuery
             IComponentAccess access = AccessCoreFactory.GetComponentAccess(User);
             return access.FindComponents(partialname);
         }
+
+        public void Add(IComponent component)
+        {
+            IComponentAccess access = AccessCoreFactory.GetComponentAccess(User);
+            access.Add(component);
+        }
     }
 }

@@ -9,10 +9,8 @@
           <ScalarProperty Name="AreaId" ColumnName="AreaId" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CountrySet">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Country)">
-        <MappingFragment StoreEntitySet="CountrySet">
+        <MappingFragment StoreEntitySet="Areas_Country">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Continent" ColumnName="Continent" />
         </MappingFragment>
@@ -64,59 +62,13 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TimeIntervalSet">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInterval)">
-        <MappingFragment StoreEntitySet="TimeIntervalSet">
+        <MappingFragment StoreEntitySet="ITimes_TimeInterval">
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TimeInstantSet">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInstant)">
-        <MappingFragment StoreEntitySet="TimeInstantSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IComponents">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)">
-        <MappingFragment StoreEntitySet="IComponents">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ImageComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
-        <MappingFragment StoreEntitySet="ImageComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="GraphComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)">
-        <MappingFragment StoreEntitySet="GraphComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="VideoComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)">
-        <MappingFragment StoreEntitySet="VideoComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TextComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)">
-        <MappingFragment StoreEntitySet="TextComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DocumentComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
-        <MappingFragment StoreEntitySet="DocumentComponentSet">
+        <MappingFragment StoreEntitySet="ITimes_TimeInstant">
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -126,6 +78,39 @@
         <MappingFragment StoreEntitySet="RoleSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IComponents">
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)">
+        <MappingFragment StoreEntitySet="IComponents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
+        <MappingFragment StoreEntitySet="IComponents_ImageComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)">
+        <MappingFragment StoreEntitySet="IComponents_GraphComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)">
+        <MappingFragment StoreEntitySet="IComponents_VideoComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)">
+        <MappingFragment StoreEntitySet="IComponents_TextComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
+        <MappingFragment StoreEntitySet="IComponents_DocumentComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -192,6 +177,7 @@
       <EndProperty Name="IComponent">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Observation_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="UserRole" TypeName="DomainModel.UserRole" StoreEntitySet="UserRole">
       <EndProperty Name="User">

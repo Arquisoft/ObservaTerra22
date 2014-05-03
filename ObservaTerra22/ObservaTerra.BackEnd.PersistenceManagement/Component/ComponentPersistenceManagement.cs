@@ -27,11 +27,22 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
             using (var container = new DomainModelContainer())
             {
-                foreach (var component in container.IComponents.Where(c => c.Observation.Indicator.Name == partialname))
+                //foreach (var component in container.IComponents.Where(c => c.Observation.Indicator.Name == partialname))
+                foreach (var component in container.IComponents)    // TODO, this do not search for any.               
                     result.Add(component);
             }
 
             return result;   
+        }
+
+
+        public void Add(IComponent component)
+        {
+            using (var container = new DomainModelContainer())
+            {
+                container.IComponents.Add(component);
+                container.SaveChanges();
+            }
         }
     }
 }

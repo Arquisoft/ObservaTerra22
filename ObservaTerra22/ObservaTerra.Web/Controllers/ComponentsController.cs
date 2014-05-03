@@ -14,25 +14,22 @@ namespace ObservaTerra.Web.Controllers
             return View(result);
         }
 
-       /* // GET api/components/5
-        public string Get(int id)
+        public ViewResult CreateText()
         {
-            return "value";
+            return View();
         }
 
-        // POST api/components
-        public void Post(string value)
+        [HttpPost]
+        public ActionResult CreateText(TextComponent component)
         {
-        }
+            if (ModelState.IsValid)
+            {
+                User user = Util.GetUser(User);
+                new ObservaTerra.Backend.WebService.Controllers.ComponentController().Add(null, component);
+                return RedirectToAction("Index");
+            }
 
-        // PUT api/components/5
-        public void Put(int id, string value)
-        {
+            return View(component);
         }
-
-        // DELETE api/components/5
-        public void Delete(int id)
-        {
-        }*/
     }
 }

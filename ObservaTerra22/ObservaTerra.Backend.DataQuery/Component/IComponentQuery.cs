@@ -14,5 +14,7 @@ namespace ObservaTerra.Backend.DataQuery
         IComponent GetComponent(int id);
 
         IEnumerable<IComponent> FindComponents(string partialname);
+
+        void Add(IComponent component);
     }
 }

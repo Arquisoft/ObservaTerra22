@@ -24,5 +24,12 @@ namespace ObservaTerra.Backend.AccessCore
             IComponentCore core = CoreFactory.GetComponentCore();
             return core.FindComponents(partialname);
         }
+
+
+        public void Add(IComponent component)
+        {
+            IComponentCore core = CoreFactory.GetComponentCore();
+            core.Add(component);
+        }
     }
 }

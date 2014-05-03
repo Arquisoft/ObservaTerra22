@@ -12,9 +12,9 @@
         <EntityTypeShape EntityType="DomainModel.Organization" Width="1.5" PointX="5.5" PointY="8.375" />
         <EntityTypeShape EntityType="DomainModel.Observation" Width="1.5" PointX="6.625" PointY="5" />
         <EntityTypeShape EntityType="DomainModel.User" Width="1.5" PointX="7.75" PointY="7.625" />
-        <EntityTypeShape EntityType="DomainModel.ITime" Width="1.5" PointX="8.75" PointY="2.625" />
-        <EntityTypeShape EntityType="DomainModel.TimeInterval" Width="1.5" PointX="7.75" PointY="1" />
-        <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="DomainModel.ITime" Width="1.5" PointX="8.75" PointY="3.25" />
+        <EntityTypeShape EntityType="DomainModel.TimeInterval" Width="1.5" PointX="7.75" PointY="1.625" />
+        <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="9.625" PointY="1.625" />
         <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="4.375" PointY="5.375" />
         <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="3.125" PointY="10.875" />
         <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="3.125" PointY="9.625" />
@@ -41,7 +41,7 @@
         <InheritanceConnector EntityType="DomainModel.TextComponent" />
         <InheritanceConnector EntityType="DomainModel.GraphComponent" ManuallyRouted="false" >
         </InheritanceConnector>
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

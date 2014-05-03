@@ -17,5 +17,12 @@ namespace ObservaTerra.Core
             IComponentPersistenceManagement persistence = PersistenceManagementFactory.GetComponentPersistenceManagement();
             return persistence.FindComponents(partialname);
         }
+
+
+        public void Add(IComponent component)
+        {
+            IComponentPersistenceManagement persistence = PersistenceManagementFactory.GetComponentPersistenceManagement();
+            persistence.Add(component);
+        }
     }
 }

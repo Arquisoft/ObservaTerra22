@@ -2,22 +2,22 @@
 <Schema Namespace="DomainModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="DomainModelStoreContainer">
     <EntitySet Name="Areas" EntityType="DomainModel.Store.Areas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CountrySet" EntityType="DomainModel.Store.CountrySet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Indicators" EntityType="DomainModel.Store.Indicators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Measures" EntityType="DomainModel.Store.Measures" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Organizations" EntityType="DomainModel.Store.Organizations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Observations" EntityType="DomainModel.Store.Observations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="DomainModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes" EntityType="DomainModel.Store.ITimes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TimeIntervalSet" EntityType="DomainModel.Store.TimeIntervalSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TimeInstantSet" EntityType="DomainModel.Store.TimeInstantSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="IComponents" EntityType="DomainModel.Store.IComponents" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ImageComponentSet" EntityType="DomainModel.Store.ImageComponentSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="GraphComponentSet" EntityType="DomainModel.Store.GraphComponentSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="VideoComponentSet" EntityType="DomainModel.Store.VideoComponentSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TextComponentSet" EntityType="DomainModel.Store.TextComponentSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DocumentComponentSet" EntityType="DomainModel.Store.DocumentComponentSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleSet" EntityType="DomainModel.Store.RoleSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents" EntityType="DomainModel.Store.IComponents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Areas_Country" EntityType="DomainModel.Store.Areas_Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ITimes_TimeInterval" EntityType="DomainModel.Store.ITimes_TimeInterval" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ITimes_TimeInstant" EntityType="DomainModel.Store.ITimes_TimeInstant" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_ImageComponent" EntityType="DomainModel.Store.IComponents_ImageComponent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_GraphComponent" EntityType="DomainModel.Store.IComponents_GraphComponent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_VideoComponent" EntityType="DomainModel.Store.IComponents_VideoComponent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_TextComponent" EntityType="DomainModel.Store.IComponents_TextComponent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_DocumentComponent" EntityType="DomainModel.Store.IComponents_DocumentComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrganizationUser" EntityType="DomainModel.Store.OrganizationUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserRole" EntityType="DomainModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="AreaArea" Association="DomainModel.Store.AreaArea">
@@ -68,6 +68,38 @@
       <End Role="Role" EntitySet="RoleSet" />
       <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
+    <AssociationSet Name="FK_Country_inherits_Area" Association="DomainModel.Store.FK_Country_inherits_Area">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Country" EntitySet="Areas_Country" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimeInterval_inherits_ITime" Association="DomainModel.Store.FK_TimeInterval_inherits_ITime">
+      <End Role="ITime" EntitySet="ITimes" />
+      <End Role="TimeInterval" EntitySet="ITimes_TimeInterval" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TimeInstant_inherits_ITime" Association="DomainModel.Store.FK_TimeInstant_inherits_ITime">
+      <End Role="ITime" EntitySet="ITimes" />
+      <End Role="TimeInstant" EntitySet="ITimes_TimeInstant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageComponent_inherits_IComponent" Association="DomainModel.Store.FK_ImageComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="ImageComponent" EntitySet="IComponents_ImageComponent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraphComponent_inherits_IComponent" Association="DomainModel.Store.FK_GraphComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoComponent_inherits_IComponent" Association="DomainModel.Store.FK_VideoComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="VideoComponent" EntitySet="IComponents_VideoComponent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TextComponent_inherits_IComponent" Association="DomainModel.Store.FK_TextComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="TextComponent" EntitySet="IComponents_TextComponent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocumentComponent_inherits_IComponent" Association="DomainModel.Store.FK_DocumentComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="DocumentComponent" EntitySet="IComponents_DocumentComponent" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Areas">
     <Key>
@@ -76,13 +108,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AreaId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CountrySet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Continent" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Indicators">
     <Key>
@@ -110,7 +135,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CreationDate" Type="time" Nullable="false" />
+    <Property Name="CreationDate" Type="time" Nullable="false" Precision="7" />
     <Property Name="SourceOrganization_Id" Type="int" Nullable="false" />
     <Property Name="Indicator_Id" Type="int" Nullable="false" />
     <Property Name="UserAuthor_Id" Type="int" Nullable="false" />
@@ -131,61 +156,69 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Indicator_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="TimeIntervalSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TimeInstantSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="IComponents">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Observation_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ImageComponentSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GraphComponentSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="VideoComponentSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TextComponentSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DocumentComponentSet">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="RoleSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Observation_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Areas_Country">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Continent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ITimes_TimeInterval">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ITimes_TimeInstant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_ImageComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_GraphComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_VideoComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_TextComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_DocumentComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrganizationUser">
     <Key>
@@ -289,7 +322,7 @@
   </Association>
   <Association Name="IComponentObservation">
     <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="*" />
-    <End Role="Observation" Type="DomainModel.Store.Observations" Multiplicity="1" />
+    <End Role="Observation" Type="DomainModel.Store.Observations" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Observation">
         <PropertyRef Name="Id" />
@@ -344,6 +377,118 @@
       </Principal>
       <Dependent Role="UserRole">
         <PropertyRef Name="Roles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Country_inherits_Area">
+    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Country" Type="DomainModel.Store.Areas_Country" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimeInterval_inherits_ITime">
+    <End Role="ITime" Type="DomainModel.Store.ITimes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimeInterval" Type="DomainModel.Store.ITimes_TimeInterval" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ITime">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeInterval">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TimeInstant_inherits_ITime">
+    <End Role="ITime" Type="DomainModel.Store.ITimes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TimeInstant" Type="DomainModel.Store.ITimes_TimeInstant" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ITime">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TimeInstant">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ImageComponent" Type="DomainModel.Store.IComponents_ImageComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImageComponent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraphComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GraphComponent" Type="DomainModel.Store.IComponents_GraphComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraphComponent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VideoComponent" Type="DomainModel.Store.IComponents_VideoComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VideoComponent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TextComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TextComponent" Type="DomainModel.Store.IComponents_TextComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TextComponent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocumentComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DocumentComponent" Type="DomainModel.Store.IComponents_DocumentComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DocumentComponent">
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
