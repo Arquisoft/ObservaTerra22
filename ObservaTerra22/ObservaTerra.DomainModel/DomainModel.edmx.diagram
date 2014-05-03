@@ -5,23 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="eb5887173dac4cf59a8d4f0b2f0f710c" Name="Diagram1" ZoomLevel="92" >
-        <EntityTypeShape EntityType="DomainModel.Area" Width="1.5" PointX="7.5" PointY="2.75" />
-        <EntityTypeShape EntityType="DomainModel.Country" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DomainModel.Indicator" Width="1.5" PointX="5.25" PointY="3.875" />
-        <EntityTypeShape EntityType="DomainModel.Measure" Width="1.5" PointX="7.5" PointY="9.625" />
-        <EntityTypeShape EntityType="DomainModel.Organization" Width="1.5" PointX="5.25" PointY="9.25" />
-        <EntityTypeShape EntityType="DomainModel.Observation" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="DomainModel.User" Width="1.5" PointX="7.5" PointY="6.125" />
-        <EntityTypeShape EntityType="DomainModel.ITime" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="DomainModel.TimeInterval" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="0.75" PointY="7.75" />
-        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="DomainModel.VideoComponent" Width="1.5" PointX="9.75" PointY="2.75" />
-        <EntityTypeShape EntityType="DomainModel.TextComponent" Width="1.5" PointX="9.75" PointY="9.75" />
-        <EntityTypeShape EntityType="DomainModel.DocumentComponent" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DomainModel.Role" Width="1.5" PointX="9.75" PointY="6.5" />
+        <EntityTypeShape EntityType="DomainModel.Area" Width="1.5" PointX="10.875" PointY="4.25" />
+        <EntityTypeShape EntityType="DomainModel.Country" Width="1.5" PointX="12.75" PointY="3.625" />
+        <EntityTypeShape EntityType="DomainModel.Indicator" Width="1.5" PointX="8.875" PointY="5" />
+        <EntityTypeShape EntityType="DomainModel.Measure" Width="1.5" PointX="12.75" PointY="5.875" />
+        <EntityTypeShape EntityType="DomainModel.Organization" Width="1.5" PointX="5.5" PointY="8.375" />
+        <EntityTypeShape EntityType="DomainModel.Observation" Width="1.5" PointX="6.625" PointY="5" />
+        <EntityTypeShape EntityType="DomainModel.User" Width="1.5" PointX="7.75" PointY="7.625" />
+        <EntityTypeShape EntityType="DomainModel.ITime" Width="1.5" PointX="8.75" PointY="2.625" />
+        <EntityTypeShape EntityType="DomainModel.TimeInterval" Width="1.5" PointX="7.75" PointY="1" />
+        <EntityTypeShape EntityType="DomainModel.TimeInstant" Width="1.5" PointX="9.625" PointY="1" />
+        <EntityTypeShape EntityType="DomainModel.IComponent" Width="1.5" PointX="4.375" PointY="5.375" />
+        <EntityTypeShape EntityType="DomainModel.ImageComponent" Width="1.5" PointX="3.125" PointY="10.875" />
+        <EntityTypeShape EntityType="DomainModel.GraphComponent" Width="1.5" PointX="3.125" PointY="9.625" />
+        <EntityTypeShape EntityType="DomainModel.VideoComponent" Width="1.5" PointX="3.125" PointY="12.125" />
+        <EntityTypeShape EntityType="DomainModel.TextComponent" Width="1.5" PointX="3.125" PointY="8.125" />
+        <EntityTypeShape EntityType="DomainModel.DocumentComponent" Width="1.5" PointX="3.125" PointY="6.875" />
+        <EntityTypeShape EntityType="DomainModel.Role" Width="1.5" PointX="9.75" PointY="8.125" />
         <AssociationConnector Association="DomainModel.AreaArea" />
         <AssociationConnector Association="DomainModel.IndicatorArea" />
         <AssociationConnector Association="DomainModel.IndicatorMeasure" />
@@ -32,6 +32,15 @@
         <AssociationConnector Association="DomainModel.ITimeIndicator" />
         <AssociationConnector Association="DomainModel.IComponentObservation" />
         <AssociationConnector Association="DomainModel.UserRole" />
+        <InheritanceConnector EntityType="DomainModel.VideoComponent" />
+        <InheritanceConnector EntityType="DomainModel.TimeInterval" />
+        <InheritanceConnector EntityType="DomainModel.TimeInstant" />
+        <InheritanceConnector EntityType="DomainModel.Country" />
+        <InheritanceConnector EntityType="DomainModel.ImageComponent" />
+        <InheritanceConnector EntityType="DomainModel.DocumentComponent" />
+        <InheritanceConnector EntityType="DomainModel.TextComponent" />
+        <InheritanceConnector EntityType="DomainModel.GraphComponent" ManuallyRouted="false" >
+        </InheritanceConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

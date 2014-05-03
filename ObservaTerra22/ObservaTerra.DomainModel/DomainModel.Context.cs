@@ -26,21 +26,13 @@ namespace ObservaTerra.DomainModel
         }
     
         public virtual DbSet<Area> Areas { get; set; }
-        public virtual DbSet<Country> CountrySet { get; set; }
         public virtual DbSet<Indicator> Indicators { get; set; }
         public virtual DbSet<Measure> Measures { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<Observation> Observations { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<ITime> ITimes { get; set; }
-        public virtual DbSet<TimeInterval> TimeIntervalSet { get; set; }
-        public virtual DbSet<TimeInstant> TimeInstantSet { get; set; }
-        public virtual DbSet<IComponent> IComponents { get; set; }
-        public virtual DbSet<ImageComponent> ImageComponentSet { get; set; }
-        public virtual DbSet<GraphComponent> GraphComponentSet { get; set; }
-        public virtual DbSet<VideoComponent> VideoComponentSet { get; set; }
-        public virtual DbSet<TextComponent> TextComponentSet { get; set; }
-        public virtual DbSet<DocumentComponent> DocumentComponentSet { get; set; }
         public virtual DbSet<Role> RoleSet { get; set; }
+        public virtual DbSet<IComponent> IComponentSet { get; set; }
     }
 }

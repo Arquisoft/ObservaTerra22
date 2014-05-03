@@ -12,9 +12,8 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Country
+    public partial class Country : Area
     {
         public string Continent { get; set; }
-        public int Id { get; set; }
     }
 }

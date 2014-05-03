@@ -12,8 +12,7 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class VideoComponent
+    public partial class VideoComponent : IComponent
     {
-        public int Id { get; set; }
     }
 }

@@ -48,15 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Area.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Country.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DocumentComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="DomainModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -72,49 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DomainModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="GraphComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ImageComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Indicator.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ITime.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Measure.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Observation.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Organization.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TextComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TimeInstant.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TimeInterval.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VideoComponent.cs">
-      <DependentUpon>DomainModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="DomainModel.edmx">

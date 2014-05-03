@@ -12,8 +12,7 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class TimeInterval
+    public partial class TimeInterval : ITime
     {
-        public int Id { get; set; }
     }
 }

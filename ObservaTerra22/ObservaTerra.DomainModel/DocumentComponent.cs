@@ -12,8 +12,7 @@ namespace ObservaTerra.DomainModel
     using System;
     using System.Collections.Generic;
     
-    public partial class DocumentComponent
+    public partial class DocumentComponent : IComponent
     {
-        public int Id { get; set; }
     }
 }

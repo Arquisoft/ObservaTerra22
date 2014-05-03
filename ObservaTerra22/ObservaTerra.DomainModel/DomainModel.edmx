@@ -358,21 +358,12 @@
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DomainModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="DomainModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Areas" EntityType="DomainModel.Area" />
-          <EntitySet Name="CountrySet" EntityType="DomainModel.Country" />
           <EntitySet Name="Indicators" EntityType="DomainModel.Indicator" />
           <EntitySet Name="Measures" EntityType="DomainModel.Measure" />
           <EntitySet Name="Organizations" EntityType="DomainModel.Organization" />
           <EntitySet Name="Observations" EntityType="DomainModel.Observation" />
           <EntitySet Name="Users" EntityType="DomainModel.User" />
           <EntitySet Name="ITimes" EntityType="DomainModel.ITime" />
-          <EntitySet Name="TimeIntervalSet" EntityType="DomainModel.TimeInterval" />
-          <EntitySet Name="TimeInstantSet" EntityType="DomainModel.TimeInstant" />
-          <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
-          <EntitySet Name="ImageComponentSet" EntityType="DomainModel.ImageComponent" />
-          <EntitySet Name="GraphComponentSet" EntityType="DomainModel.GraphComponent" />
-          <EntitySet Name="VideoComponentSet" EntityType="DomainModel.VideoComponent" />
-          <EntitySet Name="TextComponentSet" EntityType="DomainModel.TextComponent" />
-          <EntitySet Name="DocumentComponentSet" EntityType="DomainModel.DocumentComponent" />
           <EntitySet Name="RoleSet" EntityType="DomainModel.Role" />
           <AssociationSet Name="AreaArea" Association="DomainModel.AreaArea">
             <End Role="Area" EntitySet="Areas" />
@@ -407,13 +398,14 @@
             <End Role="Indicator" EntitySet="Indicators" />
           </AssociationSet>
           <AssociationSet Name="IComponentObservation" Association="DomainModel.IComponentObservation">
-            <End Role="IComponent" EntitySet="IComponents" />
+            <End Role="IComponent" EntitySet="IComponentSet" />
             <End Role="Observation" EntitySet="Observations" />
           </AssociationSet>
           <AssociationSet Name="UserRole" Association="DomainModel.UserRole">
             <End Role="User" EntitySet="Users" />
             <End Role="Role" EntitySet="RoleSet" />
           </AssociationSet>
+          <EntitySet Name="IComponentSet" EntityType="DomainModel.IComponent" />
         </EntityContainer>
         <EntityType Name="Area">
           <Key>
@@ -426,12 +418,8 @@
           <NavigationProperty Name="ContainerArea" Relationship="DomainModel.AreaArea" FromRole="Area1" ToRole="Area" />
           <NavigationProperty Name="Indicator" Relationship="DomainModel.IndicatorArea" FromRole="Area" ToRole="Indicator" />
         </EntityType>
-        <EntityType Name="Country">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
+        <EntityType Name="Country" BaseType="DomainModel.Area">
           <Property Name="Continent" Type="String" Nullable="false" />
-          <Property Name="Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Indicator">
           <Key>
@@ -489,17 +477,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Indicator" Relationship="DomainModel.ITimeIndicator" FromRole="ITime" ToRole="Indicator" />
         </EntityType>
-        <EntityType Name="TimeInterval" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="TimeInterval" BaseType="DomainModel.ITime" >
         </EntityType>
-        <EntityType Name="TimeInstant" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="TimeInstant" BaseType="DomainModel.ITime" >
         </EntityType>
         <EntityType Name="IComponent">
           <Key>
@@ -508,35 +488,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Observation" Relationship="DomainModel.IComponentObservation" FromRole="IComponent" ToRole="Observation" />
         </EntityType>
-        <EntityType Name="ImageComponent" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent" >
         </EntityType>
-        <EntityType Name="GraphComponent" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent" >
         </EntityType>
-        <EntityType Name="VideoComponent" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent" >
         </EntityType>
-        <EntityType Name="TextComponent" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="TextComponent" BaseType="DomainModel.IComponent" >
+          <Property Name="Text" Type="String" Nullable="false" />
         </EntityType>
-        <EntityType Name="DocumentComponent" >
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+        <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent" >
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -608,14 +569,11 @@
           <ScalarProperty Name="AreaId" ColumnName="AreaId" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CountrySet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Country)">
-        <MappingFragment StoreEntitySet="CountrySet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Continent" ColumnName="Continent" />
-        </MappingFragment>
-      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Country)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="CountrySet">
+                <ScalarProperty Name="Continent" ColumnName="Continent" />
+              </MappingFragment>
+            </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Indicators">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Indicator)">
@@ -663,62 +621,14 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TimeIntervalSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInterval)">
-        <MappingFragment StoreEntitySet="TimeIntervalSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TimeInstantSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInstant)">
-        <MappingFragment StoreEntitySet="TimeInstantSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IComponents">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)">
-        <MappingFragment StoreEntitySet="IComponents">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ImageComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
-        <MappingFragment StoreEntitySet="ImageComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="GraphComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)">
-        <MappingFragment StoreEntitySet="GraphComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="VideoComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)">
-        <MappingFragment StoreEntitySet="VideoComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TextComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)">
-        <MappingFragment StoreEntitySet="TextComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DocumentComponentSet">
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
-        <MappingFragment StoreEntitySet="DocumentComponentSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInterval)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="TimeIntervalSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInstant)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="TimeInstantSet">
+              </MappingFragment>
+            </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RoleSet">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Role)">
@@ -784,14 +694,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="IComponentObservation" TypeName="DomainModel.IComponentObservation" StoreEntitySet="IComponents">
-      <EndProperty Name="Observation">
-        <ScalarProperty Name="Id" ColumnName="Observation_Id" />
-      </EndProperty>
-      <EndProperty Name="IComponent">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="UserRole" TypeName="DomainModel.UserRole" StoreEntitySet="UserRole">
       <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="Users_Id" />
@@ -800,6 +702,38 @@
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <EntitySetMapping Name="IComponentSet">
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="IComponents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="VideoComponentSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="ImageComponentSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="DocumentComponentSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="TextComponentSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="GraphComponentSet">
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="IComponentObservation" TypeName="DomainModel.IComponentObservation" StoreEntitySet="IComponents">
+            <EndProperty Name="Observation">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
