@@ -41,7 +41,7 @@ namespace ObservaTerra.SessionManager.Persistence
         {
             if (String.IsNullOrWhiteSpace(username))
             {
-                throw new ArgumentException("The username used to look a user cannot be neither null nor empty");
+                throw new ArgumentException("The username used to look for a user cannot be neither null nor empty");
             }
             User result = null;
             using (var container = new DomainModelContainer())
