@@ -64,6 +64,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area\AreaPersistenceManagement.cs" />
+    <Compile Include="Area\IAreaPersistenceManagement.cs" />
     <Compile Include="Component\ComponentPersistenceManagement.cs" />
     <Compile Include="Component\IComponentPersistenceManagement.cs" />
     <Compile Include="Indicator\IIndicatorPersistenceManagement.cs" />

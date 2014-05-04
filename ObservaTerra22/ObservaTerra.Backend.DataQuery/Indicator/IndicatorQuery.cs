@@ -24,5 +24,11 @@ namespace ObservaTerra.Backend.DataQuery
             IIndicatorAccess access = AccessCoreFactory.GetIndicatorAccess(User);
             return access.FindIndicators(partialname);
         }
+
+        public void Add(Indicator indicator)
+        {
+            IIndicatorAccess access = AccessCoreFactory.GetIndicatorAccess(User);
+            access.Add(indicator);
+        }
     }
 }

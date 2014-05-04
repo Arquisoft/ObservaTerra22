@@ -32,3 +32,4 @@ C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\Observ
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\EntityFramework.dll
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.DomainModel.pdb
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache

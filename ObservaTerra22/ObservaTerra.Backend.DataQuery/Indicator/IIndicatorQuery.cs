@@ -15,5 +15,6 @@ namespace ObservaTerra.Backend.DataQuery
 
         IEnumerable<Indicator> FindIndicators(string partialname);
 
+        void Add(Indicator indicator);
     }
 }

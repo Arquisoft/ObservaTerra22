@@ -238,6 +238,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\GraphModel.cs" />
+    <Compile Include="Models\IndicatorModel.cs" />
     <Compile Include="Models\ObservationModel.cs" />
     <Compile Include="Models\Users\IdentityWeb.cs" />
     <Compile Include="Models\Users\UserWeb.cs" />
@@ -364,6 +365,7 @@
     <Content Include="Views\Components\DetailsGraph.cshtml" />
     <Content Include="Views\Components\CreateGraph.cshtml" />
     <Content Include="Views\Observations\Details.cshtml" />
+    <Content Include="Views\Indicators\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

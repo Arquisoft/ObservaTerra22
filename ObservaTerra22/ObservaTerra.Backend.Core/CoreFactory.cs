@@ -18,5 +18,9 @@ namespace ObservaTerra.Core
             return new ComponentCore();
         }
 
+        public static IAreaCore GetAreaCore()
+        {
+            return new AreaCore();
+        }
     }
 }

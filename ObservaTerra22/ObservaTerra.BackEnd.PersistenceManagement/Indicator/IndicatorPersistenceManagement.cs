@@ -33,5 +33,14 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
             return result;
         }
+
+        public void Add(Indicator indicator)
+        {
+            using (var container = new DomainModelContainer())
+            {
+                container.Indicators.Add(indicator);
+                container.SaveChanges();
+            }
+        }
     }
 }
