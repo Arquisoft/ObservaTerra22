@@ -23,5 +23,10 @@ namespace ObservaTerra.Backend.DataQuery
         {
             return new ComponentQuery(user);
         }
+
+        public static IAreaQuery GetAreaQuery(User user)
+        {
+            return new AreaQuery(user);
+        }
     }
 }

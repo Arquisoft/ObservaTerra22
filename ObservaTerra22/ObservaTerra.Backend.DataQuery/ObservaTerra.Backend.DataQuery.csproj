@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area\AreaQuery.cs" />
+    <Compile Include="Area\IAreaQuery.cs" />
     <Compile Include="Component\ComponentQuery.cs" />
     <Compile Include="Component\IComponentQuery.cs" />
     <Compile Include="DataQueryFactory.cs" />

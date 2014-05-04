@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessCoreFactory.cs" />
+    <Compile Include="Area\AreaAccess.cs" />
+    <Compile Include="Area\IAreaAccess.cs" />
     <Compile Include="Component\ComponentAccess.cs" />
     <Compile Include="Component\IComponentAccess.cs" />
     <Compile Include="Indicator\IIndicatorAccess.cs" />

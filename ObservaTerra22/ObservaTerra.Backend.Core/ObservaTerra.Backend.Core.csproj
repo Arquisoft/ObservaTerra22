@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area\AreaCore.cs" />
+    <Compile Include="Area\IAreaCore.cs" />
     <Compile Include="Component\ComponentCore.cs" />
     <Compile Include="Component\IComponentCore.cs" />
     <Compile Include="CoreFactory.cs" />

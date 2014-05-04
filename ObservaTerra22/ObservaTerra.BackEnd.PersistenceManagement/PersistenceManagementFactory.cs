@@ -22,5 +22,9 @@ namespace ObservaTerra.Backend.PersistenceManagement
         {
             return new ComponentPersistenceManagement();
         }
+        public static IAreaPersistenceManagement GetAreaPersistenceManagement()
+        {
+            return new AreaPersistenceManagement();
+        }
     }
 }

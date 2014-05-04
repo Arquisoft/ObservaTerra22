@@ -1,0 +1,24 @@
+﻿@model ObservaTerra.Web.Models.IndicatorModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    //Falta el calendario
+
+    @Html.TextBoxFor(model => model.Name)
+    
+    @Html.DropDownListFor(model => model.SelectedArea, Model.Areas)
+    
+    @Html.ListBoxFor(model => model.SelectedObservations, Model.Observations)
+
+    <input type="submit" value="Crear" class="btn btn-default" />
+}
+
+<div>
+    <a class="btn btn-danger btn-sm" href="/Observations" type="button">Cancelar</a>
+</div>

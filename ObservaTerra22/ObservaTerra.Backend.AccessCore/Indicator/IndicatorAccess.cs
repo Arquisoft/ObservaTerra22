@@ -28,5 +28,12 @@ namespace ObservaTerra.Backend.AccessCore
             IIndicatorCore core = CoreFactory.GetIndicatorCore();
             return core.FindIndicators(partialname);
         }
+
+
+        public void Add(Indicator indicator)
+        {
+            IIndicatorCore core = CoreFactory.GetIndicatorCore();
+            core.Add(indicator);
+        }
     }
 }

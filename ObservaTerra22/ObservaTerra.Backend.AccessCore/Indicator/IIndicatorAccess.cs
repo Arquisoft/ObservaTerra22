@@ -14,5 +14,7 @@ namespace ObservaTerra.Backend.AccessCore
         Indicator GetIndicator(int id);
 
         IEnumerable<Indicator> FindIndicators(string partialname);
+
+        void Add(Indicator indicator);
     }
 }

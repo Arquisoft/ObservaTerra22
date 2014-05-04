@@ -17,5 +17,12 @@ namespace ObservaTerra.Core
             IIndicatorPersistenceManagement persistence = PersistenceManagementFactory.GetIndicatorPersistenceManagement();
             return persistence.FindIndicators(partialname);
         }
+
+
+        public void Add(Indicator indicator)
+        {
+            IIndicatorPersistenceManagement persistence = PersistenceManagementFactory.GetIndicatorPersistenceManagement();
+            persistence.Add(indicator);
+        }
     }
 }

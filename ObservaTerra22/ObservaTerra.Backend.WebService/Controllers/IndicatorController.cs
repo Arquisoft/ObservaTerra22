@@ -25,5 +25,12 @@ namespace ObservaTerra.Backend.WebService.Controllers
             IIndicatorQuery query = DataQueryFactory.GetIndicatorQuery(user);
             return query.FindIndicators(partialname);
         }
+
+        public void Add(string token, Indicator area)
+        {
+            User user = GetUserByToken(token);
+            IIndicatorQuery query = DataQueryFactory.GetIndicatorQuery(user);
+            query.Add(area);
+        }
     }
 }
