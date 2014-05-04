@@ -10,11 +10,12 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
+using System.Threading;
 
 namespace ObservaTerra.Web.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         //
         // GET: /Account/Login
@@ -34,6 +35,7 @@ namespace ObservaTerra.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
+            
             if (ModelState.IsValid)
             {
                 // && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe)
@@ -41,6 +43,7 @@ namespace ObservaTerra.Web.Controllers
                 {
                     var login = new ObservaTerra.Backend.WebService.Controllers.LoginController().Get(model.UserName, model.Password);
                     var result = new UserWeb(login.Name, login.Token, login.Roles);
+                    Session["User"] = result;
                     return RedirectToLocal(returnUrl);
                 }
                 catch (Exception)
@@ -63,8 +66,7 @@ namespace ObservaTerra.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
-
+            Session["User"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -87,7 +89,17 @@ namespace ObservaTerra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the user
+                try
+                {
+                    new ObservaTerra.Backend.WebService.Controllers.RegisterController().Post(model.UserName, model.Password);
+                    return RedirectToAction("Index", "Home");
+                } 
+                catch (Exception
+                    )
+                {
+
+                }
+                /*// Attempt to register the user
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
@@ -97,7 +109,7 @@ namespace ObservaTerra.Web.Controllers
                 catch (MembershipCreateUserException e)
                 {
                     ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
-                }
+                }*/
             }
 
             // If we got this far, something failed, redisplay form

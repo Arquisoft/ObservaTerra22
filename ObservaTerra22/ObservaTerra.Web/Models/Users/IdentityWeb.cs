@@ -25,7 +25,7 @@ namespace ObservaTerra.Web.Models.Users
         {
             get 
             {
-                return true;
+                return Name != "guest";
             }
         }
 

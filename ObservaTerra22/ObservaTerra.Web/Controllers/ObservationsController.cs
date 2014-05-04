@@ -5,12 +5,11 @@ using System.Web.Mvc;
 
 namespace ObservaTerra.Web.Controllers
 {
-    public class ObservationsController : Controller
+    public class ObservationsController : BaseController
     {
         public ViewResult Index(string partialname = "")
         {
-            User user = Util.GetUser(User);
-            var result = new ObservaTerra.Backend.WebService.Controllers.ObservationController().Get(null, "");
+            var result = new ObservaTerra.Backend.WebService.Controllers.ObservationController().Get(User.Token, "");
 
             return View(result);
         }
@@ -28,8 +27,7 @@ namespace ObservaTerra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = Util.GetUser(User);
-                new ObservaTerra.Backend.WebService.Controllers.ObservationController().Post(null, observation);
+                new ObservaTerra.Backend.WebService.Controllers.ObservationController().Post(User.Token, observation);
                 return RedirectToAction("Index");
             }
 

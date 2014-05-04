@@ -9,8 +9,8 @@ using System.Web.Mvc;
 
 namespace ObservaTerra.Web.Controllers
 {
-   
-    public class IndicatorsController : Controller
+
+    public class IndicatorsController : BaseController
     {
         /*public Indicator Get(int id)
         {
@@ -21,8 +21,7 @@ namespace ObservaTerra.Web.Controllers
 
         public ViewResult Index(string partialname = "")
         {
-            User user = Util.GetUser(User);
-            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(null, "");
+            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(User.Token, "");
             return View(result);
         }
     }
