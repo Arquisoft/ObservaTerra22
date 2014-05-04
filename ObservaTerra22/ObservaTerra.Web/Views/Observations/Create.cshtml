@@ -1,4 +1,4 @@
-﻿@model ObservaTerra.DomainModel.Observation
+﻿@model ObservaTerra.Web.Models.ObservationModel
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,28 +8,14 @@
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
-    <div class="form-horizontal">
-        <h4>Post</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+    @Html.TextBoxFor(model => model.Name)
+    @Html.ListBoxFor(model => model.ComponentsSelected, Model.Components)
 
-        <div class="form-group">
-            <label class="control-label col-md-2">Título:</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Indicator, (IEnumerable<SelectListItem>)ViewData["indicators"]);
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    <input type="submit" value="Crear" class="btn btn-default" />
 }
 
 <div>
-    <a class="btn btn-danger btn-sm" href="/Posts" type="button">Cancelar</a>
+    <a class="btn btn-danger btn-sm" href="/Observations" type="button">Cancelar</a>
 </div>

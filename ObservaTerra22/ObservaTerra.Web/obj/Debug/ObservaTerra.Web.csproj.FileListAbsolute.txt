@@ -332,6 +332,7 @@ C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\Observ
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.csprojResolveAssemblyReference.cache
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.dll
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\ObservaTerra.Web.dll.config
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\ObservaTerra.Web.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\ObservaTerra.Web.pdb
@@ -473,6 +474,5 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\ko\
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\ru\System.Spatial.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Web\obj\Debug\ObservaTerra.Web.pdb

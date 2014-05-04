@@ -16,6 +16,8 @@ namespace ObservaTerra.Backend.PersistenceManagement
             using (var container = new DomainModelContainer())
             {
                 result = container.Observations.Single(o => o.Id == id);
+                container.Entry(result).Reference(o => o.UserAuthor).Load() ;
+                container.Entry(result).Collection(o => o.IComponents).Load() ;
             }
 
             return result;
@@ -28,8 +30,10 @@ namespace ObservaTerra.Backend.PersistenceManagement
 
             using (var container = new DomainModelContainer())
             {
-                foreach (var observation in container.Observations.Where(o => o.Indicator.Name.Contains(partialname)))
+                foreach (var observation in container.Observations)//.Where(o => o.Indicator.Name.Contains(partialname)))
+                {
                     result.Add(observation);
+                }
             }
 
             return result;

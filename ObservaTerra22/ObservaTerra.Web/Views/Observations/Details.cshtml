@@ -1,0 +1,15 @@
+﻿@model ObservaTerra.DomainModel.Observation
+@{
+    ViewBag.Title = "DetailsText";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details observation</h2>
+
+<h3>Components:</h3>
+<ul>
+    @foreach (var component in Model.IComponents)
+    {
+        <li>@Html.ActionLink(component.Name , "Details", "Components", new { id = component.Id }, null)</li>
+    }
+</ul>

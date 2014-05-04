@@ -23,10 +23,10 @@
         <tr>
 
             <td>
-                @Html.ActionLink(item.Indicator.Name, "Details", "Observations", new { id = item.Id }, null)
+                @Html.ActionLink(item.Name, "Details", "Observations", new { id = item.Id }, null)
             </td>
             <td>
-                @item.UserAuthor.Name
+                <!--item.UserAuthor.Name-->
             </td>
         </tr>
     }
