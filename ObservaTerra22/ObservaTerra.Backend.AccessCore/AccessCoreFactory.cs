@@ -23,5 +23,10 @@ namespace ObservaTerra.Backend.AccessCore
         {
             return new ComponentAccess(user);
         }
+        //Maria metiendo la zarpa
+        public static IComponentAccess GetComponentAccess()
+        {
+            return new ComponentAccess();
+        }
     }
 }

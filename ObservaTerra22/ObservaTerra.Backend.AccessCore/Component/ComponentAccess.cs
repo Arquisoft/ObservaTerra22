@@ -12,6 +12,11 @@ namespace ObservaTerra.Backend.AccessCore
         {
             this.User = user;
         }
+        //Maria tocando cosas...
+        public ComponentAccess()
+        {
+
+        }
 
         public IComponent GetComponent(int id)
         {

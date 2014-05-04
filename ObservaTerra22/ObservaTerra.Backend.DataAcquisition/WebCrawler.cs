@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Abot.Crawler;
 using Abot.Poco;
+using ObservaTerra.DomainModel;
 
-namespace ObservaTerra.BackEnd.DataAcquisition
+namespace ObservaTerra.Backend.DataAcquisition
 {
     public class WebCrawler
     {
+       public IList<IComponent> Files { get; set; }
         public PoliteWebCrawler Crawler { get; set; }
         public WebCrawler()
         {
@@ -21,7 +23,7 @@ namespace ObservaTerra.BackEnd.DataAcquisition
             return Crawler.Crawl(uri);
         }
         public void init() {
-
+            Files = new List<IComponent>();
             CrawlConfiguration crawlConfig = new CrawlConfiguration();
             crawlConfig.CrawlTimeoutSeconds = 200;
             crawlConfig.MaxConcurrentThreads = 100;
@@ -38,7 +40,7 @@ namespace ObservaTerra.BackEnd.DataAcquisition
             Crawler.PageCrawlCompletedAsync += crawler_ProcessPageCrawlCompleted;
             
         }
-        static void crawler_ProcessPageCrawlCompleted(object sender, PageCrawlCompletedArgs e)
+         void crawler_ProcessPageCrawlCompleted(object sender, PageCrawlCompletedArgs e)
         {
             CrawledPage crawledPage = e.CrawledPage;
             //System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/crawlTmp.txt", crawledPage.Content.Text);
@@ -47,7 +49,7 @@ namespace ObservaTerra.BackEnd.DataAcquisition
             {
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
-                    client.DownloadFile(crawledPage.Uri, System.IO.Directory.GetCurrentDirectory() + "/prueba" + new Random().Next() + ".csv");
+                    this.Files.Add(new TextComponent(client.DownloadString(crawledPage.Uri)));
                     Console.WriteLine("Downloaded file from {0}", crawledPage.Uri.AbsoluteUri);
                 }
             }

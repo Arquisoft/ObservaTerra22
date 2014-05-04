@@ -22,5 +22,6 @@ namespace ObservaTerra.Backend.DataCommand
         {
             this.User = user;
         }
+
     }
 }

@@ -13,5 +13,8 @@ namespace ObservaTerra.Backend.DataCommand
         {
             return new ObservationCommand(user);
         }
+        public static IComponentCommand GetComponentCommand(){
+            return new ComponentCommand();
+        }
     }
 }

@@ -5,18 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ObservaTerra.BackEnd.DataAcquisition;
+using ObservaTerra.DomainModel;
+
+
 
 namespace ObservaTerra.Backend.DataAcquisition
 {
     class CrawlerService
     {
-        static void Main(string[] args)
-        {
-            CrawlerService CR = new CrawlerService();
-            CR.AddUri("http://apps.who.int/gho/athena/data/GHO/WHOSIS_000002,WHOSIS_000001,WHOSIS_000015?profile=xtab&format=html&x-topaxis=GHO;SEX&x-sideaxis=COUNTRY;YEAR&x-title=table&filter=COUNTRY:*;REGION:AFR;REGION:AMR;REGION:SEAR;REGION:EUR;REGION:EMR;REGION:WPR;SEX:*");
-            CR.Crawl();
-        }
+        
         public WebCrawler Crawler { get; set; }
         public DataSources ToCrawl { get; set; }
         public CrawlerService()
@@ -34,7 +31,7 @@ namespace ObservaTerra.Backend.DataAcquisition
         private void UpdateFile()
         {
             XmlSerializer writer = new XmlSerializer(typeof(DataSources));
-            using (FileStream file = File.OpenWrite("/sources/sources.xml"))
+            using (FileStream file = File.OpenWrite("sources/sources.xml"))
             {
                 writer.Serialize(file, ToCrawl);
             }
@@ -44,16 +41,23 @@ namespace ObservaTerra.Backend.DataAcquisition
             ToCrawl.Remove(uri);
             UpdateFile();
         }
-        public void Crawl()
+        public IList<IComponent> Crawl()
         {
-            ToCrawl.Sources.ForEach(x => Crawler.crawl(new Uri(x)));
+            IList<IComponent> result = new List<IComponent>();
+            ToCrawl.Sources.ForEach(
+                x => {
+                    Crawler.crawl(new Uri(x));
+                    result.Concat(Crawler.Files);
+                }
+                );
+            return result;
         }
 
         private DataSources ReadFromFile()
         {
 
             XmlSerializer reader = new XmlSerializer(typeof(DataSources));
-            using (FileStream input = File.OpenRead("/sources/sources.xml"))
+            using (FileStream input = File.OpenRead("sources/sources.xml"))
             {
                 return reader.Deserialize(input) as DataSources;
             }
