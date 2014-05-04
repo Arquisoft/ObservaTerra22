@@ -46,7 +46,13 @@ namespace ObservaTerra.SessionManager.Persistence
             User result = null;
             using (var container = new DomainModelContainer())
             {
-                result = container.Users.Single(u => u.Username.Equals(username));
+                try
+                {
+                    result = container.Users.Single(u => u.Username.Equals(username));
+                    result.Roles.Select(r => r.Id); //This allow us make a lazy load with roles.
+                }
+                catch (Exception)
+                { }
             }
             return result;
         }

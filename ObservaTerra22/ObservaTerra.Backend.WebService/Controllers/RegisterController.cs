@@ -17,7 +17,7 @@ namespace ObservaTerra.Backend.WebService.Controllers
         public void Post(string username, string password)
         {
             IAdminModuleServices session = ManagersFactory.GetAdminModuleServices();
-            User user = new User() { };
+            User user = new User() { Username = username, Name = username, Password = password };
             session.RegisterUser(user);            
         }
     }
