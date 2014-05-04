@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\RoleNameAlreadyInUseException.cs" />
     <Compile Include="Exceptions\TokenNotFoundException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyInUseException.cs" />
     <Compile Include="Managers\AdminModule\AdminModuleServices.cs" />
