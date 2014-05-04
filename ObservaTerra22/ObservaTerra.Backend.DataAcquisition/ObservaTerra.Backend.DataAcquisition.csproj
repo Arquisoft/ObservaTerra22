@@ -98,6 +98,10 @@
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataCommand\ObservaTerra.Backend.DataCommand.csproj">
+      <Project>{bec112c2-83e3-45b3-a9cf-04b033ca8ed7}</Project>
+      <Name>ObservaTerra.Backend.DataCommand</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
       <Project>{ee49f442-1dd1-4a1b-8086-40e7594c7799}</Project>
       <Name>ObservaTerra.DomainModel</Name>

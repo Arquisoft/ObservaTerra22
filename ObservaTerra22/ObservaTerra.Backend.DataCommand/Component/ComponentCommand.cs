@@ -11,7 +11,7 @@ namespace ObservaTerra.Backend.DataCommand
     class ComponentCommand : IComponentCommand
     {
         public ComponentCommand() { }
-        public void addComponents(List<IComponent> components){
+        public void AddComponents(List<IComponent> components){
             IComponentAccess access = AccessCoreFactory.GetComponentAccess();
             components.ForEach(x => access.Add(x));
         }

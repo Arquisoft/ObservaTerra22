@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.Backend.DataCommand
 {
-    interface IComponentCommand
+    public interface IComponentCommand
     {
         void AddComponents(List<IComponent> components);
     }

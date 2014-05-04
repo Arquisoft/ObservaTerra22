@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObservaTerra.DomainModel;
-
+using ObservaTerra.Backend.DataCommand;
 
 
 namespace ObservaTerra.Backend.DataAcquisition
@@ -41,16 +41,17 @@ namespace ObservaTerra.Backend.DataAcquisition
             ToCrawl.Remove(uri);
             UpdateFile();
         }
-        public IList<IComponent> Crawl()
+        public void Crawl()
         {
-            IList<IComponent> result = new List<IComponent>();
+            List<IComponent> result = new List<IComponent>();
             ToCrawl.Sources.ForEach(
-                x => {
+                x =>
+                {
                     Crawler.crawl(new Uri(x));
                     result.Concat(Crawler.Files);
-                }
-                );
-            return result;
+                });
+                IComponentCommand command=DataCommandFactory.GetComponentCommand();
+                command.AddComponents(result);
         }
 
         private DataSources ReadFromFile()
