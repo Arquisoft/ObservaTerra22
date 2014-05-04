@@ -14,7 +14,7 @@ namespace ObservaTerra.DomainModel
     
     public partial class TimeInterval : ITime
     {
-        public System.DateTime Starts { get; set; }
-        public System.DateTime Ends { get; set; }
+        public long Starts { get; set; }
+        public long Ends { get; set; }
     }
 }

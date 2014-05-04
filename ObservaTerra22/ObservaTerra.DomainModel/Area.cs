@@ -21,7 +21,7 @@ namespace ObservaTerra.DomainModel
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AreaId { get; set; }
+        public Nullable<int> AreaId { get; set; }
     
         public virtual ICollection<Area> ContainedAreas { get; set; }
         public virtual Area ContainerArea { get; set; }

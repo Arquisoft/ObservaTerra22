@@ -112,7 +112,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="AreaId" Type="int" Nullable="true" />
     <Property Name="Indicator_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Indicators">
@@ -203,15 +203,15 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Starts" Type="datetime" Nullable="false" />
-    <Property Name="Ends" Type="datetime" Nullable="false" />
+    <Property Name="Starts" Type="bigint" Nullable="false" />
+    <Property Name="Ends" Type="bigint" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ITimes_TimeInstant">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Value" Type="datetime" Nullable="false" />
+    <Property Name="Value" Type="bigint" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IComponents_ImageComponent">
@@ -259,7 +259,7 @@
     <Property Name="Roles_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="AreaArea">
-    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="1" />
+    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="0..1" />
     <End Role="Area1" Type="DomainModel.Store.Areas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Area">

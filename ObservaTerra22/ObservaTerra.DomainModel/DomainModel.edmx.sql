@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/04/2014 17:51:15
+-- Date Created: 05/04/2014 23:09:12
 -- Generated from EDMX file: C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\DomainModel.edmx
 -- --------------------------------------------------
 
@@ -53,6 +53,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserRole] DROP CONSTRAINT [FK_UserRole_Role];
 GO
+IF OBJECT_ID(N'[dbo].[FK_GraphComponentPair]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PairSet] DROP CONSTRAINT [FK_GraphComponentPair];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GraphComponent_inherits_IComponent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[IComponents_GraphComponent] DROP CONSTRAINT [FK_GraphComponent_inherits_IComponent];
+GO
 IF OBJECT_ID(N'[dbo].[FK_Country_inherits_Area]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Areas_Country] DROP CONSTRAINT [FK_Country_inherits_Area];
 GO
@@ -64,9 +70,6 @@ IF OBJECT_ID(N'[dbo].[FK_TimeInstant_inherits_ITime]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ImageComponent_inherits_IComponent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[IComponents_ImageComponent] DROP CONSTRAINT [FK_ImageComponent_inherits_IComponent];
-GO
-IF OBJECT_ID(N'[dbo].[FK_GraphComponent_inherits_IComponent]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[IComponents_GraphComponent] DROP CONSTRAINT [FK_GraphComponent_inherits_IComponent];
 GO
 IF OBJECT_ID(N'[dbo].[FK_VideoComponent_inherits_IComponent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[IComponents_VideoComponent] DROP CONSTRAINT [FK_VideoComponent_inherits_IComponent];
@@ -109,6 +112,12 @@ GO
 IF OBJECT_ID(N'[dbo].[IComponents]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IComponents];
 GO
+IF OBJECT_ID(N'[dbo].[PairSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PairSet];
+GO
+IF OBJECT_ID(N'[dbo].[IComponents_GraphComponent]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[IComponents_GraphComponent];
+GO
 IF OBJECT_ID(N'[dbo].[Areas_Country]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Areas_Country];
 GO
@@ -120,9 +129,6 @@ IF OBJECT_ID(N'[dbo].[ITimes_TimeInstant]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[IComponents_ImageComponent]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IComponents_ImageComponent];
-GO
-IF OBJECT_ID(N'[dbo].[IComponents_GraphComponent]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[IComponents_GraphComponent];
 GO
 IF OBJECT_ID(N'[dbo].[IComponents_VideoComponent]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IComponents_VideoComponent];
@@ -148,7 +154,7 @@ GO
 CREATE TABLE [dbo].[Areas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [AreaId] int  NOT NULL,
+    [AreaId] int  NULL,
     [Indicator_Id] int  NULL
 );
 GO
@@ -239,15 +245,15 @@ GO
 
 -- Creating table 'ITimes_TimeInterval'
 CREATE TABLE [dbo].[ITimes_TimeInterval] (
-    [Starts] datetime  NOT NULL,
-    [Ends] datetime  NOT NULL,
+    [Starts] bigint  NOT NULL,
+    [Ends] bigint  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'ITimes_TimeInstant'
 CREATE TABLE [dbo].[ITimes_TimeInstant] (
-    [Value] datetime  NOT NULL,
+    [Value] bigint  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

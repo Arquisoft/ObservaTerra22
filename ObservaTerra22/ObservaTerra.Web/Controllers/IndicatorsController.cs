@@ -17,7 +17,7 @@ namespace ObservaTerra.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateText(IndicatorModel indicator)
+        public ActionResult Create(IndicatorModel indicator)
         {
             if (ModelState.IsValid)
             {
@@ -33,13 +33,15 @@ namespace ObservaTerra.Web.Controllers
             var result = new Indicator() { Name = indicator.Name };
             var observations = new ObservaTerra.Backend.WebService.Controllers.ObservationController().Get(User.Token, "");
 
-            foreach (var item in observations.Where(c => indicator.Observations.Any(sl => sl.Value == c.Id.ToString())))
+            foreach (var item in observations.Where(c => indicator.SelectedObservations.Any(sl => sl == c.Id.ToString())))
             {
                 result.Observations.Add(item);
             }
 
             var areas = new ObservaTerra.Backend.WebService.Controllers.AreaController().Get(User.Token, "");
-            result.Area = areas.Single(a => a.AreaId.ToString() == indicator.SelectedArea);
+            result.Area = areas.Single(a => a.Id.ToString() == indicator.SelectedArea);
+
+            result.ITime = new TimeInstant() { Value = indicator.Instant.Ticks };
 
             return result;
         }
@@ -48,6 +50,12 @@ namespace ObservaTerra.Web.Controllers
         public ViewResult Index(string partialname = "")
         {
             var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(User.Token, "");
+            return View(result);
+        }
+
+        public ViewResult Details(int id)
+        {
+            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(User.Token, id);
             return View(result);
         }
 

@@ -14,6 +14,6 @@ namespace ObservaTerra.DomainModel
     
     public partial class TimeInstant : ITime
     {
-        public System.DateTime Value { get; set; }
+        public long Value { get; set; }
     }
 }
