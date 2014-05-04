@@ -66,62 +66,72 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="features\FuentesDatosExternas.feature.cs">
+    <Compile Include="features\ExternalDataSources.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FuentesDatosExternas.feature</DependentUpon>
+      <DependentUpon>ExternalDataSources.feature</DependentUpon>
     </Compile>
-    <Compile Include="features\GestionDeObservaciones.feature.cs">
+    <Compile Include="features\InformationResources.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GestionDeObservaciones.feature</DependentUpon>
+      <DependentUpon>InformationResources.feature</DependentUpon>
     </Compile>
-    <Compile Include="features\Acceso.feature.cs">
+    <Compile Include="features\ObservationsManagement.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Acceso.feature</DependentUpon>
+      <DependentUpon>ObservationsManagement.feature</DependentUpon>
     </Compile>
-    <Compile Include="features\Registro.feature.cs">
+    <Compile Include="features\SystemAccess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Registro.feature</DependentUpon>
+      <DependentUpon>SystemAccess.feature</DependentUpon>
     </Compile>
-    <Compile Include="features\SistemasDeRecoleccion.feature.cs">
+    <Compile Include="features\RegisterProcess.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SistemasDeRecoleccion.feature</DependentUpon>
+      <DependentUpon>RegisterProcess.feature</DependentUpon>
+    </Compile>
+    <Compile Include="features\DataAcquisitionSystem.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAcquisitionSystem.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="steps\AccesoAlSistemaSteps.cs" />
-    <Compile Include="steps\FuentesDeDatosExternasSteps.cs" />
-    <Compile Include="steps\GestionDeObservacionesSteps.cs" />
-    <Compile Include="steps\RegistroSteps.cs" />
-    <Compile Include="steps\SistemasDeRecoleccionDeDatosExternosSteps.cs" />
+    <Compile Include="steps\ExternalDataAcquisitionSystemSteps.cs" />
+    <Compile Include="steps\ExternalDataSourcesSteps.cs" />
+    <Compile Include="steps\InformationResourcesSteps.cs" />
+    <Compile Include="steps\ObservationManagementSteps.cs" />
+    <Compile Include="steps\SystemAccessSteps.cs" />
+    <Compile Include="steps\SystemRegisterProcessSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Default.srprofile">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="features\FuentesDatosExternas.feature">
+    <None Include="features\ExternalDataSources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>FuentesDatosExternas.feature.cs</LastGenOutput>
+      <LastGenOutput>ExternalDataSources.feature.cs</LastGenOutput>
     </None>
-    <None Include="features\GestionDeObservaciones.feature">
+    <None Include="features\InformationResources.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GestionDeObservaciones.feature.cs</LastGenOutput>
+      <LastGenOutput>InformationResources.feature.cs</LastGenOutput>
     </None>
-    <None Include="features\Acceso.feature">
+    <None Include="features\ObservationsManagement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Acceso.feature.cs</LastGenOutput>
+      <LastGenOutput>ObservationsManagement.feature.cs</LastGenOutput>
     </None>
-    <None Include="features\Registro.feature">
+    <None Include="features\SystemAccess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Registro.feature.cs</LastGenOutput>
+      <LastGenOutput>SystemAccess.feature.cs</LastGenOutput>
     </None>
-    <None Include="features\SistemasDeRecoleccion.feature">
+    <None Include="features\RegisterProcess.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SistemasDeRecoleccion.feature.cs</LastGenOutput>
+      <LastGenOutput>RegisterProcess.feature.cs</LastGenOutput>
+    </None>
+    <None Include="features\DataAcquisitionSystem.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>DataAcquisitionSystem.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="runtests.cmd" />

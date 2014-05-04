@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\RoleNameAlreadyInUseException.cs" />
     <Compile Include="Exceptions\TokenNotFoundException.cs" />
     <Compile Include="Exceptions\UsernameAlreadyInUseException.cs" />
     <Compile Include="Managers\AdminModule\AdminModuleServices.cs" />
@@ -71,8 +72,10 @@
     <Compile Include="Managers\SessionProcessor\ISessionProcessorServices.cs" />
     <Compile Include="Managers\SessionProcessor\LoggedInUser.cs" />
     <Compile Include="Managers\SessionProcessor\SessionProcessorServices.cs" />
+    <Compile Include="Persistence\IRolePersistenceManagement.cs" />
     <Compile Include="Persistence\IUserPersistenceManagement.cs" />
     <Compile Include="Persistence\PersistenceFactory.cs" />
+    <Compile Include="Persistence\RolePersistenceManagement.cs" />
     <Compile Include="Persistence\UserPersistenceManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

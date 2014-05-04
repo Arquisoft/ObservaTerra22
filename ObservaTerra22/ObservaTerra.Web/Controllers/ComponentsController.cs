@@ -14,6 +14,15 @@ namespace ObservaTerra.Web.Controllers
             return View(result);
         }
 
+        public ViewResult Details(int id)
+        {
+            User user = Util.GetUser(User);
+            var result = new ObservaTerra.Backend.WebService.Controllers.ComponentController().Get(null, id);
+            if (result is TextComponent)
+                return View("DetailsText", result);
+            return View();
+        }
+
         public ViewResult CreateText()
         {
             return View();
