@@ -66,3 +66,4 @@ C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\b
 C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
 C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
 C:\Users\Raúl Estrada\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache

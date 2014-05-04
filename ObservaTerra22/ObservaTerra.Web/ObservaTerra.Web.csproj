@@ -235,13 +235,13 @@
     <Compile Include="Controllers\IndicatorsController.cs" />
     <Compile Include="Controllers\ObservationsController.cs" />
     <Compile Include="Controllers\Util.cs" />
-    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Users\IdentityWeb.cs" />
+    <Compile Include="Models\Users\UserWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ObservationViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -360,6 +360,7 @@
     <Content Include="Views\Observations\Create.cshtml" />
     <Content Include="Views\Components\Index.cshtml" />
     <Content Include="Views\Components\CreateText.cshtml" />
+    <Content Include="Views\Components\DetailsText.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -378,6 +379,10 @@
     <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
       <Project>{ee49f442-1dd1-4a1b-8086-40e7594c7799}</Project>
       <Name>ObservaTerra.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.SessionManager.Persistence\ObservaTerra.SessionManager.csproj">
+      <Project>{1ecfa83f-6ac5-490e-9894-28f8bf45d376}</Project>
+      <Name>ObservaTerra.SessionManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -8,13 +8,12 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using ObservaTerra.Web.Filters;
 using ObservaTerra.Web.Models;
+using ObservaTerra.Web.Models.Users;
 
 namespace ObservaTerra.Web.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
@@ -35,9 +34,21 @@ namespace ObservaTerra.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
-                return RedirectToLocal(returnUrl);
+                // && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe)
+                try 
+                {
+                    var login = new ObservaTerra.Backend.WebService.Controllers.LoginController().Get(model.UserName, model.Password);
+                    var result = new UserWeb(login.Name, login.Token, login.Roles);
+                    return RedirectToLocal(returnUrl);
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    return View(model);
+                }
+                
             }
 
             // If we got this far, something failed, redisplay form
