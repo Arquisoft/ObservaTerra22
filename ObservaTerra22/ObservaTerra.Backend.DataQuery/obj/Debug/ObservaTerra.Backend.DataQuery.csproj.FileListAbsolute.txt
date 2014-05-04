@@ -13,21 +13,6 @@ C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.D
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.csprojResolveAssemblyReference.cache
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.dll
 C:\Users\uo228152\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.AccessCore.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.DomainModel.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Core.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\EntityFramework.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.DomainModel.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Core.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\EntityFramework.xml
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.csprojResolveAssemblyReference.cache
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.pdb
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.dll
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.pdb
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.AccessCore.dll
@@ -43,3 +28,18 @@ C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\Observ
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.csprojResolveAssemblyReference.cache
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.dll
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.DataQuery.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Core.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\EntityFramework.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\EntityFramework.xml
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataQuery\obj\Debug\ObservaTerra.Backend.DataQuery.pdb

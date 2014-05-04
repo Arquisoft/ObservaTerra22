@@ -237,6 +237,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\GraphModel.cs" />
     <Compile Include="Models\Users\IdentityWeb.cs" />
     <Compile Include="Models\Users\UserWeb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -359,6 +360,8 @@
     <Content Include="Views\Components\Index.cshtml" />
     <Content Include="Views\Components\CreateText.cshtml" />
     <Content Include="Views\Components\DetailsText.cshtml" />
+    <Content Include="Views\Components\DetailsGraph.cshtml" />
+    <Content Include="Views\Components\CreateGraph.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

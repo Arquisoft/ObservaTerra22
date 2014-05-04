@@ -50,6 +50,11 @@
       <End Role="Role" EntitySet="RoleSet" />
     </AssociationSet>
     <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
+    <EntitySet Name="PairSet" EntityType="DomainModel.Pair" />
+    <AssociationSet Name="GraphComponentPair" Association="DomainModel.GraphComponentPair">
+      <End Role="GraphComponent" EntitySet="IComponents" />
+      <End Role="Pair" EntitySet="PairSet" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Area">
     <Key>
@@ -101,6 +106,7 @@
     <NavigationProperty Name="Indicator" Relationship="DomainModel.ObservationIndicator" FromRole="Observation" ToRole="Indicator" />
     <NavigationProperty Name="UserAuthor" Relationship="DomainModel.ObservationUser" FromRole="Observation" ToRole="User" />
     <NavigationProperty Name="IComponents" Relationship="DomainModel.IComponentObservation" FromRole="Observation" ToRole="IComponent" />
+    <Property Name="Name" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -121,22 +127,36 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Indicator" Relationship="DomainModel.ITimeIndicator" FromRole="ITime" ToRole="Indicator" />
   </EntityType>
-  <EntityType Name="TimeInterval" BaseType="DomainModel.ITime" />
-  <EntityType Name="TimeInstant" BaseType="DomainModel.ITime" />
+  <EntityType Name="TimeInterval" BaseType="DomainModel.ITime">
+    <Property Name="Starts" Type="DateTime" Nullable="false" />
+    <Property Name="Ends" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TimeInstant" BaseType="DomainModel.ITime">
+    <Property Name="Value" Type="DateTime" Nullable="false" />
+  </EntityType>
   <EntityType Name="IComponent">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Observation" Relationship="DomainModel.IComponentObservation" FromRole="IComponent" ToRole="Observation" />
+    <Property Name="Name" Type="String" Nullable="false" />
   </EntityType>
-  <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent" />
-  <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent" />
-  <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent">
+    <Property Name="URI" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent">
+    <NavigationProperty Name="Values" Relationship="DomainModel.GraphComponentPair" FromRole="GraphComponent" ToRole="Pair" />
+  </EntityType>
+  <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent">
+    <Property Name="URI" Type="String" Nullable="false" />
+  </EntityType>
   <EntityType Name="TextComponent" BaseType="DomainModel.IComponent">
     <Property Name="Text" Type="String" Nullable="false" />
   </EntityType>
-  <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent" />
+  <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent">
+    <Property Name="URI" Type="String" Nullable="false" />
+  </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="Id" />
@@ -158,16 +178,16 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="IndicatorArea">
-    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
-    <End Type="DomainModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
+    <End Type="DomainModel.Area" Role="Area" Multiplicity="0..1" />
   </Association>
   <Association Name="IndicatorMeasure">
-    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
-    <End Type="DomainModel.Measure" Role="Measure" Multiplicity="1" />
+    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
+    <End Type="DomainModel.Measure" Role="Measure" Multiplicity="0..1" />
   </Association>
   <Association Name="ObservationOrganization">
     <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-    <End Type="DomainModel.Organization" Role="Organization" Multiplicity="1" />
+    <End Type="DomainModel.Organization" Role="Organization" Multiplicity="0..1" />
   </Association>
   <Association Name="OrganizationUser">
     <End Type="DomainModel.Organization" Role="Organization" Multiplicity="*" />
@@ -175,11 +195,11 @@
   </Association>
   <Association Name="ObservationIndicator">
     <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
+    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
   </Association>
   <Association Name="ObservationUser">
     <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-    <End Type="DomainModel.User" Role="User" Multiplicity="1" />
+    <End Type="DomainModel.User" Role="User" Multiplicity="0..1" />
   </Association>
   <Association Name="ITimeIndicator">
     <End Type="DomainModel.ITime" Role="ITime" Multiplicity="1" />
@@ -192,5 +212,18 @@
   <Association Name="UserRole">
     <End Type="DomainModel.User" Role="User" Multiplicity="*" />
     <End Type="DomainModel.Role" Role="Role" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Pair">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" Nullable="false" />
+    <Property Name="Value" Type="String" Nullable="false" />
+    <NavigationProperty Name="GraphComponent" Relationship="DomainModel.GraphComponentPair" FromRole="Pair" ToRole="GraphComponent" />
+  </EntityType>
+  <Association Name="GraphComponentPair">
+    <End Type="DomainModel.GraphComponent" Role="GraphComponent" Multiplicity="1" />
+    <End Type="DomainModel.Pair" Role="Pair" Multiplicity="*" />
   </Association>
 </Schema>

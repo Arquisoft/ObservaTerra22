@@ -14,5 +14,12 @@ namespace ObservaTerra.DomainModel
     
     public partial class GraphComponent : IComponent
     {
+        public GraphComponent()
+        {
+            this.Values = new HashSet<Pair>();
+        }
+    
+    
+        public virtual ICollection<Pair> Values { get; set; }
     }
 }

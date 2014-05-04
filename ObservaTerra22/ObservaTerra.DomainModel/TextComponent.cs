@@ -14,13 +14,6 @@ namespace ObservaTerra.DomainModel
     
     public partial class TextComponent : IComponent
     {
-        private string p;
-
-        public TextComponent(string p)
-        {
-            // TODO: Complete member initialization
-            this.p = p;
-        }
         public string Text { get; set; }
     }
 }

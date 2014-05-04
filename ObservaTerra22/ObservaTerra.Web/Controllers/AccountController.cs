@@ -46,7 +46,7 @@ namespace ObservaTerra.Web.Controllers
                     Session["User"] = result;
                     return RedirectToLocal(returnUrl);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     ModelState.AddModelError("", "The user name or password provided is incorrect.");
                     return View(model);

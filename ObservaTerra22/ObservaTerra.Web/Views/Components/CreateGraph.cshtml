@@ -1,0 +1,14 @@
+﻿@model ObservaTerra.Web.Models.GraphModel
+@{
+    ViewBag.Title = "CreateText";
+}
+
+<h2>CreateText</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.TextBoxFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Keys)
+    @Html.TextBoxFor(model => model.Values)
+    <input type="submit" value="Crear" class="btn btn-default" />
+}

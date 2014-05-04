@@ -14,5 +14,6 @@ namespace ObservaTerra.DomainModel
     
     public partial class ImageComponent : IComponent
     {
+        public string URI { get; set; }
     }
 }

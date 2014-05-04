@@ -15,11 +15,12 @@
     <EntitySet Name="ITimes" EntityType="DomainModel.Store.ITimes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleSet" EntityType="DomainModel.Store.RoleSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents" EntityType="DomainModel.Store.IComponents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PairSet" EntityType="DomainModel.Store.PairSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_GraphComponent" EntityType="DomainModel.Store.IComponents_GraphComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Areas_Country" EntityType="DomainModel.Store.Areas_Country" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes_TimeInterval" EntityType="DomainModel.Store.ITimes_TimeInterval" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ITimes_TimeInstant" EntityType="DomainModel.Store.ITimes_TimeInstant" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_ImageComponent" EntityType="DomainModel.Store.IComponents_ImageComponent" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="IComponents_GraphComponent" EntityType="DomainModel.Store.IComponents_GraphComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_VideoComponent" EntityType="DomainModel.Store.IComponents_VideoComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_TextComponent" EntityType="DomainModel.Store.IComponents_TextComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_DocumentComponent" EntityType="DomainModel.Store.IComponents_DocumentComponent" store:Type="Tables" Schema="dbo" />
@@ -73,6 +74,14 @@
       <End Role="Role" EntitySet="RoleSet" />
       <End Role="UserRole" EntitySet="UserRole" />
     </AssociationSet>
+    <AssociationSet Name="GraphComponentPair" Association="DomainModel.Store.GraphComponentPair">
+      <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
+      <End Role="Pair" EntitySet="PairSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GraphComponent_inherits_IComponent" Association="DomainModel.Store.FK_GraphComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
+    </AssociationSet>
     <AssociationSet Name="FK_Country_inherits_Area" Association="DomainModel.Store.FK_Country_inherits_Area">
       <End Role="Area" EntitySet="Areas" />
       <End Role="Country" EntitySet="Areas_Country" />
@@ -88,10 +97,6 @@
     <AssociationSet Name="FK_ImageComponent_inherits_IComponent" Association="DomainModel.Store.FK_ImageComponent_inherits_IComponent">
       <End Role="IComponent" EntitySet="IComponents" />
       <End Role="ImageComponent" EntitySet="IComponents_ImageComponent" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GraphComponent_inherits_IComponent" Association="DomainModel.Store.FK_GraphComponent_inherits_IComponent">
-      <End Role="IComponent" EntitySet="IComponents" />
-      <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
     </AssociationSet>
     <AssociationSet Name="FK_VideoComponent_inherits_IComponent" Association="DomainModel.Store.FK_VideoComponent_inherits_IComponent">
       <End Role="IComponent" EntitySet="IComponents" />
@@ -113,6 +118,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AreaId" Type="int" Nullable="false" />
+    <Property Name="Indicator_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Indicators">
     <Key>
@@ -120,14 +126,13 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Area_Id" Type="int" Nullable="false" />
-    <Property Name="Measure_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Measures">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Indicator_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Organizations">
     <Key>
@@ -141,9 +146,10 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CreationDate" Type="time" Nullable="false" Precision="7" />
-    <Property Name="SourceOrganization_Id" Type="int" Nullable="false" />
-    <Property Name="Indicator_Id" Type="int" Nullable="false" />
-    <Property Name="UserAuthor_Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SourceOrganization_Id" Type="int" Nullable="true" />
+    <Property Name="Indicator_Id" Type="int" Nullable="true" />
+    <Property Name="UserAuthor_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -173,7 +179,23 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Observation_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PairSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GraphComponent_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_GraphComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Areas_Country">
     <Key>
@@ -186,30 +208,29 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Starts" Type="datetime" Nullable="false" />
+    <Property Name="Ends" Type="datetime" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ITimes_TimeInstant">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Value" Type="datetime" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IComponents_ImageComponent">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="IComponents_GraphComponent">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
+    <Property Name="URI" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IComponents_VideoComponent">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="URI" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="IComponents_TextComponent">
@@ -223,6 +244,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="URI" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrganizationUser">
@@ -254,32 +276,32 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="IndicatorArea">
-    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="*" />
-    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="1" />
+    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="0..1" />
+    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Area">
+      <Principal Role="Indicator">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Indicator">
-        <PropertyRef Name="Area_Id" />
+      <Dependent Role="Area">
+        <PropertyRef Name="Indicator_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="IndicatorMeasure">
-    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="*" />
-    <End Role="Measure" Type="DomainModel.Store.Measures" Multiplicity="1" />
+    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="0..1" />
+    <End Role="Measure" Type="DomainModel.Store.Measures" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Measure">
+      <Principal Role="Indicator">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Indicator">
-        <PropertyRef Name="Measure_Id" />
+      <Dependent Role="Measure">
+        <PropertyRef Name="Indicator_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="ObservationOrganization">
     <End Role="Observation" Type="DomainModel.Store.Observations" Multiplicity="*" />
-    <End Role="Organization" Type="DomainModel.Store.Organizations" Multiplicity="1" />
+    <End Role="Organization" Type="DomainModel.Store.Organizations" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Organization">
         <PropertyRef Name="Id" />
@@ -291,7 +313,7 @@
   </Association>
   <Association Name="ObservationIndicator">
     <End Role="Observation" Type="DomainModel.Store.Observations" Multiplicity="*" />
-    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="1" />
+    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Indicator">
         <PropertyRef Name="Id" />
@@ -303,7 +325,7 @@
   </Association>
   <Association Name="ObservationUser">
     <End Role="Observation" Type="DomainModel.Store.Observations" Multiplicity="*" />
-    <End Role="User" Type="DomainModel.Store.Users" Multiplicity="1" />
+    <End Role="User" Type="DomainModel.Store.Users" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="User">
         <PropertyRef Name="Id" />
@@ -334,6 +356,18 @@
       </Principal>
       <Dependent Role="IComponent">
         <PropertyRef Name="Observation_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GraphComponentPair">
+    <End Role="GraphComponent" Type="DomainModel.Store.IComponents_GraphComponent" Multiplicity="1" />
+    <End Role="Pair" Type="DomainModel.Store.PairSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GraphComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pair">
+        <PropertyRef Name="GraphComponent_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -382,6 +416,20 @@
       </Principal>
       <Dependent Role="UserRole">
         <PropertyRef Name="Roles_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GraphComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GraphComponent" Type="DomainModel.Store.IComponents_GraphComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GraphComponent">
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -437,20 +485,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="ImageComponent">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GraphComponent_inherits_IComponent">
-    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="GraphComponent" Type="DomainModel.Store.IComponents_GraphComponent" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="IComponent">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="GraphComponent">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -551,6 +585,11 @@
             <End Role="Role" EntitySet="RoleSet" />
           </AssociationSet>
           <EntitySet Name="IComponents" EntityType="DomainModel.IComponent" />
+          <EntitySet Name="PairSet" EntityType="DomainModel.Pair" />
+          <AssociationSet Name="GraphComponentPair" Association="DomainModel.GraphComponentPair">
+            <End Role="GraphComponent" EntitySet="IComponents" />
+            <End Role="Pair" EntitySet="PairSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Area">
           <Key>
@@ -602,6 +641,7 @@
           <NavigationProperty Name="Indicator" Relationship="DomainModel.ObservationIndicator" FromRole="Observation" ToRole="Indicator" />
           <NavigationProperty Name="UserAuthor" Relationship="DomainModel.ObservationUser" FromRole="Observation" ToRole="User" />
           <NavigationProperty Name="IComponents" Relationship="DomainModel.IComponentObservation" FromRole="Observation" ToRole="IComponent" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -623,8 +663,11 @@
           <NavigationProperty Name="Indicator" Relationship="DomainModel.ITimeIndicator" FromRole="ITime" ToRole="Indicator" />
         </EntityType>
         <EntityType Name="TimeInterval" BaseType="DomainModel.ITime" >
+          <Property Name="Starts" Type="DateTime" Nullable="false" />
+          <Property Name="Ends" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="TimeInstant" BaseType="DomainModel.ITime" >
+          <Property Name="Value" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="IComponent">
           <Key>
@@ -632,17 +675,22 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Observation" Relationship="DomainModel.IComponentObservation" FromRole="IComponent" ToRole="Observation" />
+          <Property Name="Name" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="ImageComponent" BaseType="DomainModel.IComponent" >
+          <Property Name="URI" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="GraphComponent" BaseType="DomainModel.IComponent" >
+          <NavigationProperty Name="Values" Relationship="DomainModel.GraphComponentPair" FromRole="GraphComponent" ToRole="Pair" />
         </EntityType>
         <EntityType Name="VideoComponent" BaseType="DomainModel.IComponent" >
+          <Property Name="URI" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="TextComponent" BaseType="DomainModel.IComponent" >
           <Property Name="Text" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentComponent" BaseType="DomainModel.IComponent" >
+          <Property Name="URI" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -665,16 +713,16 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="IndicatorArea">
-          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
-          <End Type="DomainModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
+          <End Type="DomainModel.Area" Role="Area" Multiplicity="0..1" />
         </Association>
         <Association Name="IndicatorMeasure">
-          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
-          <End Type="DomainModel.Measure" Role="Measure" Multiplicity="1" />
+          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
+          <End Type="DomainModel.Measure" Role="Measure" Multiplicity="0..1" />
         </Association>
         <Association Name="ObservationOrganization">
           <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-          <End Type="DomainModel.Organization" Role="Organization" Multiplicity="1" />
+          <End Type="DomainModel.Organization" Role="Organization" Multiplicity="0..1" />
         </Association>
         <Association Name="OrganizationUser">
           <End Type="DomainModel.Organization" Role="Organization" Multiplicity="*" />
@@ -682,11 +730,11 @@
         </Association>
         <Association Name="ObservationIndicator">
           <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="1" />
+          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
         </Association>
         <Association Name="ObservationUser">
           <End Type="DomainModel.Observation" Role="Observation" Multiplicity="*" />
-          <End Type="DomainModel.User" Role="User" Multiplicity="1" />
+          <End Type="DomainModel.User" Role="User" Multiplicity="0..1" />
         </Association>
         <Association Name="ITimeIndicator">
           <End Type="DomainModel.ITime" Role="ITime" Multiplicity="1" />
@@ -699,6 +747,19 @@
         <Association Name="UserRole">
           <End Type="DomainModel.User" Role="User" Multiplicity="*" />
           <End Type="DomainModel.Role" Role="Role" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Pair">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" />
+          <NavigationProperty Name="GraphComponent" Relationship="DomainModel.GraphComponentPair" FromRole="Pair" ToRole="GraphComponent" />
+        </EntityType>
+        <Association Name="GraphComponentPair">
+          <End Type="DomainModel.GraphComponent" Role="GraphComponent" Multiplicity="1" />
+          <End Type="DomainModel.Pair" Role="Pair" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -748,6 +809,7 @@
         <MappingFragment StoreEntitySet="Observations">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -770,11 +832,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInterval)">
         <MappingFragment StoreEntitySet="ITimes_TimeInterval">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Starts" ColumnName="Starts" />
+          <ScalarProperty Name="Ends" ColumnName="Ends" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInstant)">
         <MappingFragment StoreEntitySet="ITimes_TimeInstant">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -790,11 +855,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)">
         <MappingFragment StoreEntitySet="IComponents">
           <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
-        <MappingFragment StoreEntitySet="IComponents_ImageComponent">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)">
@@ -802,9 +863,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
+        <MappingFragment StoreEntitySet="IComponents_ImageComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
+        </MappingFragment>
+      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)">
         <MappingFragment StoreEntitySet="IComponents_VideoComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)">
@@ -816,24 +884,36 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
         <MappingFragment StoreEntitySet="IComponents_DocumentComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Indicators">
+    <EntitySetMapping Name="PairSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Pair)">
+        <MappingFragment StoreEntitySet="PairSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Areas">
+      <EndProperty Name="Indicator">
+        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
+      </EndProperty>
       <EndProperty Name="Area">
-        <ScalarProperty Name="Id" ColumnName="Area_Id" />
-      </EndProperty>
-      <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Indicators">
-      <EndProperty Name="Measure">
-        <ScalarProperty Name="Id" ColumnName="Measure_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Measures">
       <EndProperty Name="Indicator">
+        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
+      </EndProperty>
+      <EndProperty Name="Measure">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ObservationOrganization" TypeName="DomainModel.ObservationOrganization" StoreEntitySet="Observations">
       <EndProperty Name="Organization">
@@ -842,6 +922,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="SourceOrganization_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="OrganizationUser" TypeName="DomainModel.OrganizationUser" StoreEntitySet="OrganizationUser">
       <EndProperty Name="Organization">
@@ -858,6 +939,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ObservationUser" TypeName="DomainModel.ObservationUser" StoreEntitySet="Observations">
       <EndProperty Name="User">
@@ -866,6 +948,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="UserAuthor_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ITimeIndicator" TypeName="DomainModel.ITimeIndicator" StoreEntitySet="ITimes">
       <EndProperty Name="Indicator">
@@ -890,6 +973,14 @@
       </EndProperty>
       <EndProperty Name="Role">
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GraphComponentPair" TypeName="DomainModel.GraphComponentPair" StoreEntitySet="PairSet">
+      <EndProperty Name="GraphComponent">
+        <ScalarProperty Name="Id" ColumnName="GraphComponent_Id" />
+      </EndProperty>
+      <EndProperty Name="Pair">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

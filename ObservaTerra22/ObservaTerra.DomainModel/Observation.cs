@@ -21,6 +21,7 @@ namespace ObservaTerra.DomainModel
     
         public int Id { get; set; }
         public System.TimeSpan CreationDate { get; set; }
+        public string Name { get; set; }
     
         public virtual Organization SourceOrganization { get; set; }
         public virtual Indicator Indicator { get; set; }

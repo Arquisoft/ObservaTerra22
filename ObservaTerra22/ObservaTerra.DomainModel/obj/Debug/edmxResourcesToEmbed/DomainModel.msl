@@ -43,6 +43,7 @@
         <MappingFragment StoreEntitySet="Observations">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -65,11 +66,14 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInterval)">
         <MappingFragment StoreEntitySet="ITimes_TimeInterval">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Starts" ColumnName="Starts" />
+          <ScalarProperty Name="Ends" ColumnName="Ends" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TimeInstant)">
         <MappingFragment StoreEntitySet="ITimes_TimeInstant">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -85,11 +89,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.IComponent)">
         <MappingFragment StoreEntitySet="IComponents">
           <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
-        <MappingFragment StoreEntitySet="IComponents_ImageComponent">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.GraphComponent)">
@@ -97,9 +97,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.ImageComponent)">
+        <MappingFragment StoreEntitySet="IComponents_ImageComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
+        </MappingFragment>
+      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.VideoComponent)">
         <MappingFragment StoreEntitySet="IComponents_VideoComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.TextComponent)">
@@ -111,24 +118,36 @@
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.DocumentComponent)">
         <MappingFragment StoreEntitySet="IComponents_DocumentComponent">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="URI" ColumnName="URI" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Indicators">
+    <EntitySetMapping Name="PairSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Pair)">
+        <MappingFragment StoreEntitySet="PairSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Areas">
+      <EndProperty Name="Indicator">
+        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
+      </EndProperty>
       <EndProperty Name="Area">
-        <ScalarProperty Name="Id" ColumnName="Area_Id" />
-      </EndProperty>
-      <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
-    <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Indicators">
-      <EndProperty Name="Measure">
-        <ScalarProperty Name="Id" ColumnName="Measure_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Measures">
       <EndProperty Name="Indicator">
+        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
+      </EndProperty>
+      <EndProperty Name="Measure">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ObservationOrganization" TypeName="DomainModel.ObservationOrganization" StoreEntitySet="Observations">
       <EndProperty Name="Organization">
@@ -137,6 +156,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="SourceOrganization_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="OrganizationUser" TypeName="DomainModel.OrganizationUser" StoreEntitySet="OrganizationUser">
       <EndProperty Name="Organization">
@@ -153,6 +173,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Indicator_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ObservationUser" TypeName="DomainModel.ObservationUser" StoreEntitySet="Observations">
       <EndProperty Name="User">
@@ -161,6 +182,7 @@
       <EndProperty Name="Observation">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="UserAuthor_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="ITimeIndicator" TypeName="DomainModel.ITimeIndicator" StoreEntitySet="ITimes">
       <EndProperty Name="Indicator">
@@ -185,6 +207,14 @@
       </EndProperty>
       <EndProperty Name="Role">
         <ScalarProperty Name="Id" ColumnName="Roles_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GraphComponentPair" TypeName="DomainModel.GraphComponentPair" StoreEntitySet="PairSet">
+      <EndProperty Name="GraphComponent">
+        <ScalarProperty Name="Id" ColumnName="GraphComponent_Id" />
+      </EndProperty>
+      <EndProperty Name="Pair">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

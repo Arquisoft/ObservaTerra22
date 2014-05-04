@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/03/2014 16:10:44
+-- Date Created: 05/04/2014 17:51:15
 -- Generated from EDMX file: C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\DomainModel.edmx
 -- --------------------------------------------------
 
@@ -21,10 +21,10 @@ IF OBJECT_ID(N'[dbo].[FK_AreaArea]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Areas] DROP CONSTRAINT [FK_AreaArea];
 GO
 IF OBJECT_ID(N'[dbo].[FK_IndicatorArea]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Indicators] DROP CONSTRAINT [FK_IndicatorArea];
+    ALTER TABLE [dbo].[Areas] DROP CONSTRAINT [FK_IndicatorArea];
 GO
 IF OBJECT_ID(N'[dbo].[FK_IndicatorMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Indicators] DROP CONSTRAINT [FK_IndicatorMeasure];
+    ALTER TABLE [dbo].[Measures] DROP CONSTRAINT [FK_IndicatorMeasure];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ObservationOrganization]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Observations] DROP CONSTRAINT [FK_ObservationOrganization];
@@ -148,22 +148,22 @@ GO
 CREATE TABLE [dbo].[Areas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [AreaId] int  NOT NULL
+    [AreaId] int  NOT NULL,
+    [Indicator_Id] int  NULL
 );
 GO
 
 -- Creating table 'Indicators'
 CREATE TABLE [dbo].[Indicators] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Area_Id] int  NOT NULL,
-    [Measure_Id] int  NOT NULL
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Measures'
 CREATE TABLE [dbo].[Measures] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Indicator_Id] int  NULL
 );
 GO
 
@@ -177,9 +177,10 @@ GO
 CREATE TABLE [dbo].[Observations] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CreationDate] time  NOT NULL,
-    [SourceOrganization_Id] int  NOT NULL,
-    [Indicator_Id] int  NOT NULL,
-    [UserAuthor_Id] int  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [SourceOrganization_Id] int  NULL,
+    [Indicator_Id] int  NULL,
+    [UserAuthor_Id] int  NULL
 );
 GO
 
@@ -209,7 +210,23 @@ GO
 -- Creating table 'IComponents'
 CREATE TABLE [dbo].[IComponents] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
     [Observation_Id] int  NULL
+);
+GO
+
+-- Creating table 'PairSet'
+CREATE TABLE [dbo].[PairSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Key] nvarchar(max)  NOT NULL,
+    [Value] nvarchar(max)  NOT NULL,
+    [GraphComponent_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'IComponents_GraphComponent'
+CREATE TABLE [dbo].[IComponents_GraphComponent] (
+    [Id] int  NOT NULL
 );
 GO
 
@@ -222,30 +239,29 @@ GO
 
 -- Creating table 'ITimes_TimeInterval'
 CREATE TABLE [dbo].[ITimes_TimeInterval] (
+    [Starts] datetime  NOT NULL,
+    [Ends] datetime  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'ITimes_TimeInstant'
 CREATE TABLE [dbo].[ITimes_TimeInstant] (
+    [Value] datetime  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'IComponents_ImageComponent'
 CREATE TABLE [dbo].[IComponents_ImageComponent] (
-    [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'IComponents_GraphComponent'
-CREATE TABLE [dbo].[IComponents_GraphComponent] (
+    [URI] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'IComponents_VideoComponent'
 CREATE TABLE [dbo].[IComponents_VideoComponent] (
+    [URI] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -259,6 +275,7 @@ GO
 
 -- Creating table 'IComponents_DocumentComponent'
 CREATE TABLE [dbo].[IComponents_DocumentComponent] (
+    [URI] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
@@ -335,6 +352,18 @@ ADD CONSTRAINT [PK_IComponents]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'PairSet'
+ALTER TABLE [dbo].[PairSet]
+ADD CONSTRAINT [PK_PairSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'IComponents_GraphComponent'
+ALTER TABLE [dbo].[IComponents_GraphComponent]
+ADD CONSTRAINT [PK_IComponents_GraphComponent]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'Areas_Country'
 ALTER TABLE [dbo].[Areas_Country]
 ADD CONSTRAINT [PK_Areas_Country]
@@ -356,12 +385,6 @@ GO
 -- Creating primary key on [Id] in table 'IComponents_ImageComponent'
 ALTER TABLE [dbo].[IComponents_ImageComponent]
 ADD CONSTRAINT [PK_IComponents_ImageComponent]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'IComponents_GraphComponent'
-ALTER TABLE [dbo].[IComponents_GraphComponent]
-ADD CONSTRAINT [PK_IComponents_GraphComponent]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -413,32 +436,32 @@ ON [dbo].[Areas]
     ([AreaId]);
 GO
 
--- Creating foreign key on [Area_Id] in table 'Indicators'
-ALTER TABLE [dbo].[Indicators]
+-- Creating foreign key on [Indicator_Id] in table 'Areas'
+ALTER TABLE [dbo].[Areas]
 ADD CONSTRAINT [FK_IndicatorArea]
-    FOREIGN KEY ([Area_Id])
-    REFERENCES [dbo].[Areas]
+    FOREIGN KEY ([Indicator_Id])
+    REFERENCES [dbo].[Indicators]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_IndicatorArea'
 CREATE INDEX [IX_FK_IndicatorArea]
-ON [dbo].[Indicators]
-    ([Area_Id]);
+ON [dbo].[Areas]
+    ([Indicator_Id]);
 GO
 
--- Creating foreign key on [Measure_Id] in table 'Indicators'
-ALTER TABLE [dbo].[Indicators]
+-- Creating foreign key on [Indicator_Id] in table 'Measures'
+ALTER TABLE [dbo].[Measures]
 ADD CONSTRAINT [FK_IndicatorMeasure]
-    FOREIGN KEY ([Measure_Id])
-    REFERENCES [dbo].[Measures]
+    FOREIGN KEY ([Indicator_Id])
+    REFERENCES [dbo].[Indicators]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_IndicatorMeasure'
 CREATE INDEX [IX_FK_IndicatorMeasure]
-ON [dbo].[Indicators]
-    ([Measure_Id]);
+ON [dbo].[Measures]
+    ([Indicator_Id]);
 GO
 
 -- Creating foreign key on [SourceOrganization_Id] in table 'Observations'
@@ -557,6 +580,29 @@ ON [dbo].[UserRole]
     ([Roles_Id]);
 GO
 
+-- Creating foreign key on [GraphComponent_Id] in table 'PairSet'
+ALTER TABLE [dbo].[PairSet]
+ADD CONSTRAINT [FK_GraphComponentPair]
+    FOREIGN KEY ([GraphComponent_Id])
+    REFERENCES [dbo].[IComponents_GraphComponent]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GraphComponentPair'
+CREATE INDEX [IX_FK_GraphComponentPair]
+ON [dbo].[PairSet]
+    ([GraphComponent_Id]);
+GO
+
+-- Creating foreign key on [Id] in table 'IComponents_GraphComponent'
+ALTER TABLE [dbo].[IComponents_GraphComponent]
+ADD CONSTRAINT [FK_GraphComponent_inherits_IComponent]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[IComponents]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
 -- Creating foreign key on [Id] in table 'Areas_Country'
 ALTER TABLE [dbo].[Areas_Country]
 ADD CONSTRAINT [FK_Country_inherits_Area]
@@ -587,15 +633,6 @@ GO
 -- Creating foreign key on [Id] in table 'IComponents_ImageComponent'
 ALTER TABLE [dbo].[IComponents_ImageComponent]
 ADD CONSTRAINT [FK_ImageComponent_inherits_IComponent]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[IComponents]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'IComponents_GraphComponent'
-ALTER TABLE [dbo].[IComponents_GraphComponent]
-ADD CONSTRAINT [FK_GraphComponent_inherits_IComponent]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[IComponents]
         ([Id])

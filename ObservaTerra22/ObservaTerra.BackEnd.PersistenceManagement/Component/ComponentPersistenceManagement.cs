@@ -16,6 +16,11 @@ namespace ObservaTerra.Backend.PersistenceManagement
             using (var container = new DomainModelContainer())
             {
                 result = container.IComponents.Single(c => c.Id == id);
+                if(result is GraphComponent)
+                {
+                    GraphComponent r = (GraphComponent)result;
+                    r.Values.Select(p => p.Id);
+                }
             }
 
             return result;   

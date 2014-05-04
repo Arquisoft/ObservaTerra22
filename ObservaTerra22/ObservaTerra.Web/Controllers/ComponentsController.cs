@@ -1,4 +1,5 @@
 ﻿using ObservaTerra.DomainModel;
+using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace ObservaTerra.Web.Controllers
 
             if (result is TextComponent)
                 return View("DetailsText", result);
+            else if (result is GraphComponent)
+                return View("DetailsGraph", result);
             return View();
         }
 
@@ -39,6 +42,36 @@ namespace ObservaTerra.Web.Controllers
             }
 
             return View(component);
+        }
+
+        public ViewResult CreateGraph()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateGraph(GraphModel component)
+        {
+            if (ModelState.IsValid)
+            {
+                new ObservaTerra.Backend.WebService.Controllers.ComponentController().Add(User.Token, GetGraphComponent(component));
+                return RedirectToAction("Index");
+            }
+
+            return View(component);
+        }
+
+        private GraphComponent GetGraphComponent(GraphModel graphmodel)
+        {
+            IList<Pair> pairs = new List<Pair>();
+            string[] keys = graphmodel.Keys.Split(',');
+            string[] values = graphmodel.Values.Split(',');
+
+            for(int i = 0; i < keys.Length; i++)
+            {
+                pairs.Add(new Pair() { Key = keys[i], Value = values[i] });
+            }
+            return new GraphComponent() { Name = graphmodel.Name, Values = pairs };
         }
     }
 }
