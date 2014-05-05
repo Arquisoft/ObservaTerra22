@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/04/2014 23:09:12
+-- Date Created: 05/05/2014 20:03:07
 -- Generated from EDMX file: C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\DomainModel.edmx
 -- --------------------------------------------------
 
@@ -154,15 +154,15 @@ GO
 CREATE TABLE [dbo].[Areas] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [AreaId] int  NULL,
-    [Indicator_Id] int  NULL
+    [AreaId] int  NULL
 );
 GO
 
 -- Creating table 'Indicators'
 CREATE TABLE [dbo].[Indicators] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [Area_Id] int  NOT NULL
 );
 GO
 
@@ -442,20 +442,6 @@ ON [dbo].[Areas]
     ([AreaId]);
 GO
 
--- Creating foreign key on [Indicator_Id] in table 'Areas'
-ALTER TABLE [dbo].[Areas]
-ADD CONSTRAINT [FK_IndicatorArea]
-    FOREIGN KEY ([Indicator_Id])
-    REFERENCES [dbo].[Indicators]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_IndicatorArea'
-CREATE INDEX [IX_FK_IndicatorArea]
-ON [dbo].[Areas]
-    ([Indicator_Id]);
-GO
-
 -- Creating foreign key on [Indicator_Id] in table 'Measures'
 ALTER TABLE [dbo].[Measures]
 ADD CONSTRAINT [FK_IndicatorMeasure]
@@ -598,6 +584,20 @@ ADD CONSTRAINT [FK_GraphComponentPair]
 CREATE INDEX [IX_FK_GraphComponentPair]
 ON [dbo].[PairSet]
     ([GraphComponent_Id]);
+GO
+
+-- Creating foreign key on [Area_Id] in table 'Indicators'
+ALTER TABLE [dbo].[Indicators]
+ADD CONSTRAINT [FK_AreaIndicator]
+    FOREIGN KEY ([Area_Id])
+    REFERENCES [dbo].[Areas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AreaIndicator'
+CREATE INDEX [IX_FK_AreaIndicator]
+ON [dbo].[Indicators]
+    ([Area_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'IComponents_GraphComponent'

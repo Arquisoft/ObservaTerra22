@@ -4,16 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Create new observation</h2>
 
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
 
+    <label>Name:</label>
     @Html.TextBoxFor(model => model.Name)
-    @Html.ListBoxFor(model => model.ComponentsSelected, Model.Components)
+    
+    <hr />
+    <label>Components:</label>
+    @Html.ListBoxFor(model => model.ComponentsSelected, Model.Components, new { @style = "width: 100%"} )
 
-    <input type="submit" value="Crear" class="btn btn-default" />
+    <br />
+    <input type="submit" value="Create" class="btn btn-default" />
 }
 
 <div>

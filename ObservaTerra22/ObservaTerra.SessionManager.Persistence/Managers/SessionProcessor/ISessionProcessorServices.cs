@@ -26,5 +26,7 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// </summary>
         /// <param name="token">The active token of the user</param>
         void Logout(string token);
+
+        IDictionary<string, User> ActiveTokens { get; }
     }
 }

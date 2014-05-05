@@ -110,6 +110,7 @@
     <Compile Include="Controllers\IndicatorController.cs" />
     <Compile Include="Controllers\ObservationController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

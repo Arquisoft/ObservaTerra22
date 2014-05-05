@@ -16,8 +16,8 @@ namespace ObservaTerra.Backend.PersistenceManagement
             using (var container = new DomainModelContainer())
             {
                 result = container.Observations.Single(o => o.Id == id);
-                container.Entry(result).Reference(o => o.UserAuthor).Load() ;
-                container.Entry(result).Collection(o => o.IComponents).Load() ;
+                container.Entry(result).Reference(o => o.UserAuthor).Load();
+                container.Entry(result).Collection(o => o.IComponents).Load();
             }
 
             return result;

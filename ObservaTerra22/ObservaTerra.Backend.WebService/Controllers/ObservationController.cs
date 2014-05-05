@@ -29,6 +29,7 @@ namespace ObservaTerra.Backend.WebService.Controllers
         public void Post(string token, Observation observation)
         {
             User user = GetUserByToken(token);
+            observation.UserAuthor = user;
             IObservationHumanData humandata = HumanDataFactory.GetObservationHumanData(user);
             humandata.AddObservation(observation);
         }

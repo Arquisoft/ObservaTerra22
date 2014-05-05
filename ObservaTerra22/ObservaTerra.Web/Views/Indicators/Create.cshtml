@@ -10,11 +10,16 @@
 {
     //Falta el calendario
 
+    <label>Name:</label>
     @Html.TextBoxFor(model => model.Name)
+    <hr />
+    <label>Area:</label>
+    @Html.DropDownListFor(model => model.SelectedArea, Model.Areas, new { @style = "width: 100%" })
     
-    @Html.DropDownListFor(model => model.SelectedArea, Model.Areas)
+    <br />
+    <label>Observation:</label>
     
-    @Html.ListBoxFor(model => model.SelectedObservations, Model.Observations)
+    @Html.ListBoxFor(model => model.SelectedObservations, Model.Observations, new { @style = "width: 100%" })
 
     <input type="submit" value="Crear" class="btn btn-default" />
 }

@@ -131,15 +131,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Areas">
-      <EndProperty Name="Indicator">
-        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
-      </EndProperty>
-      <EndProperty Name="Area">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-      <Condition ColumnName="Indicator_Id" IsNull="false" />
-    </AssociationSetMapping>
     <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Measures">
       <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
@@ -214,6 +205,14 @@
         <ScalarProperty Name="Id" ColumnName="GraphComponent_Id" />
       </EndProperty>
       <EndProperty Name="Pair">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AreaIndicator" TypeName="DomainModel.AreaIndicator" StoreEntitySet="Indicators">
+      <EndProperty Name="Area">
+        <ScalarProperty Name="Id" ColumnName="Area_Id" />
+      </EndProperty>
+      <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

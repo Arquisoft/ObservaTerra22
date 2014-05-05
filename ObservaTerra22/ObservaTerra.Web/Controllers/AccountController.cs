@@ -11,6 +11,7 @@ using WebMatrix.WebData;
 using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
 using System.Threading;
+using ObservaTerra.Backend.WebService;
 
 namespace ObservaTerra.Web.Controllers
 {
@@ -41,8 +42,8 @@ namespace ObservaTerra.Web.Controllers
                 // && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe)
                 try 
                 {
-                    var login = new ObservaTerra.Backend.WebService.Controllers.LoginController().Get(model.UserName, model.Password);
-                    var result = new UserWeb(login.Name, login.Token, login.Roles);
+                    var login = Factory.GetLoginController().Get(model.UserName, model.Password);
+                    var result = new UserWeb(login.Name, login, login.Token, login.Roles);
                     Session["User"] = result;
                     return RedirectToLocal(returnUrl);
                 }

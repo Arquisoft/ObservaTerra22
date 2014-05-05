@@ -13,7 +13,16 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// <summary>
         /// Table with all the active tokens representing active registered users
         /// </summary>
-        private IDictionary<string, User> activeTokens = new Dictionary<string, User>();
+        public IDictionary<string, User> _activeTokens = new Dictionary<string, User>();
+
+        public IDictionary<string, User> ActiveTokens
+        {
+            get
+            { 
+                return _activeTokens; 
+            }
+        }
+
         /// <summary>
         /// Token for guest users that are not registered in the system.
         /// </summary>
@@ -35,8 +44,9 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
             if (user != null && user.Password.Equals(HashingUtil.GenerateHash(password)))
             {
                 string token = HashingUtil.GenerateHash(username, new Random().Next(500) + "");
-                this.activeTokens.Add(token, user);
-                return new LoggedInUser(token: token, username: user.Username, name: user.Name, roles: user.Roles);
+                this._activeTokens[token] = user;
+                //return new LoggedInUser(token: token, username: user.Username, name: user.Name, roles: user.Roles);
+                return new LoggedInUser(user, token);
             }
             throw new Exceptions.EntityNotFoundException("No user with that username and password was found in the system");
         }
@@ -51,7 +61,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
             {
                 this.guestToken = HashingUtil.GenerateHash("guest");
             }
-            return new LoggedInUser(token: this.guestToken, username: null, name: null, roles: new List<Role>());
+            //return new LoggedInUser(token: this.guestToken, username: null, name: null, roles: new List<Role>());
+            return new LoggedInUser(new User(), this.guestToken);
         }
 
         /// <summary>
@@ -66,11 +77,11 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
             }
             if (!token.Equals(this.guestToken))
             {
-                if (!this.activeTokens.ContainsKey(token))
+                if (!this._activeTokens.ContainsKey(token))
                 {
                     throw new Exceptions.TokenNotFoundException("No such token was found as an active token");
                 }
-                this.activeTokens.Remove(token);
+                this._activeTokens.Remove(token);
             }
         }
     }

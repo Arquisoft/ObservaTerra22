@@ -6,8 +6,8 @@
 
 <h2>Observations list</h2>
 
-@Html.ActionLink("Nuevo", "Create", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
-<table class="table">
+@Html.ActionLink("New observation", "Create", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
+<table style="width:100%">
     <tr>
         <th>
             <b>ID</b>
@@ -27,13 +27,13 @@
     {
         <tr>
             <td>
-                @item.Id
+                @Html.ActionLink("ID" + item.Id, "Details", "Observations", new { id = item.Id }, null)
             </td>
             <td>
-                @Html.ActionLink(item.Name, "Details", "Observations", new { id = item.Id }, null)
+                @item.Name
             </td>
             <td>
-                <!--item.UserAuthor.Name-->
+                @item.UserAuthor.Name
             </td>
             <td>
                 @item.CreationDate

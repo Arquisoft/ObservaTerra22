@@ -30,10 +30,6 @@
       <End Role="Area" EntitySet="Areas" />
       <End Role="Area1" EntitySet="Areas" />
     </AssociationSet>
-    <AssociationSet Name="IndicatorArea" Association="DomainModel.Store.IndicatorArea">
-      <End Role="Indicator" EntitySet="Indicators" />
-      <End Role="Area" EntitySet="Areas" />
-    </AssociationSet>
     <AssociationSet Name="IndicatorMeasure" Association="DomainModel.Store.IndicatorMeasure">
       <End Role="Indicator" EntitySet="Indicators" />
       <End Role="Measure" EntitySet="Measures" />
@@ -78,6 +74,10 @@
       <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
       <End Role="Pair" EntitySet="PairSet" />
     </AssociationSet>
+    <AssociationSet Name="AreaIndicator" Association="DomainModel.Store.AreaIndicator">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Indicator" EntitySet="Indicators" />
+    </AssociationSet>
     <AssociationSet Name="FK_GraphComponent_inherits_IComponent" Association="DomainModel.Store.FK_GraphComponent_inherits_IComponent">
       <End Role="IComponent" EntitySet="IComponents" />
       <End Role="GraphComponent" EntitySet="IComponents_GraphComponent" />
@@ -118,7 +118,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AreaId" Type="int" Nullable="true" />
-    <Property Name="Indicator_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Indicators">
     <Key>
@@ -126,6 +125,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Area_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Measures">
     <Key>
@@ -275,18 +275,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="IndicatorArea">
-    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="0..1" />
-    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Indicator">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Area">
-        <PropertyRef Name="Indicator_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="IndicatorMeasure">
     <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="0..1" />
     <End Role="Measure" Type="DomainModel.Store.Measures" Multiplicity="*" />
@@ -368,6 +356,18 @@
       </Principal>
       <Dependent Role="Pair">
         <PropertyRef Name="GraphComponent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AreaIndicator">
+    <End Role="Area" Type="DomainModel.Store.Areas" Multiplicity="1" />
+    <End Role="Indicator" Type="DomainModel.Store.Indicators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Area">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Indicator">
+        <PropertyRef Name="Area_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -548,10 +548,6 @@
             <End Role="Area" EntitySet="Areas" />
             <End Role="Area1" EntitySet="Areas" />
           </AssociationSet>
-          <AssociationSet Name="IndicatorArea" Association="DomainModel.IndicatorArea">
-            <End Role="Indicator" EntitySet="Indicators" />
-            <End Role="Area" EntitySet="Areas" />
-          </AssociationSet>
           <AssociationSet Name="IndicatorMeasure" Association="DomainModel.IndicatorMeasure">
             <End Role="Indicator" EntitySet="Indicators" />
             <End Role="Measure" EntitySet="Measures" />
@@ -590,6 +586,10 @@
             <End Role="GraphComponent" EntitySet="IComponents" />
             <End Role="Pair" EntitySet="PairSet" />
           </AssociationSet>
+          <AssociationSet Name="AreaIndicator" Association="DomainModel.AreaIndicator">
+            <End Role="Area" EntitySet="Areas" />
+            <End Role="Indicator" EntitySet="Indicators" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Area">
           <Key>
@@ -600,7 +600,7 @@
           <Property Name="AreaId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="ContainedAreas" Relationship="DomainModel.AreaArea" FromRole="Area" ToRole="Area1" />
           <NavigationProperty Name="ContainerArea" Relationship="DomainModel.AreaArea" FromRole="Area1" ToRole="Area" />
-          <NavigationProperty Name="Indicator" Relationship="DomainModel.IndicatorArea" FromRole="Area" ToRole="Indicator" />
+          <NavigationProperty Name="Indicators" Relationship="DomainModel.AreaIndicator" FromRole="Area" ToRole="Indicator" />
         </EntityType>
         <EntityType Name="Country" BaseType="DomainModel.Area">
           <Property Name="Continent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -611,10 +611,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Area" Relationship="DomainModel.IndicatorArea" FromRole="Indicator" ToRole="Area" />
           <NavigationProperty Name="Measure" Relationship="DomainModel.IndicatorMeasure" FromRole="Indicator" ToRole="Measure" />
           <NavigationProperty Name="Observations" Relationship="DomainModel.ObservationIndicator" FromRole="Indicator" ToRole="Observation" />
           <NavigationProperty Name="ITime" Relationship="DomainModel.ITimeIndicator" FromRole="Indicator" ToRole="ITime" />
+          <NavigationProperty Name="Area" Relationship="DomainModel.AreaIndicator" FromRole="Indicator" ToRole="Area" />
         </EntityType>
         <EntityType Name="Measure">
           <Key>
@@ -712,10 +712,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="IndicatorArea">
-          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
-          <End Type="DomainModel.Area" Role="Area" Multiplicity="0..1" />
-        </Association>
         <Association Name="IndicatorMeasure">
           <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
           <End Type="DomainModel.Measure" Role="Measure" Multiplicity="0..1" />
@@ -760,6 +756,10 @@
         <Association Name="GraphComponentPair">
           <End Type="DomainModel.GraphComponent" Role="GraphComponent" Multiplicity="1" />
           <End Type="DomainModel.Pair" Role="Pair" Multiplicity="*" />
+        </Association>
+        <Association Name="AreaIndicator">
+          <End Type="DomainModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -897,15 +897,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="IndicatorArea" TypeName="DomainModel.IndicatorArea" StoreEntitySet="Areas">
-      <EndProperty Name="Indicator">
-        <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
-      </EndProperty>
-      <EndProperty Name="Area">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-      <Condition ColumnName="Indicator_Id" IsNull="false" />
-    </AssociationSetMapping>
     <AssociationSetMapping Name="IndicatorMeasure" TypeName="DomainModel.IndicatorMeasure" StoreEntitySet="Measures">
       <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Indicator_Id" />
@@ -980,6 +971,14 @@
         <ScalarProperty Name="Id" ColumnName="GraphComponent_Id" />
       </EndProperty>
       <EndProperty Name="Pair">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AreaIndicator" TypeName="DomainModel.AreaIndicator" StoreEntitySet="Indicators">
+      <EndProperty Name="Area">
+        <ScalarProperty Name="Id" ColumnName="Area_Id" />
+      </EndProperty>
+      <EndProperty Name="Indicator">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de indicadores</h2>
+<h2>Indicators list</h2>
 
 @Html.ActionLink("Nuevo", "Create", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
 
@@ -28,9 +28,10 @@
                 @Html.ActionLink("ID" + item.Id, "Details", "Indicators", new { id = item.Id }, null)
             </td>
             <td>
-                @Html.ActionLink(item.Name, "Details", "Indicators", new { id = item.Id }, null)
+                @item.Name
             </td>
             <td>
+                @item.Area.Name
             </td>
         </tr>
     }

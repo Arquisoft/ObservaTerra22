@@ -23,7 +23,6 @@
         <EntityTypeShape EntityType="DomainModel.DocumentComponent" Width="1.5" PointX="3.125" PointY="6.875" />
         <EntityTypeShape EntityType="DomainModel.Role" Width="1.5" PointX="9.75" PointY="8.125" />
         <AssociationConnector Association="DomainModel.AreaArea" />
-        <AssociationConnector Association="DomainModel.IndicatorArea" />
         <AssociationConnector Association="DomainModel.IndicatorMeasure" />
         <AssociationConnector Association="DomainModel.ObservationOrganization" />
         <AssociationConnector Association="DomainModel.OrganizationUser" />
@@ -43,6 +42,7 @@
         </InheritanceConnector>
         <EntityTypeShape EntityType="DomainModel.Pair" Width="1.5" PointX="1.25" PointY="9.25" />
         <AssociationConnector Association="DomainModel.GraphComponentPair" />
+        <AssociationConnector Association="DomainModel.AreaIndicator" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

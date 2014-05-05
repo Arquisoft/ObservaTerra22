@@ -23,7 +23,7 @@ namespace ObservaTerra.Web.Controllers
             get
             {
                 if (!base.User.Identity.IsAuthenticated)
-                    return new UserWeb("guest", "0", new List<Role>());
+                    return new UserWeb("guest", null, "0", new List<Role>());
                 return (UserWeb)base.User;
             }
         }

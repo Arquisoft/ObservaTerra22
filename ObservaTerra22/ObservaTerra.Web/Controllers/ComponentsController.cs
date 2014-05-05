@@ -1,4 +1,5 @@
-﻿using ObservaTerra.DomainModel;
+﻿using ObservaTerra.Backend.WebService;
+using ObservaTerra.DomainModel;
 using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace ObservaTerra.Web.Controllers
     {
         public ViewResult Index()
         {
-            var result = new ObservaTerra.Backend.WebService.Controllers.ComponentController().Get(User.Token, "");
+            var result = Factory.GetComponentController().Get(User.Token, "");
             return View(result);
         }
 
         public ViewResult Details(int id)
         {
-            var result = new ObservaTerra.Backend.WebService.Controllers.ComponentController().Get(User.Token, id);
+            var result = Factory.GetComponentController().Get(User.Token, id);
 
             if (result is TextComponent)
                 return View("DetailsText", result);
@@ -29,7 +30,7 @@ namespace ObservaTerra.Web.Controllers
 
         public ViewResult Graph(int id)
         {
-            return View((GraphComponent)new ObservaTerra.Backend.WebService.Controllers.ComponentController().Get(User.Token, id));
+            return View((GraphComponent)Factory.GetComponentController().Get(User.Token, id));
         }
 
         [Authorize]
@@ -43,13 +44,14 @@ namespace ObservaTerra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                new ObservaTerra.Backend.WebService.Controllers.ComponentController().Add(User.Token, component);
+                Factory.GetComponentController().Add(User.Token, component);
                 return RedirectToAction("Index");
             }
 
             return View(component);
         }
 
+        [Authorize]
         public ViewResult CreateGraph()
         {
             return View();
@@ -60,7 +62,7 @@ namespace ObservaTerra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                new ObservaTerra.Backend.WebService.Controllers.ComponentController().Add(User.Token, GetGraphComponent(component));
+                Factory.GetComponentController().Add(User.Token, GetGraphComponent(component));
                 return RedirectToAction("Index");
             }
 

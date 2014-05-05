@@ -1,13 +1,3 @@
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\Default.srprofile
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll.config
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.pdb
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\SpecRun.SpecFlowPlugin.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecFlow.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecRun.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
-C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\Default.srprofile
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll.config
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll
@@ -18,3 +8,13 @@ C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\De
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\Default.srprofile
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll.config
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\BDDTests.Spec.pdb
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\SpecRun.SpecFlowPlugin.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecFlow.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\bin\Debug\TechTalk.SpecRun.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.csprojResolveAssemblyReference.cache
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.dll
+C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\BDDTests.Spec\obj\Debug\BDDTests.Spec.pdb

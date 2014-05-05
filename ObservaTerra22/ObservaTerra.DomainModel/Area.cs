@@ -17,6 +17,7 @@ namespace ObservaTerra.DomainModel
         public Area()
         {
             this.ContainedAreas = new HashSet<Area>();
+            this.Indicators = new HashSet<Indicator>();
         }
     
         public int Id { get; set; }
@@ -25,6 +26,6 @@ namespace ObservaTerra.DomainModel
     
         public virtual ICollection<Area> ContainedAreas { get; set; }
         public virtual Area ContainerArea { get; set; }
-        public virtual Indicator Indicator { get; set; }
+        public virtual ICollection<Indicator> Indicators { get; set; }
     }
 }

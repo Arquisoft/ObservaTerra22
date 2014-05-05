@@ -14,9 +14,12 @@ namespace ObservaTerra.Web.Models.Users
 
         private ICollection<Role> _roles;
 
-        public UserWeb(string name, string token, ICollection<Role> roles)
+        public User User { get; set; }
+
+        public UserWeb(string name, User user, string token, ICollection<Role> roles)
         {
             Identity = new IdentityWeb(name);
+            this.User = user;
             this.Token = token;
             this._roles = roles;
         }

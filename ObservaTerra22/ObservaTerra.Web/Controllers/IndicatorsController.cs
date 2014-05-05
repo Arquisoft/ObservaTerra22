@@ -1,4 +1,5 @@
-﻿using ObservaTerra.DomainModel;
+﻿using ObservaTerra.Backend.WebService;
+using ObservaTerra.DomainModel;
 using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace ObservaTerra.Web.Controllers
 
     public class IndicatorsController : BaseController
     {
+        [Authorize]
         public ActionResult Create()
         {
             return View(new IndicatorModel() { Observations = GetObservationsSelectListItem(), Areas = GetAreasSelectListItem()});
@@ -21,7 +23,7 @@ namespace ObservaTerra.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Add(User.Token, GetIndicator(indicator));
+                Factory.GetIndicatorController().Add(User.Token, GetIndicator(indicator));
                 return RedirectToAction("Index");
             }
 
@@ -31,17 +33,19 @@ namespace ObservaTerra.Web.Controllers
         private Indicator GetIndicator(IndicatorModel indicator)
         {
             var result = new Indicator() { Name = indicator.Name };
-            var observations = new ObservaTerra.Backend.WebService.Controllers.ObservationController().Get(User.Token, "");
+            var observations = Factory.GetObservationController().Get(User.Token, "");
 
             foreach (var item in observations.Where(c => indicator.SelectedObservations.Any(sl => sl == c.Id.ToString())))
             {
                 result.Observations.Add(item);
             }
 
-            var areas = new ObservaTerra.Backend.WebService.Controllers.AreaController().Get(User.Token, "");
+            var areas = Factory.GetAreaController().Get(User.Token, "");
             result.Area = areas.Single(a => a.Id.ToString() == indicator.SelectedArea);
 
             result.ITime = new TimeInstant() { Value = indicator.Instant.Ticks };
+
+            
 
             return result;
         }
@@ -49,19 +53,19 @@ namespace ObservaTerra.Web.Controllers
 
         public ViewResult Index(string partialname = "")
         {
-            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(User.Token, "");
+            var result = Factory.GetIndicatorController().Get(User.Token, "");
             return View(result);
         }
 
         public ViewResult Details(int id)
         {
-            var result = new ObservaTerra.Backend.WebService.Controllers.IndicatorController().Get(User.Token, id);
+            var result = Factory.GetIndicatorController().Get(User.Token, id);
             return View(result);
         }
 
         private IList<SelectListItem> GetObservationsSelectListItem()
         {
-            var observations = new ObservaTerra.Backend.WebService.Controllers.ObservationController().Get(User.Token, "");
+            var observations = Factory.GetObservationController().Get(User.Token, "");
             return observations.Aggregate<Observation, IList<SelectListItem>>(new List<SelectListItem>(), (lista, observation) =>
             {
                 lista.Add(GetSelectListItem(observation));
@@ -76,7 +80,7 @@ namespace ObservaTerra.Web.Controllers
 
         private IList<SelectListItem> GetAreasSelectListItem()
         {
-            var areas = new ObservaTerra.Backend.WebService.Controllers.AreaController().Get(User.Token, "");
+            var areas = Factory.GetAreaController().Get(User.Token, "");
             return areas.Aggregate<Area, IList<SelectListItem>>(new List<SelectListItem>(), (lista, area) =>
             {
                 lista.Add(GetSelectListItem(area));

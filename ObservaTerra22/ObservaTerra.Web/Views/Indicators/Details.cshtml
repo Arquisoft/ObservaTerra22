@@ -6,4 +6,16 @@
 
 <h2>Indicator details</h2>
 
+<h3>Name:</h3>
 @Model.Name
+
+<h3>Author:</h3>
+@Model.Area.Name
+
+<h3>Components:</h3>
+<ul>
+    @foreach (var component in Model.Observations)
+    {
+        <li>@Html.ActionLink(component.Name, "Details", "Components", new { id = component.Id }, null)</li>
+    }
+</ul>

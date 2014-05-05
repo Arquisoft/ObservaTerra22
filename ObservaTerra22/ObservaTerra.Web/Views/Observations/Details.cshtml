@@ -4,7 +4,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details observation</h2>
+<h2>Observation details</h2>
+
+<h3>Name:</h3>
+@Model.Name
+
+<h3>Author:</h3>
+@Model.UserAuthor.Name
+
+<h3>Creation date:</h3>
+@Model.CreationDate
 
 <h3>Components:</h3>
 <ul>

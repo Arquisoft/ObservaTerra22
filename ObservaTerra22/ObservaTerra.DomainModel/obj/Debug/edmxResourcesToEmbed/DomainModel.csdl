@@ -13,10 +13,6 @@
       <End Role="Area" EntitySet="Areas" />
       <End Role="Area1" EntitySet="Areas" />
     </AssociationSet>
-    <AssociationSet Name="IndicatorArea" Association="DomainModel.IndicatorArea">
-      <End Role="Indicator" EntitySet="Indicators" />
-      <End Role="Area" EntitySet="Areas" />
-    </AssociationSet>
     <AssociationSet Name="IndicatorMeasure" Association="DomainModel.IndicatorMeasure">
       <End Role="Indicator" EntitySet="Indicators" />
       <End Role="Measure" EntitySet="Measures" />
@@ -55,6 +51,10 @@
       <End Role="GraphComponent" EntitySet="IComponents" />
       <End Role="Pair" EntitySet="PairSet" />
     </AssociationSet>
+    <AssociationSet Name="AreaIndicator" Association="DomainModel.AreaIndicator">
+      <End Role="Area" EntitySet="Areas" />
+      <End Role="Indicator" EntitySet="Indicators" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Area">
     <Key>
@@ -65,7 +65,7 @@
     <Property Name="AreaId" Type="Int32" Nullable="true" />
     <NavigationProperty Name="ContainedAreas" Relationship="DomainModel.AreaArea" FromRole="Area" ToRole="Area1" />
     <NavigationProperty Name="ContainerArea" Relationship="DomainModel.AreaArea" FromRole="Area1" ToRole="Area" />
-    <NavigationProperty Name="Indicator" Relationship="DomainModel.IndicatorArea" FromRole="Area" ToRole="Indicator" />
+    <NavigationProperty Name="Indicators" Relationship="DomainModel.AreaIndicator" FromRole="Area" ToRole="Indicator" />
   </EntityType>
   <EntityType Name="Country" BaseType="DomainModel.Area">
     <Property Name="Continent" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
@@ -76,10 +76,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="Area" Relationship="DomainModel.IndicatorArea" FromRole="Indicator" ToRole="Area" />
     <NavigationProperty Name="Measure" Relationship="DomainModel.IndicatorMeasure" FromRole="Indicator" ToRole="Measure" />
     <NavigationProperty Name="Observations" Relationship="DomainModel.ObservationIndicator" FromRole="Indicator" ToRole="Observation" />
     <NavigationProperty Name="ITime" Relationship="DomainModel.ITimeIndicator" FromRole="Indicator" ToRole="ITime" />
+    <NavigationProperty Name="Area" Relationship="DomainModel.AreaIndicator" FromRole="Indicator" ToRole="Area" />
   </EntityType>
   <EntityType Name="Measure">
     <Key>
@@ -177,10 +177,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="IndicatorArea">
-    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
-    <End Type="DomainModel.Area" Role="Area" Multiplicity="0..1" />
-  </Association>
   <Association Name="IndicatorMeasure">
     <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="0..1" />
     <End Type="DomainModel.Measure" Role="Measure" Multiplicity="0..1" />
@@ -225,5 +221,9 @@
   <Association Name="GraphComponentPair">
     <End Type="DomainModel.GraphComponent" Role="GraphComponent" Multiplicity="1" />
     <End Type="DomainModel.Pair" Role="Pair" Multiplicity="*" />
+  </Association>
+  <Association Name="AreaIndicator">
+    <End Type="DomainModel.Area" Role="Area" Multiplicity="1" />
+    <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="*" />
   </Association>
 </Schema>

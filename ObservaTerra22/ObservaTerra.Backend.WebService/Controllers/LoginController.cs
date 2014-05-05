@@ -13,12 +13,13 @@ namespace ObservaTerra.Backend.WebService.Controllers
 {
     public class LoginController : ApiController
     {
+        public ISessionProcessorServices Session { get; set; } //Trap
+
         public LoggedInUser Get(string user, string pass)
         {
             try
             {
-                ISessionProcessorServices session = ManagersFactory.GetSessionProcessorServices();
-                return session.Login(user, pass);
+                return Session.Login(user, pass);
             }
             catch (Exception ex)
             {

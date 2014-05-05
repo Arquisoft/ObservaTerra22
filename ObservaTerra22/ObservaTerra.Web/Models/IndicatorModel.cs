@@ -18,7 +18,7 @@ namespace ObservaTerra.Web.Models
         {
             get
             {
-                return new DateTime();
+                return DateTime.Now;
             }
         }
     }
