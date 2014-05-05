@@ -27,6 +27,11 @@ namespace ObservaTerra.Web.Controllers
             return View();
         }
 
+        public ViewResult Graph(int id)
+        {
+            return View((GraphComponent)new ObservaTerra.Backend.WebService.Controllers.ComponentController().Get(User.Token, id));
+        }
+
         [Authorize]
         public ViewResult CreateText()
         {

@@ -367,6 +367,7 @@
     <Content Include="Views\Observations\Details.cshtml" />
     <Content Include="Views\Indicators\Create.cshtml" />
     <Content Include="Views\Indicators\Details.cshtml" />
+    <Content Include="Views\Components\Graph.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

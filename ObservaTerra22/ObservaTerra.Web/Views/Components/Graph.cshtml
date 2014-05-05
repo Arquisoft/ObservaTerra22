@@ -1,0 +1,9 @@
+﻿@model ObservaTerra.DomainModel.GraphComponent
+@{
+    var myChart = new Chart(600, 480)
+       .AddTitle(Model.Name)
+       .AddSeries(chartType: "column",
+          xValue: Model.Values.Select(p => p.Key).ToArray(),
+          yValues: Model.Values.Select(p => p.Value).ToArray())
+       .Write();
+}
