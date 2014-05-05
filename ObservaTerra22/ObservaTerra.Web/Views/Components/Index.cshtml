@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ObservaTerra.DomainModel.IComponent>
+@using ObservaTerra.DomainModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,24 +10,50 @@
 @Html.ActionLink("Nuevo documento texto", "CreateText", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
 @Html.ActionLink("Nuevo gráfico", "CreateGraph", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
 
-<table class="table">
+<table style="width:100%">
     <tr>
         <th>
-            <b>Título</b>
+            <b>ID</b>
         </th>
         <th>
-            <b>Author</b>
+            <b>Title</b>
+        </th>
+        <th>
+            <b>Observation</b>
+        </th>
+        <th>
+            <b>Type</b>
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-
             <td>
-                @Html.ActionLink("ID" + item.Id , "Details", "Components", new { id = item.Id }, null)
+                @Html.ActionLink("ID" + item.Id, "Details", "Components", new { id = item.Id }, null)
             </td>
             <td>
+                @item.Name
+            </td>
+            <td>
+                @if (item.Observation != null)
+                {
+                    @item.Observation.Name
+                }
+            </td>
+            <td>
+                @if (item is TextComponent)
+                {
+                    <p>Text document</p>
+                }
+                else if (item is GraphComponent)
+                {
+                    <p>Graph document</p>
+                }
+                else
+                {
+                    <p>Unknown document</p>
+                }
             </td>
         </tr>
     }

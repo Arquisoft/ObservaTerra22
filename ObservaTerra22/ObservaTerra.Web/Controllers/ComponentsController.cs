@@ -27,6 +27,7 @@ namespace ObservaTerra.Web.Controllers
             return View();
         }
 
+        [Authorize]
         public ViewResult CreateText()
         {
             return View();

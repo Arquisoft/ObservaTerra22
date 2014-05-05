@@ -11,7 +11,10 @@
 <table class="table">
     <tr>
         <th>
-            <b>Título</b>
+            ID
+        </th>
+        <th>
+            <b>Title</b>
         </th>
         <th>
             <b>Area</b>
@@ -21,12 +24,13 @@
     @foreach (var item in Model)
     {
         <tr>
-
+            <td>
+                @Html.ActionLink("ID" + item.Id, "Details", "Indicators", new { id = item.Id }, null)
+            </td>
             <td>
                 @Html.ActionLink(item.Name, "Details", "Indicators", new { id = item.Id }, null)
             </td>
             <td>
-                <!--item.Area.Name-->
             </td>
         </tr>
     }

@@ -436,8 +436,8 @@ input, textarea {
 
 textarea {
     font-family: inherit;
-    width: 500px;
-}
+    width: 100%;
+    }
 
     input:focus, textarea:focus {
         border: 1px solid #7ac0da;

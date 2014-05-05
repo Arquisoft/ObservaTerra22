@@ -32,6 +32,7 @@ namespace ObservaTerra.Backend.PersistenceManagement
             {
                 foreach (var observation in container.Observations)//.Where(o => o.Indicator.Name.Contains(partialname)))
                 {
+                    container.Entry(observation).Reference(o => o.UserAuthor).Load();
                     result.Add(observation);
                 }
             }

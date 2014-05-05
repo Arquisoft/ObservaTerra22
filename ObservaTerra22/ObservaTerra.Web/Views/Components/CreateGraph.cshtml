@@ -7,8 +7,13 @@
 
 @using (Html.BeginForm())
 { 
+    <label>Name</label>
     @Html.TextBoxFor(model => model.Name)
-    @Html.TextBoxFor(model => model.Keys)
-    @Html.TextBoxFor(model => model.Values)
+    <hr />
+    <label>Headers:</label>
+    @Html.TextAreaFor(model => model.Keys)
+    <br />
+    <label>Values:</label>
+    @Html.TextAreaFor(model => model.Values)
     <input type="submit" value="Crear" class="btn btn-default" />
 }

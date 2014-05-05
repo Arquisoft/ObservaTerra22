@@ -4,29 +4,39 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Lista de observaciones</h2>
+<h2>Observations list</h2>
 
 @Html.ActionLink("Nuevo", "Create", null, new { @type = "button", @class = "btn btn-primary btn-lg glyphicon-plus btn-sm" })
-
 <table class="table">
     <tr>
         <th>
-            <b>Título</b>
+            <b>ID</b>
         </th>
         <th>
-            <b>AUthor</b>
+            <b>Title</b>
+        </th>
+        <th>
+            <b>Author</b>
+        </th>
+        <th>
+            <b>Creation date</b>
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-
+            <td>
+                @item.Id
+            </td>
             <td>
                 @Html.ActionLink(item.Name, "Details", "Observations", new { id = item.Id }, null)
             </td>
             <td>
                 <!--item.UserAuthor.Name-->
+            </td>
+            <td>
+                @item.CreationDate
             </td>
         </tr>
     }

@@ -7,11 +7,12 @@
 <h2>Graph</h2>
 
     @{
-        var myChart = new Chart(width: 600, height: 400)
+        var myChart = new Chart(600, 480)
            .AddTitle(Model.Name)
            .AddSeries( chartType: "column",
               xValue: Model.Values.Select(p => p.Key).ToArray(),
               yValues: Model.Values.Select(p => p.Value).ToArray() )
            .Write();
     }
+
 @Html.DisplayTextFor(model => model.Name)

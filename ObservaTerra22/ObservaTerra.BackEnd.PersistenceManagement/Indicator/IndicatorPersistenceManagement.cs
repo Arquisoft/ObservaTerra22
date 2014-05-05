@@ -28,7 +28,10 @@ namespace ObservaTerra.Backend.PersistenceManagement
             using (var container = new DomainModelContainer())
             {
                 foreach (var indicator in container.Indicators.Where(i => i.Name.Contains(partialname)))
+                {
+                    container.Entry(indicator).Reference(i => i.Area);
                     result.Add(indicator);
+                }
             }
 
             return result;

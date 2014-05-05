@@ -3,11 +3,14 @@
     ViewBag.Title = "CreateText";
 }
 
-<h2>CreateText</h2>
+<h2>Create new text document</h2>
 
 @using (Html.BeginForm())
 { 
+    <label>Name:</label>
     @Html.TextBoxFor(model => model.Name)
-    @Html.TextAreaFor(model => model.Text)
-    <input type="submit" value="Crear" class="btn btn-default" />
+    <hr />
+    @Html.TextAreaFor(model => model.Text, new { @width = "100%" })
+    <br />
+    <input type="submit" value="Create" class="btn btn-default" />
 }
