@@ -5,132 +5,132 @@
   </assembly>
   <members>
     <member name="T:System.Web.Http.GlobalConfiguration">
-      <summary> Brinda una <see cref="T:System.Web.Http.HttpConfiguration" /> global para aplicaciones ASP.NET. </summary>
+      <summary> Provides a global <see cref="T:System.Web.Http.HttpConfiguration" /> for ASP.NET applications. </summary>
     </member>
     <member name="P:System.Web.Http.GlobalConfiguration.Configuration"></member>
     <member name="P:System.Web.Http.GlobalConfiguration.DefaultHandler">
-      <summary> Obtiene el controlador de mensajes predeterminado al que se llamará para todas las solicitudes. </summary>
+      <summary> Gets the default message handler that will be called for all requests. </summary>
     </member>
     <member name="T:System.Web.Http.RouteCollectionExtensions">
-      <summary> Métodos de extensión para <see cref="T:System.Web.Routing.RouteCollection" /></summary>
+      <summary> Extension methods for <see cref="T:System.Web.Routing.RouteCollection" /></summary>
     </member>
     <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String)">
-      <summary>Asigna la plantilla de ruta especificada.</summary>
-      <returns>Una referencia a la ruta asignada.</returns>
-      <param name="routes">Una colección de rutas para la aplicación.</param>
-      <param name="name">Nombre de la ruta que se va a asignar.</param>
-      <param name="routeTemplate">Plantilla de ruta para la ruta.</param>
+      <summary>Maps the specified route template.</summary>
+      <returns>A reference to the mapped route.</returns>
+      <param name="routes">A collection of routes for the application.</param>
+      <param name="name">The name of the route to map.</param>
+      <param name="routeTemplate">The route template for the route.</param>
     </member>
     <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object)">
-      <summary>Asigna la plantilla de ruta especificada y establece la ruta predeterminada.</summary>
-      <returns>Una referencia a la ruta asignada.</returns>
-      <param name="routes">Una colección de rutas para la aplicación.</param>
-      <param name="name">Nombre de la ruta que se va a asignar.</param>
-      <param name="routeTemplate">Plantilla de ruta para la ruta.</param>
-      <param name="defaults">Objeto que contiene los valores de ruta predeterminados.</param>
+      <summary>Maps the specified route template and sets default route.</summary>
+      <returns>A reference to the mapped route.</returns>
+      <param name="routes">A collection of routes for the application.</param>
+      <param name="name">The name of the route to map.</param>
+      <param name="routeTemplate">The route template for the route.</param>
+      <param name="defaults">An object that contains default route values.</param>
     </member>
     <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object,System.Object)">
-      <summary>Asigna la plantilla de ruta especificada y establece los valores de ruta predeterminados y las restricciones.</summary>
-      <returns>Una referencia a la ruta asignada.</returns>
-      <param name="routes">Una colección de rutas para la aplicación.</param>
-      <param name="name">Nombre de la ruta que se va a asignar.</param>
-      <param name="routeTemplate">Plantilla de ruta para la ruta.</param>
-      <param name="defaults">Objeto que contiene los valores de ruta predeterminados.</param>
-      <param name="constraints">Un conjunto de expresiones que especifican los valores para routeTemplate.</param>
+      <summary>Maps the specified route template and sets default route values and constraints.</summary>
+      <returns>A reference to the mapped route.</returns>
+      <param name="routes">A collection of routes for the application.</param>
+      <param name="name">The name of the route to map.</param>
+      <param name="routeTemplate">The route template for the route.</param>
+      <param name="defaults">An object that contains default route values.</param>
+      <param name="constraints">A set of expressions that specify values for routeTemplate.</param>
     </member>
     <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object,System.Object,System.Net.Http.HttpMessageHandler)">
-      <summary>Asigna la plantilla de ruta especificada y establece los valores de ruta predeterminados, las restricciones y el gestor de mensajes de extremo.</summary>
-      <returns>Una referencia a la ruta asignada.</returns>
-      <param name="routes">Una colección de rutas para la aplicación.</param>
-      <param name="name">Nombre de la ruta que se va a asignar.</param>
-      <param name="routeTemplate">Plantilla de ruta para la ruta.</param>
-      <param name="defaults">Objeto que contiene los valores de ruta predeterminados.</param>
-      <param name="constraints">Un conjunto de expresiones que especifican los valores para routeTemplate.</param>
-      <param name="handler">Controlador al que se enviará la solicitud.</param>
+      <summary>Maps the specified route template and sets default route values, constraints,  and end-point message handler.</summary>
+      <returns>A reference to the mapped route.</returns>
+      <param name="routes">A collection of routes for the application.</param>
+      <param name="name">The name of the route to map.</param>
+      <param name="routeTemplate">The route template for the route.</param>
+      <param name="defaults">An object that contains default route values.</param>
+      <param name="constraints">A set of expressions that specify values for routeTemplate.</param>
+      <param name="handler">The handler to which the request will be dispatched.</param>
     </member>
     <member name="T:System.Web.Http.WebHost.HttpControllerHandler">
-      <summary> Un <see cref="T:System.Web.IHttpAsyncHandler" /> que pasa solicitudes de ASP.NET a la canalización de <see cref="T:System.Web.Http.HttpServer" /> y escribe el resultado de vuelta. </summary>
+      <summary> A <see cref="T:System.Web.IHttpAsyncHandler" /> that passes ASP.NET requests into the <see cref="T:System.Web.Http.HttpServer" /> pipeline and write the result back. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.#ctor(System.Web.Routing.RouteData)">
-      <summary> Inicia una nueva instancia de la clase <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" />. </summary>
-      <param name="routeData">Datos de la ruta.</param>
+      <summary> Initializes a new instance of the <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> class. </summary>
+      <param name="routeData">The route data.</param>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.BeginProcessRequest(System.Web.HttpContextBase,System.AsyncCallback,System.Object)">
-      <summary> Inicia la solicitud de proceso. </summary>
-      <returns>Un <see cref="T:System.IAsyncResult" /> que contiene información acerca del estado del proceso. </returns>
-      <param name="httpContextBase">Contexto HTTP base.</param>
-      <param name="callback">Devolución de llamada.</param>
-      <param name="state">Estado.</param>
+      <summary> Begins the process request. </summary>
+      <returns>An <see cref="T:System.IAsyncResult" /> that contains information about the status of the process. </returns>
+      <param name="httpContextBase">The HTTP context base.</param>
+      <param name="callback">The callback.</param>
+      <param name="state">The state.</param>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.EndProcessRequest(System.IAsyncResult)">
-      <summary> Proporciona un método de fin de proceso asincrónico cuando el proceso termina. </summary>
-      <param name="result">Un <see cref="T:System.IAsyncResult" /> que contiene información acerca del estado del proceso.</param>
+      <summary> Provides an asynchronous process End method when the process ends. </summary>
+      <param name="result">An <see cref="T:System.IAsyncResult" /> that contains information about the status of the process.</param>
     </member>
     <member name="P:System.Web.Http.WebHost.HttpControllerHandler.IsReusable">
-      <summary> Obtiene un valor que indica si otra solicitud puede utilizar la instancia de <see cref="T:System.Web.IHttpHandler" />. </summary>
+      <summary> Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler" /> instance. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.ProcessRequest(System.Web.HttpContextBase)">
-      <summary> Procesa la solicitud. </summary>
-      <param name="httpContextBase">Contexto HTTP base.</param>
+      <summary> Processes the request. </summary>
+      <param name="httpContextBase">The HTTP context base.</param>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpAsyncHandler#BeginProcessRequest(System.Web.HttpContext,System.AsyncCallback,System.Object)">
-      <summary> Inicia el proceso de la solicitud. </summary>
-      <returns>Un <see cref="T:System.IAsyncResult" /> que contiene información acerca del estado del proceso. </returns>
-      <param name="httpContext">Contexto HTTP.</param>
-      <param name="callback">Devolución de llamada.</param>
-      <param name="state">Estado.</param>
+      <summary> Begins processing the request. </summary>
+      <returns>An <see cref="T:System.IAsyncResult" /> that contains information about the status of the process. </returns>
+      <param name="httpContext">The HTTP context.</param>
+      <param name="callback">The callback.</param>
+      <param name="state">The state.</param>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpAsyncHandler#EndProcessRequest(System.IAsyncResult)">
-      <summary> Proporciona un método de fin de proceso asincrónico cuando el proceso termina. </summary>
-      <param name="result">Un <see cref="T:System.IAsyncResult" /> que contiene información acerca del estado del proceso.</param>
+      <summary> Provides an asynchronous process End method when the process ends. </summary>
+      <param name="result">An <see cref="T:System.IAsyncResult" /> that contains information about the status of the process.</param>
     </member>
     <member name="P:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpHandler#IsReusable">
-      <summary> Obtiene un valor que indica si otra solicitud puede utilizar la instancia de <see cref="T:System.Web.IHttpHandler" />. </summary>
+      <summary> Gets a value indicating whether another request can use the <see cref="T:System.Web.IHttpHandler" /> instance. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerHandler.System#Web#IHttpHandler#ProcessRequest(System.Web.HttpContext)">
-      <summary> Procesa la solicitud. </summary>
-      <param name="httpContext">Contexto HTTP base.</param>
+      <summary> Processes the request. </summary>
+      <param name="httpContext">The HTTP context base.</param>
     </member>
     <member name="T:System.Web.Http.WebHost.HttpControllerRouteHandler">
-      <summary> Un <see cref="T:System.Web.Routing.IRouteHandler" /> que devuelve instancias de <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> que pueden pasar solicitudes a una instancia de <see cref="T:System.Web.Http.HttpServer" /> dada. </summary>
+      <summary> A <see cref="T:System.Web.Routing.IRouteHandler" /> that returns instances of <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" /> that can pass requests to a given <see cref="T:System.Web.Http.HttpServer" /> instance. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.#ctor">
-      <summary> Inicia una nueva instancia de la clase <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" />. </summary>
+      <summary> Initializes a new instance of the <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" /> class. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.GetHttpHandler(System.Web.Routing.RequestContext)">
-      <summary> Proporciona el objeto que procesa la solicitud. </summary>
-      <returns> Objeto que procesa la solicitud. </returns>
-      <param name="requestContext">Objeto que encapsula la información sobre la solicitud.</param>
+      <summary> Provides the object that processes the request. </summary>
+      <returns> An object that processes the request. </returns>
+      <param name="requestContext">An object that encapsulates information about the request.</param>
     </member>
     <member name="P:System.Web.Http.WebHost.HttpControllerRouteHandler.Instance">
-      <summary> Obtiene la instancia de <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" /> simple. </summary>
+      <summary> Gets the singleton <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" /> instance. </summary>
     </member>
     <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.System#Web#Routing#IRouteHandler#GetHttpHandler(System.Web.Routing.RequestContext)">
-      <summary> Proporciona el objeto que procesa la solicitud. </summary>
-      <returns> Objeto que procesa la solicitud. </returns>
-      <param name="requestContext">Objeto que encapsula la información sobre la solicitud.</param>
+      <summary> Provides the object that processes the request. </summary>
+      <returns> An object that processes the request. </returns>
+      <param name="requestContext">An object that encapsulates information about the request.</param>
     </member>
     <member name="T:System.Web.Http.WebHost.PreApplicationStartCode">
-      <summary>Proporciona un punto de registro para el código de inicio anterior a la aplicación de pertenencia sencillo.</summary>
+      <summary>Provides a registration point for the simple membership pre-application start code.</summary>
     </member>
     <member name="M:System.Web.Http.WebHost.PreApplicationStartCode.Start">
-      <summary>Registra el código de inicio anterior a la aplicación de pertenencia sencillo.</summary>
+      <summary>Registers the simple membership pre-application start code.</summary>
     </member>
     <member name="T:System.Web.Http.WebHost.WebHostBufferPolicySelector">
-      <summary>Representa el selector de políticas de búfer del host web.</summary>
+      <summary>Represents the web host buffer policy selector.</summary>
     </member>
     <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.#ctor">
-      <summary>Inicia una nueva instancia de la clase <see cref="T:System.Web.Http.WebHost.WebHostBufferPolicySelector" />.</summary>
+      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.WebHost.WebHostBufferPolicySelector" /> class.</summary>
     </member>
     <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.UseBufferedInputStream(System.Object)">
-      <summary>Obtiene un valor que indica si el host debe almacenar en búfer el cuerpo de entidad de la solicitud HTTP.</summary>
-      <returns>true si debe usarse el almacenamiento en buffer; en caso contrario, debe usarse una solicitud transmitida.</returns>
-      <param name="hostContext">Contexto del host.</param>
+      <summary>Gets a value that indicates whether the host should buffer the entity body of the HTTP request.</summary>
+      <returns>true if buffering should be used; otherwise a streamed request should be used.</returns>
+      <param name="hostContext">The host context.</param>
     </member>
     <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.UseBufferedOutputStream(System.Net.Http.HttpResponseMessage)">
-      <summary>Usa una transmisión de salida almacenada en búfer para el host web</summary>
-      <returns>Transmisión de salida almacenada en búfer.</returns>
-      <param name="response">La respuesta.</param>
+      <summary>Uses a buffered output stream for the web host.</summary>
+      <returns>A buffered output stream.</returns>
+      <param name="response">The response.</param>
     </member>
   </members>
 </doc>
