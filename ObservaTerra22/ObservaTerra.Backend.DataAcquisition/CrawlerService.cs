@@ -50,7 +50,7 @@ namespace ObservaTerra.Backend.DataAcquisition
                     Crawler.crawl(new Uri(x));
                     result.Concat(Crawler.Files);
                 });
-                IComponentCommand command=DataCommandFactory.GetComponentCommand();
+                IComponentCommand command = DataCommandFactory.GetComponentCommand(null);
                 command.AddComponents(result);
         }
 

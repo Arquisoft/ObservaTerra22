@@ -1,4 +1,5 @@
-﻿using ObservaTerra.Backend.DataQuery;
+﻿using ObservaTerra.Backend.DataCommand;
+using ObservaTerra.Backend.DataQuery;
 using ObservaTerra.DomainModel;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace ObservaTerra.Backend.WebService.Controllers
         public void Add(string token, Area area)
         {
             User user = GetUserByToken(token);
-            IAreaQuery query = DataQueryFactory.GetAreaQuery(user);
-            query.Add(area);
+            IAreaCommand command = DataCommandFactory.GetAreaCommand(user);
+            command.AddArea(area);
         }
     }
 }

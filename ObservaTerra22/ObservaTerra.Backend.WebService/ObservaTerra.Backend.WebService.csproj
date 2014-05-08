@@ -127,6 +127,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataCommand\ObservaTerra.Backend.DataCommand.csproj">
+      <Project>{bec112c2-83e3-45b3-a9cf-04b033ca8ed7}</Project>
+      <Name>ObservaTerra.Backend.DataCommand</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ObservaTerra.Backend.DataQuery\ObservaTerra.Backend.DataQuery.csproj">
       <Project>{0ad9cd41-89e3-4336-80b8-792a0bf636b5}</Project>
       <Name>ObservaTerra.Backend.DataQuery</Name>

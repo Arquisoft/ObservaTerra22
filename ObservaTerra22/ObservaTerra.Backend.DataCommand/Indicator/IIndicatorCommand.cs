@@ -5,14 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObservaTerra.Backend.DataQuery
+namespace ObservaTerra.Backend.DataCommand
 {
-    public interface IComponentQuery
+    public interface IIndicatorCommand
     {
         User User { get; }
-
-        IComponent GetComponent(int id);
-
-        IEnumerable<IComponent> FindComponents(string partialname);
+        void AddIndicator(Indicator indicator);
     }
 }

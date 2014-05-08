@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.Backend.DataCommand
 {
-    class ComponentCommand : IComponentCommand
+    class AreaCommand : IAreaCommand
     {
         public User User { get; private set; }
 
-        public ComponentCommand(User user)
+        public AreaCommand(User user)
         {
             this.User = user;
         }
 
-        public void AddComponents(IList<IComponent> components){
-            IComponentAccess access = AccessCoreFactory.GetComponentAccess();
-            Parallel.ForEach(components, c => access.Add(c));
+        public void AddArea(Area area)
+        {
+            IAreaAccess access = AccessCoreFactory.GetAreaAccess(User);
+            access.Add(area);
         }
     }
 }

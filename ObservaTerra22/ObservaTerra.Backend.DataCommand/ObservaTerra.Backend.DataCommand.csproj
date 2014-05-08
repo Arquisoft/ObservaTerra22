@@ -57,9 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Area\AreaCommand.cs" />
+    <Compile Include="Area\IAreaCommand.cs" />
     <Compile Include="Component\ComponentCommand.cs" />
     <Compile Include="Component\IComponentCommand.cs" />
     <Compile Include="DataCommandFactory.cs" />
+    <Compile Include="Indicator\IIndicatorCommand.cs" />
+    <Compile Include="Indicator\IndicatorCommand.cs" />
     <Compile Include="Observation\IObservationCommand.cs" />
     <Compile Include="Observation\ObservationCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

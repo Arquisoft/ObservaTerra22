@@ -1,4 +1,5 @@
-﻿using ObservaTerra.Backend.DataQuery;
+﻿using ObservaTerra.Backend.DataCommand;
+using ObservaTerra.Backend.DataQuery;
 using ObservaTerra.DomainModel;
 using System;
 using System.Collections.Generic;
@@ -26,11 +27,11 @@ namespace ObservaTerra.Backend.WebService.Controllers
             return query.FindIndicators(partialname);
         }
 
-        public void Add(string token, Indicator area)
+        public void Add(string token, Indicator indicator)
         {
             User user = GetUserByToken(token);
-            IIndicatorQuery query = DataQueryFactory.GetIndicatorQuery(user);
-            query.Add(area);
+            IIndicatorCommand command = DataCommandFactory.GetIndicatorCommand(user);
+            command.AddIndicator(indicator);
         }
     }
 }

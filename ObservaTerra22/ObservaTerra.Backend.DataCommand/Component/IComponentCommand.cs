@@ -9,6 +9,7 @@ namespace ObservaTerra.Backend.DataCommand
 {
     public interface IComponentCommand
     {
-        void AddComponents(List<IComponent> components);
+        User User { get; }
+        void AddComponents(IList<IComponent> components);
     }
 }

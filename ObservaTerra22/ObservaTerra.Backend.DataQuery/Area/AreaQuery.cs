@@ -28,11 +28,5 @@ namespace ObservaTerra.Backend.DataQuery
             IAreaAccess access = AccessCoreFactory.GetAreaAccess(User);
             return access.FindAreas(partialname);
         }
-
-        public void Add(Area area)
-        {
-            IAreaAccess access = AccessCoreFactory.GetAreaAccess(User);
-            access.Add(area);
-        }
     }
 }

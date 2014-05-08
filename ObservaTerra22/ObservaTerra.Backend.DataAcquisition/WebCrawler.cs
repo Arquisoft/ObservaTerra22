@@ -49,7 +49,7 @@ namespace ObservaTerra.Backend.DataAcquisition
             {
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
-                    this.Files.Add(new TextComponent(client.DownloadString(crawledPage.Uri)));
+                    this.Files.Add(new TextComponent() { Text = client.DownloadString(crawledPage.Uri) });
                     Console.WriteLine("Downloaded file from {0}", crawledPage.Uri.AbsoluteUri);
                 }
             }

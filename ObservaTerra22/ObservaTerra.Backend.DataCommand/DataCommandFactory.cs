@@ -9,12 +9,22 @@ namespace ObservaTerra.Backend.DataCommand
 {
     public static class DataCommandFactory
     {
+        public static IAreaCommand GetAreaCommand(User user)
+        {
+            return new AreaCommand(user);
+        }
+        public static IComponentCommand GetComponentCommand(User user){
+            return new ComponentCommand(user);
+        }
+
+        public static IIndicatorCommand GetIndicatorCommand(User user)
+        {
+            return new IndicatorCommand(user);
+        }
+
         public static IObservationCommand GetObservationCommand(User user)
         {
             return new ObservationCommand(user);
-        }
-        public static IComponentCommand GetComponentCommand(){
-            return new ComponentCommand();
         }
     }
 }

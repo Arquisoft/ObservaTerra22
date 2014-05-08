@@ -1,4 +1,5 @@
-﻿using ObservaTerra.Backend.DataQuery;
+﻿using ObservaTerra.Backend.DataCommand;
+using ObservaTerra.Backend.DataQuery;
 using ObservaTerra.DomainModel;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,8 @@ namespace ObservaTerra.Backend.WebService.Controllers
         public void Add(string token, IComponent component)
         {
             User user = GetUserByToken(token);
-            IComponentQuery query = DataQueryFactory.GetComponentQuery(user);
-            query.Add(component);
+            IComponentCommand command = DataCommandFactory.GetComponentCommand(user);
+            command.AddComponents(new [] { component }.ToList());
         }
     }
 }

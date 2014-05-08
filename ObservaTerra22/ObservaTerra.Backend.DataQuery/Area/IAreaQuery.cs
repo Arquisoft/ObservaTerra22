@@ -14,7 +14,5 @@ namespace ObservaTerra.Backend.DataQuery
         Area GetArea(int id);
 
         IEnumerable<Area> FindAreas(string partialname);
-
-        void Add(Area area);
     }
 }
