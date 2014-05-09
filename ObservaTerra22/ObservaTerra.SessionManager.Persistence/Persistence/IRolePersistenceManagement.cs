@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.SessionManager.Persistence
 {
-    public interface IRolePersistenceManagement
+    interface IRolePersistenceManagement
     {
         /// <summary>
         /// Saves a new role in the system

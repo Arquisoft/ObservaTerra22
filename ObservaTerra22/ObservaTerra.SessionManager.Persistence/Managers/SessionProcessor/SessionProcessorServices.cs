@@ -84,5 +84,11 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
                 this._activeTokens.Remove(token);
             }
         }
+
+
+        public User GetCrawlerUser()
+        {
+           return Persistence.PersistenceFactory.GetUserPersistenceManagement().FindByUsername("Crawler");
+        }
     }
 }

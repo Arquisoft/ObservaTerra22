@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<DataSources xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Sources>
+    <string>http://apps.who.int/gho/athena/data/GHO/WHOSIS_000002,WHOSIS_000001,WHOSIS_000015?profile=xtab&amp;format=html&amp;x-topaxis=GHO;SEX&amp;x-sideaxis=COUNTRY;YEAR&amp;x-title=table&amp;filter=COUNTRY:*;REGION:AFR;REGION:AMR;REGION:SEAR;REGION:EUR;REGION:EMR;REGION:WPR;SEX:*</string>
+  </Sources>
+</DataSources>

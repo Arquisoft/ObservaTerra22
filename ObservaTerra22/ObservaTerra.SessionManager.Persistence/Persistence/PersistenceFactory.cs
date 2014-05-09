@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.SessionManager.Persistence
 {
-    public class PersistenceFactory
+    class PersistenceFactory
     {
         /// <summary>
         /// Factory method that creates a IUserPersistenceManagement instance

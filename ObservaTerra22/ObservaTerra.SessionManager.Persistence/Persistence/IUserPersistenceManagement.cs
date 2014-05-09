@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ObservaTerra.SessionManager.Persistence
 {
-    public interface IUserPersistenceManagement
+    interface IUserPersistenceManagement
     {
         /// <summary>
         /// Looks for a user in the system with a given username

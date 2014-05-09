@@ -58,15 +58,3 @@ D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.dll
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll.config
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.DomainModel.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\ObservaTerra.DomainModel.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.xml
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.csprojResolveAssemblyReference.cache
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.BackEnd.PersistenceManagement\obj\Debug\ObservaTerra.Backend.PersistenceManagement.pdb

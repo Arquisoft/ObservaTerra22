@@ -92,16 +92,3 @@ D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.dll.config
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.SessionManager.Persistence.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\Microsoft.QualityTools.Testing.Fakes.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\ObservaTerra.DomainModel.pdb
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.xml
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.csprojResolveAssemblyReference.cache
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.dll
-C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.SessionManager.Persistence\obj\Debug\ObservaTerra.SessionManager.Persistence.pdb
