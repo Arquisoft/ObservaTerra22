@@ -11,7 +11,7 @@ using ObservaTerra.Backend.DataCommand;
 
 namespace ObservaTerra.Backend.DataAcquisition
 {
-    class CrawlerService
+    public class CrawlerService
     {
         
         public WebCrawler Crawler { get; set; }

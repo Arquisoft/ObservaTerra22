@@ -34,3 +34,11 @@ C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\Observ
 C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\EntityFramework.xml
 C:\Users\uo225271\Desktop\asw\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Core.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\María\SkyDrive\Clase\Git Projects\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
