@@ -7,13 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using ObservaTerra.DomainModel;
 using ObservaTerra.Backend.DataCommand;
+using ObservaTerra.SessionManager.Managers.SessionProcessor;
+using ObservaTerra.SessionManager.Managers;
 
 
 namespace ObservaTerra.Backend.DataAcquisition
 {
     public class CrawlerService
     {
-        
+
+        public static void Main(string[] args)
+        {
+            var cs = new CrawlerService();
+            cs.Crawl();
+        }
+
         public WebCrawler Crawler { get; set; }
         public DataSources ToCrawl { get; set; }
         public CrawlerService()
@@ -48,15 +56,16 @@ namespace ObservaTerra.Backend.DataAcquisition
                 x =>
                 {
                     Crawler.crawl(new Uri(x));
-                    result.Concat(Crawler.Files);
+                    result.AddRange (Crawler.Files);
                 });
-                IComponentCommand command = DataCommandFactory.GetComponentCommand(new User() { Name = "Crawler", Username = "Crawler" });
-                command.AddComponents(result);
+
+            ISessionProcessorServices sessionservice = ManagersFactory.GetSessionProcessorServices();
+            IComponentCommand command = DataCommandFactory.GetComponentCommand(sessionservice.GetCrawlerUser());
+            command.AddComponents(result);
         }
 
         private DataSources ReadFromFile()
         {
-
             XmlSerializer reader = new XmlSerializer(typeof(DataSources));
             using (FileStream input = File.OpenRead("sources/sources.xml"))
             {

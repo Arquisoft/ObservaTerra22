@@ -11,6 +11,7 @@ namespace ObservaTerra.Backend.DataAcquisition
 {
     public class WebCrawler
     {
+
        public IList<IComponent> Files { get; set; }
         public PoliteWebCrawler Crawler { get; set; }
         public WebCrawler()
@@ -49,7 +50,7 @@ namespace ObservaTerra.Backend.DataAcquisition
             {
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
-                    this.Files.Add(new HtmlComponent() { Content = client.DownloadString(crawledPage.Uri) });
+                    this.Files.Add(new HtmlComponent() { Name = crawledPage.Uri.Host, Content = client.DownloadString(crawledPage.Uri) });
                     Console.WriteLine("Downloaded file from {0}", crawledPage.Uri.AbsoluteUri);
                 }
             }

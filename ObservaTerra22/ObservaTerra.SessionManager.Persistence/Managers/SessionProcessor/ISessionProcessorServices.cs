@@ -21,6 +21,8 @@ namespace ObservaTerra.SessionManager.Managers.SessionProcessor
         /// </summary>
         /// <returns>A default user instance representing a guest</returns>
         LoggedInUser Login();
+
+        User GetCrawlerUser();
         /// <summary>
         /// Performs the user logout action. Deletes a valid token from the list of active tokens.
         /// </summary>

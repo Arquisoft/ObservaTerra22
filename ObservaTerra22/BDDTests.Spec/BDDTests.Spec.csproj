@@ -48,11 +48,22 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Abot">
+      <HintPath>..\..\..\..\nuevoAsw\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Abot.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+    </Reference>
     <Reference Include="SpecRun.SpecFlowPlugin">
       <HintPath>..\packages\SpecRun.SpecFlow.1.2.0\lib\net35\SpecRun.SpecFlowPlugin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\asw\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.WebService\bin\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -141,6 +152,32 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataAcquisition\ObservaTerra.Backend.DataAcquisition.csproj">
+      <Project>{6744972a-d3ef-43bb-b356-60ff407dd9ce}</Project>
+      <Name>ObservaTerra.Backend.DataAcquisition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataCommand\ObservaTerra.Backend.DataCommand.csproj">
+      <Project>{bec112c2-83e3-45b3-a9cf-04b033ca8ed7}</Project>
+      <Name>ObservaTerra.Backend.DataCommand</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.Backend.DataQuery\ObservaTerra.Backend.DataQuery.csproj">
+      <Project>{0ad9cd41-89e3-4336-80b8-792a0bf636b5}</Project>
+      <Name>ObservaTerra.Backend.DataQuery</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.Backend.WebService\ObservaTerra.Backend.WebService.csproj">
+      <Project>{3db31a82-7fb5-43d5-a341-54ebe5474eec}</Project>
+      <Name>ObservaTerra.Backend.WebService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.DomainModel\ObservaTerra.DomainModel.csproj">
+      <Project>{ee49f442-1dd1-4a1b-8086-40e7594c7799}</Project>
+      <Name>ObservaTerra.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ObservaTerra.SessionManager.Persistence\ObservaTerra.SessionManager.csproj">
+      <Project>{1ecfa83f-6ac5-490e-9894-28f8bf45d376}</Project>
+      <Name>ObservaTerra.SessionManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

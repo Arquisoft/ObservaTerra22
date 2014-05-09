@@ -88,3 +88,18 @@ D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.csprojResolveAssemblyReference.cache
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.dll
 D:\Repos\ObservaTerra\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Core.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\EntityFramework.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\EntityFramework.xml
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.csprojResolveAssemblyReference.cache
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataCommand\obj\Debug\ObservaTerra.Backend.DataCommand.pdb
