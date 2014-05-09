@@ -71,3 +71,30 @@ C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.Dat
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.dll
 C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.pdb
 >>>>>>> 2ed0b896cfec9489bf79a61c800fdc910eb131d1
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll.config
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataAcquisition.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Abot.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataCommand.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.DomainModel.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\Robots.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.AccessCore.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\EntityFramework.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Core.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.PersistenceManagement.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.DataCommand.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.DomainModel.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\AutoMapper.xml
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\CsQuery.xml
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\log4net.xml
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.AccessCore.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\EntityFramework.xml
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Core.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\bin\Debug\ObservaTerra.Backend.PersistenceManagement.pdb
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.csprojResolveAssemblyReference.cache
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.dll
+C:\Users\Raúl Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\obj\Debug\ObservaTerra.Backend.DataAcquisition.pdb

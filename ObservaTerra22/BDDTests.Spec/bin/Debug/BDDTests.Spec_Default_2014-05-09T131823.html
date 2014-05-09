@@ -1,0 +1,3118 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>BDDTests.Spec Test Execution Report</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript">
+            /**
+            * jQuery.fn.sortElements
+            * --------------
+            * #author James Padolsey (http://james.padolsey.com)
+            * #version 0.11
+            * #updated 18-MAR-2010
+            * #url https://raw.github.com/jamespadolsey/jQuery-Plugins/master/sortElements/jquery.sortElements.js
+            * --------------
+            * #param Function comparator:
+            *   Exactly the same behaviour as [1,2,3].sort(comparator)
+            *   
+            * #param Function getSortable
+            *   A function that should return the element that is
+            *   to be sorted. The comparator will run on the
+            *   current collection, but you may want the actual
+            *   resulting sort to occur on a parent or another
+            *   associated element.
+            *   
+            *   E.g. $('td').sortElements(comparator, function(){
+            *      return this.parentNode; 
+            *   })
+            *   
+            *   The <td>'s parent (<tr>) will be sorted instead
+            *   of the <td> itself.
+            */
+            jQuery.fn.sortElements = (function () {
+
+                var sort = [].sort;
+
+                return function (comparator, getSortable) {
+
+                    getSortable = getSortable || function () { return this; };
+
+                    var placements = this.map(function () {
+
+                        var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+
+                        // Since the element itself will change position, we have
+                        // to have some way of storing it's original position in
+                        // the DOM. The easiest way is to have a 'flag' node:
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+                        return function () {
+
+                            if (parentNode === this) {
+                                throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                            }
+
+                            // Insert before flag:
+                            parentNode.insertBefore(this, nextSibling);
+                            // Remove flag:
+                            parentNode.removeChild(nextSibling);
+
+                        };
+
+                    });
+
+                    return sort.call(this, comparator).each(function (i) {
+                        placements[i].call(getSortable.call(this));
+                    });
+
+                };
+
+            })();
+        </script>
+        <script type="text/javascript">
+            jQuery.fn.setBarSizes = (function () {
+                return function (metricName, maxBarSize, min) {
+                    var max = Math.max.apply(Math, $.makeArray($(this).map(function () { return Number($(this).attr('data-sr-' + metricName)); })));
+                    var scale = 1.0;
+                    while (max > 0.0 && max <= 10.0) {
+                        scale = scale * 10.0;
+                        max = max * 10.0;
+                    }
+                    max = (Math.ceil(max / 2) * 2) / scale;
+
+                    this.each(function () {
+                        var barAnchor = $(this).find('a');
+                        var actual = $(this).attr('data-sr-' + metricName);
+                        var newHeight = Math.max(Math.round(maxBarSize * (actual - min) / (max - min)), 2);
+                        barAnchor.css({ height: newHeight });
+                    });
+
+                    var unit = "";
+                    if (metricName.substr(metricName.length - 4, 4) === "time")
+                        unit = "s";
+
+                    $('#testview .scale-min-label').each(function () {
+                        $(this).text(min.toString() + unit);
+                    });
+                    $('#testview .scale-max-label').each(function () {
+                        $(this).text(max.toString() + unit);
+                    });
+                    var mid = max / 2;
+                    $('#testview .scale-mid-label').each(function () {
+                        $(this).text(mid.toString() + unit);
+                    });
+                };
+            })();
+
+            function getComparer(metricName, isDesc) {
+                return function (a, b) {
+                    var aNumber = Number($(a).attr('data-sr-' + metricName));
+                    var bNumber = Number($(b).attr('data-sr-' + metricName));
+                    var result = aNumber > bNumber ? 1 : (aNumber < bNumber ? -1 : 0);
+                    if (isDesc)
+                        result = -1 * result;
+
+                    if (result == 0 && metricName != "order")
+                        result = getComparer("order", false)(a, b);
+
+                    return result;
+                };
+            }
+
+            var currentSort = "";
+            function doSort(allowToggleDesc) {
+                var newSort = $("input[name='barSortOrder']:checked").val();
+                if (allowToggleDesc && currentSort == newSort) {
+                    $('#barSortDesc').click();
+                    doSort(false);
+                    return;
+                }
+                currentSort = newSort;
+                $('#testview td.testview-item').sortElements(getComparer(newSort, $('#barSortDesc').is(':checked')));
+            }
+
+
+            function doSetHeights(allowSort) {
+                var selectedMetric = $("input[name='barHeight']:checked").val();
+                $('#testview td.testview-item').setBarSizes(selectedMetric, 60, 0.0);
+
+                if (allowSort && currentSort != selectedMetric) {
+                    var $radios = $("input[name='barSortOrder']");
+                    $radios.filter('[value=' + selectedMetric + ']').attr('checked', true);
+                    $("#barSortDesc").attr("checked", [true]);
+                    doSort(false);
+                }
+            }
+
+            $(document).ready(function () {
+                $("input[name='barSortOrder']").click(function () { doSort(true); return true; });
+                $("input[name='barSortDesc']").change(function () { doSort(false); });
+                $("input[name='barHeight']").change(function () { doSetHeights(true); });
+
+                doSort(false);
+                doSetHeights(false);
+
+                $("div.scrollable").css({ 'overflow': 'auto' });
+            });
+        </script>
+
+        <style type="text/css">
+            body 
+            {
+                color: #000000;
+                font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;
+                line-height: 130%;
+            }
+            h1 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 170%;
+                font-weight: bold;
+            }            
+            h2 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 130%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            h3 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 120%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            a.bar
+            {
+                text-decoration: none;
+                display: block;
+                line-height: 1px;
+            }
+            .description
+            {
+                font-style: italic;
+            }
+            .log 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                display: block;
+                margin: 0px;
+            }
+            .errorMessage 
+            {
+                width: 600px;
+                color: Red;
+                font-weight: bold;
+            }
+            .stackTrace 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                font-style: italic;
+                color: Red;
+                display: block;
+            }
+            table.testEvents
+            {
+                border: solid 1px #e8eef4;
+                border-collapse: collapse;
+            }
+            table.testEvents td
+            {
+                vertical-align: top;
+                padding: 5px;
+                border: solid 1px #e8eef4;
+            }
+            table.testEvents th
+            {
+                padding: 6px 5px;
+                text-align: left;
+                background-color: #e8eef4;
+                border: solid 1px #e8eef4;                
+            }
+            .comment
+            {
+                font-style: italic;
+                font-size: smaller;
+            }
+            .startupBar
+            {
+                background-color: #EEEEEE;
+                cursor: default;
+            }
+            
+            .colorSucceeded
+            {
+                background-color: #90ED7B;
+            }
+            .colorIgnored
+            {
+                background-color: #FFFF85;
+            }
+            .colorPending
+            {
+                background-color: #D47BED;
+            }
+            .colorNothingToRun
+            {
+                background-color: #CCCCFF;
+            }
+            .colorSkipped
+            {
+                background-color: #CCCCFF;
+            }
+            .colorInconclusive
+            {
+                background-color: #7BEDED;
+            }
+            .colorCleanupFailed
+            {
+                background-color: #FFCCCC;
+            }
+            .colorRandomlyFailed
+            {
+                background-color: #EDB07B;
+            }
+            .colorFailed
+            {
+                background-color: #ED5F5F;
+            }
+            .colorInitializationFailed
+            {
+                background-color: #FF0000;
+            }
+            .colorFrameworkError
+            {
+                background-color: #FF0000;
+            }
+            ul.subNodeLinks
+            {
+                padding-left: 20px;
+                margin: 0px;
+            }
+            ul.subNodeLinks li
+            {
+                list-style: none;
+            }
+            
+            /* views general */
+            div.scrollable
+            {
+                /*overflow: auto; - thsi has to be set from js, because of an IE9 bug */
+            }
+            div.viewbox
+            {
+                position: relative;
+                border: 3px solid #e8eef4;
+            }
+            div.viewbox table
+            {
+                border: 0px;
+            }
+                        
+            /* testview */
+            #testview
+            {
+                padding-top: 23px;
+            }
+            
+            table.testview-items td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 1px;
+            }
+            td.right-padding, td.left-padding
+            {
+                width: 25px;
+                min-width: 25px;
+            }
+            table.testview-items a.bar
+            {
+                width: 5px;
+            }
+            table.testview-items tr.testview-items-row
+            {
+                height: 60px;
+            }
+            
+            /* scale */
+            table.vertical-scale 
+            {
+                position: absolute;
+                top: 23px;
+                left: 0px;
+                width: 100%;
+                z-index: -100;
+            }
+            table.vertical-scale td, tr.horizontal-scale td
+            {
+                font-size: 60%;
+                line-height: normal;
+            }
+            table.vertical-scale tr.scale-max, table.vertical-scale tr.scale-mid 
+            {
+                height: 30px;
+            }
+            tr.horizontal-scale, table.vertical-scale tr.scale-min 
+            {
+                height: 12px;
+            }
+            
+            td.scale-max-label, td.scale-mid-label, td.scale-min-label
+            {
+                border-top: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: top;
+            }
+            td.scale-10-label
+            {
+                border-left: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: bottom;
+                padding-left: 1px;
+            }
+            tr.scale-mid td, tr.scale-min td, tr.scale-max td
+            {
+                border-top: solid 1px #E6E6E6;
+            }
+           
+            
+            /* bar-control */
+            #bar-control
+            {
+                font-size: 60%;
+                line-height: normal;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+            #bar-control label
+            {
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            #bar-control .option
+            {
+                vertical-align: middle;
+                text-transform: lowercase;
+            }
+            #bar-control input[type="checkbox"]
+            {
+                padding: 0 2px 0 3px;
+            }
+            #bar-control input
+            {
+                vertical-align: top;
+                height: 12px;
+                margin: 0px;
+                padding: 0px;
+            }
+            #bar-control div
+            {
+                float: right;
+                margin: 3px 5px 3px 5px;
+            }
+            
+            
+            /* timeline view */
+            #timelineview
+            {
+                padding-top: 5px;
+            }
+            table.timelineview a
+            {
+                height: 20px;
+            }
+            table.timelineview td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 0px;
+                border: 0px;
+            }
+            tr.thread-items-row
+            {
+                height: 25px;
+            }
+            tr.thread-items-row td
+            {
+                vertical-align: bottom;
+            }
+            td.thread-label
+            {
+                padding: 0px 6px 0px 6px;
+                text-align: right;
+                line-height: 18px;
+                vertical-align: bottom;
+            }
+            th.thread-label
+            {
+                padding: 3px 6px 0px 6px;
+                line-height: 18px;
+                text-align: left;
+                vertical-align: bottom;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>BDDTests.Spec Test Execution Report</h1>
+        <ul>
+            <li>Project: BDDTests.Spec</li>
+            <li>Configuration: Default</li>
+            <li>Test Assemblies: BDDTests.Spec.dll</li>
+            <li>Start Time: 5/9/2014 1:18:29 PM</li>
+            <li>Duration: 00:03:25.0659086</li>
+            <li>Test Threads: 1</li>
+        </ul>
+
+        <h2>Result: 3 failed</h2>
+        <table class="testEvents">
+                <tr>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <tr>
+            <td>
+            25%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSucceeded" 
+                                style="width: 9px;" 
+                                title="1 succeeded" 
+                                />
+                    </td>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 28px;" 
+                                title="3 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 161px;" 
+                                title="17 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>21 (test executions: 25)</td>
+    <td>1</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>17</td>
+
+    </tr>
+
+        </table>
+        
+        <h2>Test Timeline Summary</h2>
+        <div id="timelineview" class="viewbox">
+            <div class="scrollable">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th class="thread-label" colspan="2">thread</th>
+                    </tr>
+                        <tr class="thread-items-row">
+                            <td class="thread-label" title="Machine: RAULESTRADA-PC">#0</td>
+                            <td colspan="3">
+                                <table class="timelineview" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                            <td>
+        <a
+            class="bar startupBar" 
+            style="width: 3px;" 
+                title="test thread startup" 
+        >&nbsp;</a>
+    </td>
+
+    <td>
+        <a
+            class="bar colorSucceeded" 
+            style="width: 169px;" 
+                title="Obtain publications of external data sources (in External data sources)" 
+                href="#t-75727694.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Add a new external data source to the list of subscriptions (in External data sources)" 
+                href="#t-1262729165.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Add a new external data source to the list of subscriptions (in External data sources) retry #1" 
+                href="#t-1262729165.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Add a new external data source to the list of subscriptions (in External data sources) retry #2" 
+                href="#t-1262729165.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Delete a data source from the subscription collection (in External data sources)" 
+                href="#t-2073452027.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Delete a data source from the subscription collection (in External data sources) retry #1" 
+                href="#t-2073452027.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Delete a data source from the subscription collection (in External data sources) retry #2" 
+                href="#t-2073452027.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Data acquisition after removal (in External data sources)" 
+                href="#t1220912961.0"
+        >&nbsp;</a>
+    </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="horizontal-scale">
+                        <td>&nbsp;</td>
+                            <td class="scale-10-label" style="width: 70px;min-width: 70px;">0s</td>
+                            <td class="scale-10-label" style="width: 70px;min-width: 70px;">82s</td>
+                        <td class="scale-10-label">164s</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <h2>Test Result View</h2>
+        <div id="testview" class="viewbox">
+            <div id="bar-control">
+                <div id="bar-control-sort">
+                    <label>sort by:</label>
+                    <span class="option"><input type="radio" name="barSortOrder" value="exectime" />Time</span>
+                    <span class="option"><input type="radio" name="barSortOrder" value="acttime" />Act Time</span>
+                    <span class="option"><input type="radio" name="barSortOrder" value="order" />Execution</span>
+                    <span class="option"><input type="radio" name="barSortOrder" value="rescode" checked="checked" />Result</span>
+                    <span class="option"><input type="checkbox" name="barSortDesc" id="barSortDesc" checked="checked" />desc</span>
+                </div>
+                <div id="bar-control-heights">
+                    <label>heights:</label>
+                    <span class="option"><input type="radio" checked="checked" name="barHeight" value="exectime" />Time</span>
+                    <span class="option"><input type="radio" name="barHeight" value="acttime" />Act Time</span>
+                    
+                </div>
+            </div>
+            <table class="vertical-scale" cellpadding="0" cellspacing="0">
+                <tr class="scale-max">
+                    <td class="left-padding scale-max-label">&nbsp;</td>
+                    <td colspan="25">&nbsp;</td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+                <tr class="scale-mid">
+                    <td class="left-padding scale-mid-label">&nbsp;</td>
+                    <td colspan="25">&nbsp;</td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+                <tr class="scale-min">
+                    <td class="left-padding scale-min-label">&nbsp;</td>
+                    <td colspan="25">&nbsp;</td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+            </table>
+            <div class="scrollable">
+                <table class="testview-items" cellpadding="0" cellspacing="0">
+                    <tr class="testview-items-row">
+                        <td class="left-padding">&nbsp;</td>
+    <td class="testview-item" 
+        data-sr-exectime="203.2115773" data-sr-rescode="110" data-sr-order="0" data-sr-acttime="0.123">
+        <a
+            class="bar colorSucceeded" 
+            style="height: 60px;"
+            title="Obtain publications of external data sources (in External data sources)"
+            href="#t-75727694.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="8" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Documents request (in Information resources)"
+            href="#t-1394542307.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="9" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Guest user asks for private resources (in Information resources)"
+            href="#t-1808037380.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="10" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Request with no results due to privileges (in Information resources)"
+            href="#t224273619.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="11" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Guest user adds resource (in Information resources)"
+            href="#t646645049.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="12" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Registered user adds new resource (in Information resources)"
+            href="#t769261397.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="13" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Request for resources in different language (in Information resources)"
+            href="#t-1606197641.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0009988" data-sr-rescode="320" data-sr-order="14" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Origin of resource (in Information resources)"
+            href="#t-95678485.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="15" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Calculate the mean of observations about a specific area, like Europe, for a given indicator (in Observation management)"
+            href="#t-909315104.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="16" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Get the observations stored in the system about a given area or indicator (in Observation management)"
+            href="#t1474119690.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="17" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A new observation about a given aspect in Europe is added to the system (in Observation management)"
+            href="#t2029728442.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="18" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A registered user logs in (in System access)"
+            href="#t-1169751348.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="19" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A user not registered in the system logs in (in System access)"
+            href="#t-446144988.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="20" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A user accesses the system without logging in (in System access)"
+            href="#t1817796694.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="21" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A user completes successfully the register process (in System register process)"
+            href="#t-533651144.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="22" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="A user does not complete successfully the register process (in System register process)"
+            href="#t1005313609.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="23" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Add new external data acquisition systems (in External data acquisition system)"
+            href="#t998368579.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0" data-sr-rescode="320" data-sr-order="24" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="The data acquisition elements are executed (in External data acquisition system)"
+            href="#t677881324.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0220151" data-sr-rescode="440" data-sr-order="1" data-sr-acttime="0.001">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Add a new external data source to the list of subscriptions (in External data sources)"
+            href="#t-1262729165.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0030002" data-sr-rescode="440" data-sr-order="2" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Add a new external data source to the list of subscriptions (in External data sources) retry #1"
+            href="#t-1262729165.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0030013" data-sr-rescode="440" data-sr-order="3" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Add a new external data source to the list of subscriptions (in External data sources) retry #2"
+            href="#t-1262729165.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0040027" data-sr-rescode="440" data-sr-order="4" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Delete a data source from the subscription collection (in External data sources)"
+            href="#t-2073452027.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0030022" data-sr-rescode="440" data-sr-order="5" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Delete a data source from the subscription collection (in External data sources) retry #1"
+            href="#t-2073452027.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0080058" data-sr-rescode="440" data-sr-order="6" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Delete a data source from the subscription collection (in External data sources) retry #2"
+            href="#t-2073452027.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0070048" data-sr-rescode="440" data-sr-order="7" data-sr-acttime="0.0">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Data acquisition after removal (in External data sources)"
+            href="#t1220912961.0">&nbsp;</a>
+    </td>
+                        <td class="right-padding">&nbsp;</td>
+                    </tr>
+                    <tr class="horizontal-scale">
+                        <td class="left-padding">&nbsp;</td>
+                        <td colspan="10">&nbsp;</td>
+                            <td class="scale-10-label" colspan="10">10</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <h2>Feature Summary</h2>
+        <table class="testEvents">
+                <tr>
+            <th>Feature</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+    <tr>
+            <td><a href="#f-1518707456">External data acquisition system</a></td>
+            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="2 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>2</td>
+
+    </tr>
+    <tr>
+            <td><a href="#f-130211374">External data sources</a></td>
+            <td>
+            25%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSucceeded" 
+                                style="width: 49px;" 
+                                title="1 succeeded" 
+                                />
+                    </td>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 149px;" 
+                                title="3 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>4 (test executions: 8)</td>
+    <td>1</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+    </tr>
+    <tr>
+            <td><a href="#f-614847108">Information resources</a></td>
+            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="7 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>7</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>7</td>
+
+    </tr>
+    <tr>
+            <td><a href="#f196757832">Observation management</a></td>
+            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="3 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>3</td>
+
+    </tr>
+    <tr>
+            <td><a href="#f-7239968">System access</a></td>
+            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="3 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>3</td>
+
+    </tr>
+    <tr>
+            <td><a href="#f2136566702">System register process</a></td>
+            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="2 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>2</td>
+
+    </tr>
+        </table>
+
+        <a name="error_summary" />
+        <h2>Error Summary</h2>
+        <table class="testEvents">
+                <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <tr>
+                    <td>
+                        <a href="#t-1262729165.0">Add a new external data source to the list of subscriptions (in BDDTests.Spec, External data sources)</a>
+                            <a href="#t-1262729165.1">retry #1</a>
+                            <a href="#t-1262729165.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t-2073452027.0">Delete a data source from the subscription collection (in BDDTests.Spec, External data sources)</a>
+                            <a href="#t-2073452027.1">retry #1</a>
+                            <a href="#t-2073452027.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t1220912961.0">Data acquisition after removal (in BDDTests.Spec, External data sources)</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div></td>
+                </tr>
+        </table>
+
+        <h2>Scenario Summary</h2>
+            <a name="f-1518707456" />
+            <h3>Feature: External data acquisition system</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t998368579.0">Scenario: Add new external data acquisition systems</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t677881324.0">Scenario: The data acquisition elements are executed</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+            </table>
+            <a name="f-130211374" />
+            <h3>Feature: External data sources</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-75727694.0">Scenario: Obtain publications of external data sources</a>
+
+                        </td>
+                            <td>
+            100%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSucceeded" 
+                                style="width: 199px;" 
+                                title="1 succeeded" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1262729165.0">Scenario: Add a new external data source to the list of subscriptions</a>
+            <a href="#t-1262729165.1">retry #1</a>
+            <a href="#t-1262729165.2">retry #2</a>
+
+                        </td>
+                            <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-2073452027.0">Scenario: Delete a data source from the subscription collection</a>
+            <a href="#t-2073452027.1">retry #1</a>
+            <a href="#t-2073452027.2">retry #2</a>
+
+                        </td>
+                            <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1220912961.0">Scenario: Data acquisition after removal</a>
+
+                        </td>
+                            <td>
+            0%
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorFailed" 
+                                style="width: 199px;" 
+                                title="1 failed" 
+                            href="#error_summary"
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                    </tr>
+            </table>
+            <a name="f-614847108" />
+            <h3>Feature: Information resources</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1394542307.0">Scenario: Documents request</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1808037380.0">Scenario: Guest user asks for private resources</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t224273619.0">Scenario: Request with no results due to privileges</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t646645049.0">Scenario: Guest user adds resource</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t769261397.0">Scenario: Registered user adds new resource</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1606197641.0">Scenario: Request for resources in different language</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-95678485.0">Scenario: Origin of resource</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+            </table>
+            <a name="f196757832" />
+            <h3>Feature: Observation management</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-909315104.0">Scenario: Calculate the mean of observations about a specific area, like Europe, for a given indicator</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1474119690.0">Scenario: Get the observations stored in the system about a given area or indicator</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t2029728442.0">Scenario: A new observation about a given aspect in Europe is added to the system</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+            </table>
+            <a name="f-7239968" />
+            <h3>Feature: System access</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-1169751348.0">Scenario: A registered user logs in</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-446144988.0">Scenario: A user not registered in the system logs in</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1817796694.0">Scenario: A user accesses the system without logging in</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+            </table>
+            <a name="f2136566702" />
+            <h3>Feature: System register process</h3>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t-533651144.0">Scenario: A user completes successfully the register process</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1005313609.0">Scenario: A user does not complete successfully the register process</a>
+
+                        </td>
+                            <td>
+            n/a
+    </td>
+    <td>
+        <table class="timelineview" cellpadding="0" cellspacing="0">
+            <tr>
+                    <td>
+                        <a class="bar colorSkipped" 
+                                style="width: 199px;" 
+                                title="1 skipped" 
+                                />
+                    </td>
+            </tr>
+        </table>
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+
+                    </tr>
+            </table>
+
+        <h2>Execution Details</h2>
+            <a name="t-75727694.0" />
+            <h3>Scenario: Obtain publications of external data sources (in BDDTests.Spec, External data sources)</h3>
+            <ul>
+                <li>Status: Succeeded</li>
+                <li>Start time: 5/9/2014 1:18:29 PM</li>
+                <li>Execution time (sec): 203.2115773</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of stored resources in the system about a given subject in a given area</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Obtain publications of external data sources]-->
+                            <pre class="log">done: ExternalDataSourcesSteps.GivenACollectionOfStoredResourcesInTheSystemAboutAGivenSubjectInAGivenArea() (0.8s)</pre>
+                        </td>
+                        <td>Succeeded in 1.139s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And a data source the system ObservaTerra is subscribed to has published a new resource about that subject in that area</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Obtain publications of external data sources]-->
+                            <pre class="log">done: ExternalDataSourcesSteps.GivenADataSourceTheSystemObservaTerraIsSubscribedToHasPublishedANewResourceAboutThatSubjectInThatArea() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the main system runs the external data acquisition system next time</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Obtain publications of external data sources]-->
+                            <pre class="log">done: ExternalDataSourcesSteps.WhenTheMainSystemRunsTheExternalDataAcquisitionSystemNextTime() (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.123s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of resources about that subject in that area will be one unit greater</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Obtain publications of external data sources]-->
+                            <pre class="log">Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k
+Crawl of page succeeded https://data.undp.org/
+Crawl of page succeeded https://data.undp.org/signup
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt
+Crawl of page succeeded https://data.undp.org/login
+Crawl of page succeeded https://data.undp.org/profile
+Crawl of page succeeded https://data.undp.org/admin
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?defaultRender=table
+Crawl of page succeeded https://data.undp.org/logout
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/about
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?defaultRender=page
+Crawl of page succeeded https://data.undp.org/api/assets/1D12A5BB-5609-41EE-AEB2-A03CC02254D6?download=true
+Page had no content https://data.undp.org/api/assets/1D12A5BB-5609-41EE-AEB2-A03CC02254D6?download=true
+Crawl of page succeeded https://data.undp.org/profile/Chris-Whong/xpic-k57b
+Crawl of page succeeded https://data.undp.org/videos/popup
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/edit
+Crawl of page succeeded https://data.undp.org/d/wxub-qc5k?category=dataset&amp;view_name=Table-1-Human-Development-Index-and-its-components
+Crawl of page succeeded https://data.undp.org/forgot_password
+Crawl of page succeeded https://data.undp.org/page/projects
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?row_index=0
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/wxub-qc5k
+Crawl of page succeeded http://data.undp.org/api/views/wxub-qc5k/rows.rss
+Page had no content http://data.undp.org/api/views/wxub-qc5k/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa
+Crawl of page succeeded https://data.undp.org/d/yjfv-z3mx
+Crawl of page succeeded https://data.undp.org/page/africa
+Crawl of page succeeded https://data.undp.org/page/arab-states
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx
+Crawl of page succeeded https://data.undp.org/page/europe-cis
+Crawl of page succeeded https://data.undp.org/page/asia-pacific
+Crawl of page succeeded https://data.undp.org/page/latin-america-caribbean
+Crawl of page succeeded https://data.undp.org/signup?no_js=true
+Crawl of page succeeded https://data.undp.org/dataset/Top-Recipient-Countries-Expenditure-2013/wuwy-uzsx
+Crawl of page succeeded https://data.undp.org/views/wxub-qc5k/rows.xls?accessType=DOWNLOAD
+Page had no content https://data.undp.org/views/wxub-qc5k/rows.xls?accessType=DOWNLOAD
+Crawl of page succeeded https://data.undp.org/views/wxub-qc5k/rows.xlsx?accessType=DOWNLOAD
+Page had no content https://data.undp.org/views/wxub-qc5k/rows.xlsx?accessType=DOWNLOAD
+Crawl of page succeeded https://data.undp.org/datasets/wxub-qc5k/email?category=dataset&amp;view_name=Table-1-Human-Development-Index-and-its-components
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt?&amp;page=1
+Crawl of page succeeded https://data.undp.org/api/views/wxub-qc5k/rows.pdf?app_token=U29jcmF0YS0td2VraWNrYXNz0
+Page had no content https://data.undp.org/api/views/wxub-qc5k/rows.pdf?app_token=U29jcmF0YS0td2VraWNrYXNz0
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt?&amp;page=2
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt?&amp;page=3
+Crawl of page failed https://data.undp.org/wxub-qc5k/datasets/wxub-qc5k/contact
+Page had no content https://data.undp.org/wxub-qc5k/datasets/wxub-qc5k/contact
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt?&amp;page=5
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/alt?&amp;page=4
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/widget_preview?height=425&amp;variation=vb6g-9i38&amp;width=500
+Downloaded file from https://data.undp.org/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD
+Crawl of page succeeded https://data.undp.org/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD
+Page had no content https://data.undp.org/views/wxub-qc5k/rows.csv?accessType=DOWNLOAD
+Crawl of page succeeded https://data.undp.org/login?no_js=true
+Crawl of page succeeded https://data.undp.org/videos
+Crawl of page succeeded https://data.undp.org/views/wxub-qc5k/rows.rss
+Page had no content https://data.undp.org/views/wxub-qc5k/rows.rss
+Crawl of page succeeded https://data.undp.org/d/dkye-mt4i
+Crawl of page succeeded https://data.undp.org/d/yaag-umbd
+Crawl of page succeeded https://data.undp.org/d/8vu2-4uz3
+Crawl of page succeeded https://data.undp.org/d/qm55-ksfc
+Crawl of page succeeded https://data.undp.org/d/atgf-5gtd
+Crawl of page succeeded https://data.undp.org/d/625h-nnav
+Crawl of page succeeded https://data.undp.org/d/i35k-u44r
+Crawl of page succeeded https://data.undp.org/d/er2m-6nsu
+Crawl of page succeeded https://data.undp.org/d/akz4-h8ur
+Crawl of page succeeded https://data.undp.org/d/p253-mjiq
+Crawl of page succeeded https://data.undp.org/d/kw6u-64h9
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?category=dataset&amp;view_name=Table-1-Human-Development-Index-and-its-components
+Crawl of page succeeded https://data.undp.org/d/rcfr-sa24
+Crawl of page succeeded https://data.undp.org/d/34pq-rfn7
+Crawl of page succeeded https://data.undp.org/d/dr5v-vyzy
+Crawl of page succeeded https://data.undp.org/d/t7ec-kpmt
+Crawl of page succeeded https://data.undp.org/d/gfpp-g6t4
+Crawl of page succeeded https://data.undp.org/d/cpgt-qp6e
+Crawl of page succeeded https://data.undp.org/d/j9xy-43tn
+Crawl of page succeeded https://data.undp.org/d/4ne3-n8sa
+Crawl of page succeeded https://data.undp.org/d/dr8v-wpxa
+Crawl of page succeeded https://data.undp.org/d/azrb-qfqd
+Crawl of page succeeded https://data.undp.org/d/btw5-zu2n
+Crawl of page succeeded https://data.undp.org/d/mdbw-wtx2
+Crawl of page succeeded https://data.undp.org/d/bgep-qn4a
+Crawl of page succeeded https://data.undp.org/d/pmu9-me3y
+Crawl of page succeeded https://data.undp.org/d/8vhm-wy5u
+Crawl of page succeeded https://data.undp.org/d/bg5n-rt9z
+Crawl of page succeeded https://data.undp.org/d/sv3p-dkay
+Crawl of page succeeded https://data.undp.org/d/udzb-ypv8
+Crawl of page succeeded https://data.undp.org/d/v987-qypj
+Crawl of page succeeded https://data.undp.org/d/sq3v-7bwp
+Crawl of page succeeded https://data.undp.org/d/dwzk-ibb2
+Crawl of page succeeded https://data.undp.org/d/guv9-qh7z
+Crawl of page succeeded https://data.undp.org/d/4cux-ku73
+Crawl of page succeeded https://data.undp.org/d/3fnf-s24j
+Crawl of page succeeded https://data.undp.org/d/dx28-b7eq
+Crawl of page succeeded https://data.undp.org/d/fg9w-p834
+Crawl of page succeeded https://data.undp.org/d/xggw-qesa
+Crawl of page succeeded https://data.undp.org/d/x9v8-qxsk
+Crawl of page succeeded https://data.undp.org/d/n7jh-xsvk
+Crawl of page succeeded https://data.undp.org/d/gckn-jiz9
+Crawl of page succeeded https://data.undp.org/d/gdn3-68qy
+Crawl of page succeeded https://data.undp.org/d/j4qa-5826
+Crawl of page succeeded https://data.undp.org/d/4n6f-rrv8
+Crawl of page succeeded https://data.undp.org/d/vekv-65ui
+Crawl of page succeeded https://data.undp.org/d/xgej-s6c7
+Crawl of page succeeded https://data.undp.org/d/xr5w-denu
+Crawl of page succeeded https://data.undp.org/d/p44w-uvik
+Crawl of page succeeded https://data.undp.org/d/cmpy-pcj9
+Crawl of page succeeded https://data.undp.org/d/3wa9-fwdu
+Crawl of page succeeded https://data.undp.org/d/uhzm-xz5d
+Crawl of page succeeded https://data.undp.org/d/tg2a-7qsq
+Crawl of page succeeded https://data.undp.org/d/wa24-trd7
+Crawl of page succeeded https://data.undp.org/d/eui5-w7zx
+Crawl of page succeeded https://data.undp.org/d/pq7u-e2j6
+Crawl of page succeeded https://data.undp.org/d/jss9-zjix
+Crawl of page succeeded https://data.undp.org/d/3ev9-pjy4
+Crawl of page succeeded https://data.undp.org/d/ejgg-j4tc
+Crawl of page succeeded https://data.undp.org/d/nsrt-dnyv
+Crawl of page succeeded https://data.undp.org/d/2sus-aax2
+Crawl of page succeeded https://data.undp.org/d/xy2r-6n58
+Crawl of page succeeded https://data.undp.org/d/p2kr-pa8t
+Crawl of page succeeded https://data.undp.org/d/pexq-dhsb
+Crawl of page succeeded https://data.undp.org/d/chs7-fp52
+Crawl of page succeeded https://data.undp.org/d/pmvk-h5pu
+Crawl of page succeeded https://data.undp.org/d/vep2-kutf
+Crawl of page succeeded https://data.undp.org/d/v6h5-7wu2
+Crawl of page succeeded https://data.undp.org/d/5b86-9vjm
+Crawl of page succeeded https://data.undp.org/d/whj5-zqw8
+Crawl of page succeeded https://data.undp.org/d/9xrh-hb5x
+Crawl of page succeeded https://data.undp.org/d/4gda-urpe
+Crawl of page succeeded https://data.undp.org/d/mtgq-fh7e
+Crawl of page succeeded https://data.undp.org/d/f4hj-za8s
+Crawl of page succeeded https://data.undp.org/d/86jn-aqda
+Crawl of page succeeded https://data.undp.org/d/dgxe-4etk
+Crawl of page succeeded https://data.undp.org/d/q8v2-nuck
+Crawl of page succeeded https://data.undp.org/d/329u-wxbh
+Crawl of page succeeded https://data.undp.org/d/4dvc-27j4
+Crawl of page succeeded https://data.undp.org/d/fafj-em9v
+Crawl of page succeeded https://data.undp.org/d/sjwc-6s6n
+Crawl of page succeeded https://data.undp.org/d/559y-c52v
+Crawl of page succeeded https://data.undp.org/d/qfks-bxxx
+Crawl of page succeeded https://data.undp.org/d/6et7-wneb
+Crawl of page succeeded https://data.undp.org/d/5j4e-frgx
+Crawl of page succeeded https://data.undp.org/d/r5sb-b9te
+Crawl of page succeeded https://data.undp.org/d/mbsb-74a4
+Crawl of page succeeded https://data.undp.org/d/j5an-i8cp
+Crawl of page succeeded https://data.undp.org/d/uevh-3kce
+Crawl of page succeeded https://data.undp.org/d/kk4y-mamv
+Crawl of page succeeded https://data.undp.org/d/y4pq-37ym
+Crawl of page succeeded https://data.undp.org/d/seyg-szmx
+Crawl of page succeeded https://data.undp.org/d/r6qw-ina9
+Crawl of page succeeded https://data.undp.org/d/iavv-3ayj
+Crawl of page succeeded https://data.undp.org/d/up6t-c83t
+Crawl of page succeeded https://data.undp.org/d/gy5g-i4jm
+Crawl of page succeeded https://data.undp.org/d/2527-j6tc
+Crawl of page succeeded https://data.undp.org/d/2cs9-52sw
+Crawl of page succeeded https://data.undp.org/d/f96e-pk9a
+Crawl of page succeeded https://data.undp.org/d/rkkj-bbrx
+Crawl of page succeeded https://data.undp.org/d/ea9p-3gyt
+Crawl of page succeeded https://data.undp.org/d/yvua-zt5s
+Crawl of page succeeded https://data.undp.org/d/i5nr-ss9q
+Crawl of page succeeded https://data.undp.org/d/egsw-rrvb
+Crawl of page succeeded https://data.undp.org/d/tthf-z5tf
+Crawl of page succeeded https://data.undp.org/d/y73i-rv9x
+Crawl of page succeeded https://data.undp.org/d/bjen-wu3h
+Crawl of page succeeded https://data.undp.org/d/s4hz-ps2a
+Crawl of page succeeded https://data.undp.org/d/amcy-ifqr
+Crawl of page succeeded https://data.undp.org/d/82nn-pgag
+Crawl of page succeeded https://data.undp.org/d/2ins-3yf6
+Crawl of page succeeded https://data.undp.org/d/9rpm-8p7d
+Crawl of page succeeded https://data.undp.org/d/th2p-fzif
+Crawl of page succeeded https://data.undp.org/d/y6fa-by7k
+Crawl of page succeeded https://data.undp.org/d/9k4b-648w
+Crawl of page succeeded https://data.undp.org/d/egmk-e9dd
+Crawl of page succeeded https://data.undp.org/d/65v7-m7sm
+Crawl of page succeeded https://data.undp.org/d/96dj-hi3t
+Crawl of page succeeded https://data.undp.org/d/r9nk-9a33
+Crawl of page succeeded https://data.undp.org/d/xqxs-4zvu
+Crawl of page succeeded https://data.undp.org/d/yhnp-644k
+Crawl of page succeeded https://data.undp.org/d/7yqg-9xcr
+Crawl of page succeeded https://data.undp.org/d/sbn6-nsva
+Crawl of page succeeded https://data.undp.org/d/rhsw-i7y8
+Crawl of page succeeded https://data.undp.org/d/qart-w5te
+Crawl of page succeeded https://data.undp.org/d/g5ki-e92g
+Crawl of page succeeded https://data.undp.org/d/d8ic-zht8
+Crawl of page succeeded https://data.undp.org/d/wep4-b35i
+Crawl of page succeeded https://data.undp.org/d/x27q-czkn
+Crawl of page succeeded https://data.undp.org/d/atuv-jiwi
+Crawl of page succeeded https://data.undp.org/d/9it9-cc66
+Crawl of page succeeded https://data.undp.org/d/ktkn-638q
+Crawl of page succeeded https://data.undp.org/d/crbr-isii
+Crawl of page succeeded https://data.undp.org/d/xnmi-tmfx
+Crawl of page succeeded https://data.undp.org/d/63js-vc3a
+Crawl of page succeeded https://data.undp.org/d/rdqp-4j98
+Crawl of page succeeded https://data.undp.org/d/9t6z-8h2n
+Crawl of page succeeded https://data.undp.org/d/3jhw-hf53
+Crawl of page succeeded https://data.undp.org/d/gcd9-sabd
+Crawl of page succeeded http://data.undp.org/api/views/n9tv-twcn/rows.rss
+Page had no content http://data.undp.org/api/views/n9tv-twcn/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn/alt
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k/1?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn?defaultRender=table
+Crawl of page succeeded http://data.undp.org/api/views/mz96-avwa/rows.rss
+Page had no content http://data.undp.org/api/views/mz96-avwa/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/d/puz5-536n
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn?defaultRender=page
+Crawl of page succeeded https://data.undp.org/d/ynkh-9few
+Crawl of page succeeded https://data.undp.org/d/p6yp-uq7c
+Crawl of page succeeded https://data.undp.org/d/cdee-cjnu
+Crawl of page succeeded https://data.undp.org/d/jfc2-kj6x
+Crawl of page succeeded http://data.undp.org/api/views/yjfv-z3mx/rows.rss
+Page had no content http://data.undp.org/api/views/yjfv-z3mx/rows.rss
+Crawl of page succeeded https://data.undp.org/d/xtqy-c7h5
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn/about
+Crawl of page succeeded https://data.undp.org/d/8j4f-zedt
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa/alt
+Crawl of page succeeded https://data.undp.org/d/kwiu-pacz
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa?defaultRender=page
+Crawl of page succeeded https://data.undp.org/d/ug6m-nj7y
+Crawl of page succeeded https://data.undp.org/d/2kez-2th3
+Crawl of page succeeded http://data.undp.org/api/views/wuwy-uzsx/rows.rss
+Page had no content http://data.undp.org/api/views/wuwy-uzsx/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn?defaultRender=template
+Crawl of page succeeded https://data.undp.org/d/c3ks-4uuw
+Crawl of page succeeded https://data.undp.org/d/6u2i-dgkg
+Crawl of page succeeded https://data.undp.org/d/uvvh-r3u3
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa?defaultRender=template
+Crawl of page succeeded https://data.undp.org/d/28aw-zitz
+Crawl of page succeeded https://data.undp.org/d/e7j5-hkvf
+Crawl of page succeeded https://data.undp.org/dataset/Table-1-Human-Development-Index-and-its-components/wxub-qc5k?row_index=1
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?
+Crawl of page succeeded https://data.undp.org/d/4h8f-vi5y
+Crawl of page succeeded https://data.undp.org/d/cki2-6fqe
+Crawl of page succeeded http://data.undp.org/api/views/dkye-mt4i/rows.rss
+Page had no content http://data.undp.org/api/views/dkye-mt4i/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx/alt
+Crawl of page succeeded https://data.undp.org/d/4y6e-rhae
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx/about
+Crawl of page succeeded https://data.undp.org/d/tiiw-pskq
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx/alt
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?defaultRender=page
+Crawl of page succeeded http://data.undp.org/api/views/yaag-umbd/rows.rss
+Page had no content http://data.undp.org/api/views/yaag-umbd/rows.rss
+Crawl of page succeeded https://data.undp.org/d/j9fj-hdu8
+Crawl of page succeeded https://data.undp.org/d/n9tv-twcn?category=dataset&amp;view_name=Top-Contributing-Donors
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/n9tv-twcn
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?defaultRender=template
+Crawl of page succeeded https://data.undp.org/d/j9p8-jx3x
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa/about
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i
+Crawl of page succeeded https://data.undp.org/d/mz96-avwa?category=dataset&amp;view_name=UNDP-2010-2012-Development-Projects
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?defaultRender=page
+Crawl of page succeeded http://data.undp.org/api/views/8vu2-4uz3/rows.rss
+Page had no content http://data.undp.org/api/views/8vu2-4uz3/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx/about
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/mz96-avwa
+Crawl of page succeeded http://data.undp.org/api/views/qm55-ksfc/rows.rss
+Page had no content http://data.undp.org/api/views/qm55-ksfc/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd/alt
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?defaultRender=template
+Crawl of page succeeded https://data.undp.org/profile/Akshay-Sinha/xx65-33ch
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?defaultRender=page
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/yjfv-z3mx
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd/about
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2013-Development-projects/yjfv-z3mx/edit
+Crawl of page succeeded http://data.undp.org/api/views/atgf-5gtd/rows.rss
+Page had no content http://data.undp.org/api/views/atgf-5gtd/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3/alt
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Top-Contributing-Donors/n9tv-twcn/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?defaultRender=table
+Crawl of page succeeded http://data.undp.org/api/views/625h-nnav/rows.rss
+Page had no content http://data.undp.org/api/views/625h-nnav/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/UNDP-2010-2012-Development-Projects/mz96-avwa/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3
+Crawl of page succeeded https://data.undp.org/d/yjfv-z3mx?category=dataset&amp;view_name=UNDP-2013-Development-projects
+Crawl of page succeeded https://data.undp.org/d/wuwy-uzsx?category=dataset&amp;view_name=Top-10-programme-countries
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?defaultRender=template
+Crawl of page succeeded http://data.undp.org/api/views/i35k-u44r/rows.rss
+Page had no content http://data.undp.org/api/views/i35k-u44r/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Top-10-programme-countries/wuwy-uzsx/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc
+Crawl of page succeeded https://data.undp.org/profile/UNDP-Transparency/67n2-h4v3
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/wuwy-uzsx
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?
+Crawl of page succeeded https://data.undp.org/d/dkye-mt4i?category=dataset&amp;view_name=Global-Unit-Projects
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/dkye-mt4i
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?defaultRender=richList
+Crawl of page succeeded http://data.undp.org/api/views/er2m-6nsu/rows.rss
+Page had no content http://data.undp.org/api/views/er2m-6nsu/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?defaultRender=template
+Crawl of page succeeded https://data.undp.org/d/yaag-umbd?category=dataset&amp;view_name=Projects-in-Afghanistan
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd
+Crawl of page succeeded http://data.undp.org/api/views/akz4-h8ur/rows.rss
+Page had no content http://data.undp.org/api/views/akz4-h8ur/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r
+Crawl of page succeeded https://data.undp.org/dataset/Global-Unit-Projects/dkye-mt4i/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav?defaultRender=page
+Crawl of page succeeded http://data.undp.org/api/views/p253-mjiq/rows.rss
+Page had no content http://data.undp.org/api/views/p253-mjiq/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r?
+Crawl of page succeeded https://data.undp.org/d/8vu2-4uz3?category=dataset&amp;view_name=Projects-in-Algeria
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu?defaultRender=page
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/8vu2-4uz3
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r?defaultRender=template
+Crawl of page succeeded http://data.undp.org/api/views/kw6u-64h9/rows.rss
+Page had no content http://data.undp.org/api/views/kw6u-64h9/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Algeria/8vu2-4uz3?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/d/qm55-ksfc?category=dataset&amp;view_name=Projects-in-Angola
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur?defaultRender=table
+Crawl of page succeeded http://data.undp.org/api/views/rcfr-sa24/rows.rss
+Page had no content http://data.undp.org/api/views/rcfr-sa24/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc?row_index=0
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Armenia/atgf-5gtd?row_index=0
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/qm55-ksfc
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/yaag-umbd
+Crawl of page succeeded http://data.undp.org/api/views/34pq-rfn7/rows.rss
+Page had no content http://data.undp.org/api/views/34pq-rfn7/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Afghanistan/yaag-umbd/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bangladesh/er2m-6nsu
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Angola/qm55-ksfc/edit
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Azerbaijan/625h-nnav
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Barbados/akz4-h8ur?defaultRender=template
+Crawl of page succeeded http://data.undp.org/api/views/dr5v-vyzy/rows.rss
+Page had no content http://data.undp.org/api/views/dr5v-vyzy/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq?defaultRender=template
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bahrain/i35k-u44r/edit
+Crawl of page succeeded https://data.undp.org/d/atgf-5gtd?category=dataset&amp;view_name=Projects-in-Armenia
+Crawl of page succeeded https://data.undp.org/api_foundry/forge/atgf-5gtd
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Benin/kw6u-64h9/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Benin/kw6u-64h9?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Benin/kw6u-64h9/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bhutan/rcfr-sa24?
+Crawl of page succeeded http://data.undp.org/api/views/t7ec-kpmt/rows.rss
+Page had no content http://data.undp.org/api/views/t7ec-kpmt/rows.rss
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bhutan/rcfr-sa24/alt
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq?defaultRender=richList
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq/about
+Crawl of page succeeded https://data.undp.org/d/er2m-6nsu?category=dataset&amp;view_name=Projects-in-Bangladesh
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Belize/p253-mjiq
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bolivia/34pq-rfn7?
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bolivia/34pq-rfn7?defaultRender=table
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bolivia/34pq-rfn7?defaultRender=page
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Bolivia/34pq-rfn7/about
+Crawl of page succeeded https://data.undp.org/dataset/Projects-in-Benin/kw6u-64h9?
+Crawl of page succeeded http://data.undp.org/api/views/gfpp-g6t4/rows.rss
+Page had no content http://data.undp.org/api/views/gfpp-g6t4/rows.rss
+done: ExternalDataSourcesSteps.ThenTheCollectionOfResourcesAboutThatSubjectInThatAreaWillBeOneUnitGreater() (200.8s)</pre>
+                        </td>
+                        <td>Succeeded in 200.996s</td>
+                    </tr>
+            </table>
+            <a name="t-1262729165.0" />
+            <h3>Scenario: Add a new external data source to the list of subscriptions (in BDDTests.Spec, External data sources)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0220151</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources ObservaTerra is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.AddANewExternalDataSourceToTheListOfSubscriptions() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 12
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.011s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator subscribes the system to a new external data source</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of external data sources subscribed to will be one unit greater</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.009s</td>
+                    </tr>
+            </table>
+            <a name="t-1262729165.1" />
+            <h3>Scenario: Add a new external data source to the list of subscriptions (in BDDTests.Spec, External data sources) retry #1</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0030002</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources ObservaTerra is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.AddANewExternalDataSourceToTheListOfSubscriptions() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 12
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator subscribes the system to a new external data source</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of external data sources subscribed to will be one unit greater</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+            </table>
+            <a name="t-1262729165.2" />
+            <h3>Scenario: Add a new external data source to the list of subscriptions (in BDDTests.Spec, External data sources) retry #2</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0030013</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources ObservaTerra is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.AddANewExternalDataSourceToTheListOfSubscriptions() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 12
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator subscribes the system to a new external data source</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of external data sources subscribed to will be one unit greater</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Add a new external data source to the list of subscriptions]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+            </table>
+            <a name="t-2073452027.0" />
+            <h3>Scenario: Delete a data source from the subscription collection (in BDDTests.Spec, External data sources)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0040027</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources the system is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.DeleteADataSourceFromTheSubscriptionCollection() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 17
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator removes one of the subscriptions from that collection</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of subscriptions will be one unit smaller</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+            </table>
+            <a name="t-2073452027.1" />
+            <h3>Scenario: Delete a data source from the subscription collection (in BDDTests.Spec, External data sources) retry #1</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0030022</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources the system is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.DeleteADataSourceFromTheSubscriptionCollection() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 17
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator removes one of the subscriptions from that collection</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of subscriptions will be one unit smaller</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+            </table>
+            <a name="t-2073452027.2" />
+            <h3>Scenario: Delete a data source from the subscription collection (in BDDTests.Spec, External data sources) retry #2</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0080058</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources the system is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.DeleteADataSourceFromTheSubscriptionCollection() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 17
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator removes one of the subscriptions from that collection</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the collection of subscriptions will be one unit smaller</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Delete a data source from the subscription collection]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.006s</td>
+                    </tr>
+            </table>
+            <a name="t1220912961.0" />
+            <h3>Scenario: Data acquisition after removal (in BDDTests.Spec, External data sources)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 5/9/2014 1:21:52 PM</li>
+                <li>Execution time (sec): 0.0070048</li>
+                <li>Thread: #0</li>
+                <li>Error: Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given a collection of external data sources the system is subscribed to</pre>
+                        </td>
+                        <td>
+                            <!--[TestArrange: Scenario - Data acquisition after removal]-->
+                            <pre class="log">error: Exception has been thrown by the target of an invocation.</pre>
+                                <div class="errorMessage">Exception has been thrown by the target of an invocation. -&gt; There is an error in XML document (4, 15). -&gt; Data at the root level is invalid. Line 4, position 15.</div>
+                                <pre class="stackTrace">System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---&gt; System.InvalidOperationException: There is an error in XML document (4, 15). ---&gt; System.Xml.XmlException: Data at the root level is invalid. Line 4, position 15.
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Xml.XmlReader.ReadEndElement()
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read2_DataSources(Boolean isNullable, Boolean checkType)
+   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderDataSources.Read3_DataSources()
+   --- End of inner exception stack trace ---
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService.ReadFromFile() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 63
+   at ObservaTerra.Backend.DataAcquisition.CrawlerService..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\ObservaTerra.Backend.DataAcquisition\CrawlerService.cs:line 22
+   at BDDTests.Spec.steps.ExternalDataSourcesSteps..ctor() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\steps\ExternalDataSourcesSteps.cs:line 14
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at BoDi.ObjectContainer.CreateObject(Type type, IEnumerable`1 resolutionPath, RegistrationKey keyToResolve)
+   at BoDi.ObjectContainer.TypeRegistration.Resolve(ObjectContainer container, RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.CreateObjectFor(RegistrationKey keyToResolve, IEnumerable`1 resolutionPath)
+   at BoDi.ObjectContainer.Resolve(Type typeToResolve, IEnumerable`1 resolutionPath, String name)
+   at lambda_method(Closure , IContextManager )
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(StepInstance stepInstance)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep()
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.ScenarioCleanup() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature.cs:line 0
+   at BDDTests.Spec.Features.ExternalDataSourcesFeature.DataAcquisitionAfterRemoval() in c:\Users\Ra&#250;l Estrada\Desktop\finalASW\ObservaTerra22\ObservaTerra22\BDDTests.Spec\features\ExternalDataSources.feature:line 22
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Interfaces\TaskExecutors\StaticOrInstanceMethodExecutor.cs:line 40
+   at TechTalk.SpecRun.Framework.TestAssemblyExecutor.ExecuteTestNodeTask(TestNode testNode, ITaskExecutor task, TraceEventType eventType) in c:\TeamCity\buildAgent\work\1ace6ed01d0a43bb\TechTalk.SpecRun.Framework.Executor\TestAssemblyExecutor.cs:line 215</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When the administrator removes one of the subscriptions from that collection</pre>
+                        </td>
+                        <td>
+                            <!--[TestAct: Scenario - Data acquisition after removal]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the next time the external data acquisition system is executed, none of the crawlers will analyze the data source that was just deleted from the collection</pre>
+                        </td>
+                        <td>
+                            <!--[TestAssert: Scenario - Data acquisition after removal]-->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0s</td>
+                    </tr>
+            </table>
+            <a name="t-1394542307.0" />
+            <h3>Scenario: Documents request (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1808037380.0" />
+            <h3>Scenario: Guest user asks for private resources (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t224273619.0" />
+            <h3>Scenario: Request with no results due to privileges (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t646645049.0" />
+            <h3>Scenario: Guest user adds resource (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t769261397.0" />
+            <h3>Scenario: Registered user adds new resource (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1606197641.0" />
+            <h3>Scenario: Request for resources in different language (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-95678485.0" />
+            <h3>Scenario: Origin of resource (in BDDTests.Spec, Information resources)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0.0009988</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-909315104.0" />
+            <h3>Scenario: Calculate the mean of observations about a specific area, like Europe, for a given indicator (in BDDTests.Spec, Observation management)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t1474119690.0" />
+            <h3>Scenario: Get the observations stored in the system about a given area or indicator (in BDDTests.Spec, Observation management)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t2029728442.0" />
+            <h3>Scenario: A new observation about a given aspect in Europe is added to the system (in BDDTests.Spec, Observation management)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1169751348.0" />
+            <h3>Scenario: A registered user logs in (in BDDTests.Spec, System access)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-446144988.0" />
+            <h3>Scenario: A user not registered in the system logs in (in BDDTests.Spec, System access)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t1817796694.0" />
+            <h3>Scenario: A user accesses the system without logging in (in BDDTests.Spec, System access)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-533651144.0" />
+            <h3>Scenario: A user completes successfully the register process (in BDDTests.Spec, System register process)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t1005313609.0" />
+            <h3>Scenario: A user does not complete successfully the register process (in BDDTests.Spec, System register process)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t998368579.0" />
+            <h3>Scenario: Add new external data acquisition systems (in BDDTests.Spec, External data acquisition system)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t677881324.0" />
+            <h3>Scenario: The data acquisition elements are executed (in BDDTests.Spec, External data acquisition system)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 5/9/2014 1:21:54 PM</li>
+                <li>Execution time (sec): 0</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+	</body>
+</html>
+</a><div style='position: absolute; top:0px; right:10px; z-index: 1000; text-align: right; font-size: small; color: #FF5555'>
+Generated by an evaluation version of SpecRun.<br />
+This version can be used for evaluation purposes only.<br />
+For obtaining a registered license please visit <a href='http://www.specrun.com'>http://www.specrun.com</a>.
+</div>
