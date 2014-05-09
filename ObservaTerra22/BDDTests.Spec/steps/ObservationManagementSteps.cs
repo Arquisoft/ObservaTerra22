@@ -1,5 +1,10 @@
-﻿using System;
+﻿using ObservaTerra.Backend.DataQuery;
+using ObservaTerra.DomainModel;
+using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BDDTests.Spec.steps
 {
@@ -14,9 +19,7 @@ namespace BDDTests.Spec.steps
 
         [Given(@"an empty collection of observations the system has stored about a given area or indicator")]
         public void GivenAnEmptyCollectionOfObservationsTheSystemHasStoredAboutAGivenAreaOrIndicator()
-        {
-            ScenarioContext.Current.Pending();
-        }
+        {}
 
         [Given(@"a list of indicators about a specific issue:")]
         public void GivenAListOfIndicatorsAboutASpecificIssue(Table table)
@@ -38,9 +41,7 @@ namespace BDDTests.Spec.steps
 
         [When(@"a request asking for that information arrives at the system")]
         public void WhenARequestAskingForThatInformationArrivesAtTheSystem()
-        {
-            ScenarioContext.Current.Pending();
-        }
+        {}
 
         [When(@"the system is asked for observations about that issue in China")]
         public void WhenTheSystemIsAskedForObservationsAboutThatIssueInChina()
@@ -57,7 +58,9 @@ namespace BDDTests.Spec.steps
         [Then(@"the system will notify the user that it has no information, so the result is empty")]
         public void ThenTheSystemWillNotifyTheUserThatItHasNoInformationSoTheResultIsEmpty()
         {
-            ScenarioContext.Current.Pending();
+            IObservationQuery query = DataQueryFactory.GetObservationQueries(null);
+            IEnumerable<Observation> result = query.FindObservations("RandomNotExistingName");
+            Assert.IsTrue(result.Count() == 0);
         }
 
         [Then(@"the result sent back to the user will be formed by those (.*) observations stored in the system")]

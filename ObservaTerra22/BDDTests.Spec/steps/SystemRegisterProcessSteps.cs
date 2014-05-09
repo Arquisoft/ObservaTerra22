@@ -32,8 +32,9 @@ namespace BDDTests.Spec.steps
         public void ThenANewAccountIsCreatedForSuchUser()
         {
             RegisterController controller = new RegisterController();
-            controller.Post(username: "regUserN", password: "regPassword");
-            User user = PersistenceFactory.GetUserPersistenceManagement().FindByUsername("regUserN");
+            string userName = "regUserN" + new Random().Next(1000);
+            controller.Post(username: userName, password: "regPassword");
+            User user = PersistenceFactory.GetUserPersistenceManagement().FindByUsername(userName);
             Assert.IsNotNull(user);
         }
 
@@ -41,11 +42,12 @@ namespace BDDTests.Spec.steps
         public void ThenTheSystemWillNotifyTheUserOfSuchConflictAndNoNewAccountWillBeCreated()
         {
             RegisterController controller = new RegisterController();
-            controller.Post(username: "regUser", password: "regPassword");
+            string userName = "regUser" + new Random().Next(1000);
+            controller.Post(username: userName, password: "regPassword");
             try
             {
                 IAdminModuleServices mod = ManagersFactory.GetAdminModuleServices();
-                mod.RegisterUser(new ObservaTerra.DomainModel.User { Name = "regUser", Password = "regPassword" });
+                mod.RegisterUser(new ObservaTerra.DomainModel.User { Name = userName, Username=userName, Password = "regPassword" });
             }
             catch (ObservaTerra.SessionManager.Exceptions.UsernameAlreadyInUseException e)
             {

@@ -30,25 +30,25 @@ namespace BDDTests.Spec.steps
 
             for (int i = 0; i < 164; i++)
             {
-                Observation obs = new Observation { Name = "Observ" + new Random().Next(50000) };
+                Observation obs = new Observation { Name = "Observ" + i + new Random().Next(50000) };
                 indH.Observations.Add(obs);
                 oCommand.AddObservation(obs);
             }
             for (int i = 0; i < 49; i++)
             {
-                Observation obs = new Observation { Name = "Observ" + new Random().Next(50000) };
+                Observation obs = new Observation { Name = "Observ" + i + new Random().Next(50000) };
                 indP.Observations.Add(obs);
                 oCommand.AddObservation(obs);
             }
             for (int i = 0; i < 143; i++)
             {
-                Observation obs = new Observation { Name = "Observ" + new Random().Next(50000), IComponents = new List<IComponent>() };
+                Observation obs = new Observation { Name = "Observ" + i + new Random().Next(50000), IComponents = new List<IComponent>() };
                 indPv.Observations.Add(obs);
                 oCommand.AddObservation(obs);
             }
             for (int i = 0; i < 138; i++)
             {
-                Observation obs = new Observation { Name = "Observ" + new Random().Next(50000) };
+                Observation obs = new Observation { Name = "Observ" + i + new Random().Next(50000) };
                 indE.Observations.Add(obs);
                 oCommand.AddObservation(obs);
             }
@@ -80,7 +80,7 @@ namespace BDDTests.Spec.steps
 
             for (int i = 0; i < 14; i++)
             {
-                Observation obs = new Observation { Name = "Observ" + new Random().Next(50000), };
+                Observation obs = new Observation { Name = "Observ" + i + new Random().Next(50000), };
                 indC.Observations.Add(obs);
                 oCommand.AddObservation(obs);
             }
@@ -204,6 +204,7 @@ namespace BDDTests.Spec.steps
             LoggedInUser user = logController.Get(user: "testUs", pass: "passUs");
             IObservationQuery query = DataQueryFactory.GetObservationQueries(null);
             Assert.IsNotNull(query.FindObservations("Crime").Last().UserAuthor);
+            logController.Session.Logout(user.Token);
         }
     }
 }
