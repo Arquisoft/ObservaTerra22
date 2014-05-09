@@ -11,9 +11,11 @@
     @Html.TextBoxFor(model => model.Name)
     <hr />
     <label>Headers:</label>
+    <h7>Example: A,B,C</h7>
     @Html.TextAreaFor(model => model.Keys)
     <br />
     <label>Values:</label>
+    <h7>Example: 1,5,7</h7>
     @Html.TextAreaFor(model => model.Values)
     <input type="submit" value="Crear" class="btn btn-default" />
 }
