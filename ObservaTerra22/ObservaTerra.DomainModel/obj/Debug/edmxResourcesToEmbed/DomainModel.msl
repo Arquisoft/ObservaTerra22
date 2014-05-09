@@ -121,6 +121,12 @@
           <ScalarProperty Name="URI" ColumnName="URI" />
         </MappingFragment>
       </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DomainModel.HtmlComponent)">
+        <MappingFragment StoreEntitySet="IComponents_HtmlComponent">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PairSet">
       <EntityTypeMapping TypeName="IsTypeOf(DomainModel.Pair)">

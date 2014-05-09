@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/05/2014 20:03:07
+-- Date Created: 05/09/2014 12:07:48
 -- Generated from EDMX file: C:\Users\Javier\Documents\ObservaTerra22\ObservaTerra22\ObservaTerra.DomainModel\DomainModel.edmx
 -- --------------------------------------------------
 
@@ -19,9 +19,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[FK_AreaArea]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Areas] DROP CONSTRAINT [FK_AreaArea];
-GO
-IF OBJECT_ID(N'[dbo].[FK_IndicatorArea]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Areas] DROP CONSTRAINT [FK_IndicatorArea];
 GO
 IF OBJECT_ID(N'[dbo].[FK_IndicatorMeasure]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Measures] DROP CONSTRAINT [FK_IndicatorMeasure];
@@ -55,6 +52,9 @@ IF OBJECT_ID(N'[dbo].[FK_UserRole_Role]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_GraphComponentPair]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PairSet] DROP CONSTRAINT [FK_GraphComponentPair];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AreaIndicator]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Indicators] DROP CONSTRAINT [FK_AreaIndicator];
 GO
 IF OBJECT_ID(N'[dbo].[FK_GraphComponent_inherits_IComponent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[IComponents_GraphComponent] DROP CONSTRAINT [FK_GraphComponent_inherits_IComponent];
@@ -286,6 +286,13 @@ CREATE TABLE [dbo].[IComponents_DocumentComponent] (
 );
 GO
 
+-- Creating table 'IComponents_HtmlComponent'
+CREATE TABLE [dbo].[IComponents_HtmlComponent] (
+    [Content] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
+);
+GO
+
 -- Creating table 'OrganizationUser'
 CREATE TABLE [dbo].[OrganizationUser] (
     [Organizations_Id] int  NOT NULL,
@@ -409,6 +416,12 @@ GO
 -- Creating primary key on [Id] in table 'IComponents_DocumentComponent'
 ALTER TABLE [dbo].[IComponents_DocumentComponent]
 ADD CONSTRAINT [PK_IComponents_DocumentComponent]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'IComponents_HtmlComponent'
+ALTER TABLE [dbo].[IComponents_HtmlComponent]
+ADD CONSTRAINT [PK_IComponents_HtmlComponent]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -666,6 +679,15 @@ GO
 -- Creating foreign key on [Id] in table 'IComponents_DocumentComponent'
 ALTER TABLE [dbo].[IComponents_DocumentComponent]
 ADD CONSTRAINT [FK_DocumentComponent_inherits_IComponent]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[IComponents]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'IComponents_HtmlComponent'
+ALTER TABLE [dbo].[IComponents_HtmlComponent]
+ADD CONSTRAINT [FK_HtmlComponent_inherits_IComponent]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[IComponents]
         ([Id])

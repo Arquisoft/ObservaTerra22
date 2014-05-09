@@ -19,6 +19,7 @@
     <EntitySet Name="IComponents_VideoComponent" EntityType="DomainModel.Store.IComponents_VideoComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_TextComponent" EntityType="DomainModel.Store.IComponents_TextComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="IComponents_DocumentComponent" EntityType="DomainModel.Store.IComponents_DocumentComponent" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IComponents_HtmlComponent" EntityType="DomainModel.Store.IComponents_HtmlComponent" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrganizationUser" EntityType="DomainModel.Store.OrganizationUser" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserRole" EntityType="DomainModel.Store.UserRole" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="AreaArea" Association="DomainModel.Store.AreaArea">
@@ -104,6 +105,10 @@
     <AssociationSet Name="FK_DocumentComponent_inherits_IComponent" Association="DomainModel.Store.FK_DocumentComponent_inherits_IComponent">
       <End Role="IComponent" EntitySet="IComponents" />
       <End Role="DocumentComponent" EntitySet="IComponents_DocumentComponent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HtmlComponent_inherits_IComponent" Association="DomainModel.Store.FK_HtmlComponent_inherits_IComponent">
+      <End Role="IComponent" EntitySet="IComponents" />
+      <End Role="HtmlComponent" EntitySet="IComponents_HtmlComponent" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Areas">
@@ -240,6 +245,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="URI" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IComponents_HtmlComponent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrganizationUser">
@@ -522,6 +534,20 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DocumentComponent">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HtmlComponent_inherits_IComponent">
+    <End Role="IComponent" Type="DomainModel.Store.IComponents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="HtmlComponent" Type="DomainModel.Store.IComponents_HtmlComponent" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="IComponent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HtmlComponent">
         <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>

@@ -1,0 +1,9 @@
+﻿@model ObservaTerra.DomainModel.HtmlComponent
+@{
+    ViewBag.Title = "DetailsText";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Document web</h2>
+
+@Html.Raw(Model.Content)

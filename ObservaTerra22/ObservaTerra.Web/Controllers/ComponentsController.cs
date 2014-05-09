@@ -25,6 +25,8 @@ namespace ObservaTerra.Web.Controllers
                 return View("DetailsText", result);
             else if (result is GraphComponent)
                 return View("DetailsGraph", result);
+            else if (result is HtmlComponent)
+                return View("DetailsHtml", result);
             return View();
         }
 
