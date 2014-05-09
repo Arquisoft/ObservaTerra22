@@ -75,6 +75,9 @@
     <Compile Include="GraphComponent.cs">
       <DependentUpon>DomainModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HtmlComponent.cs">
+      <DependentUpon>DomainModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="IComponent.cs">
       <DependentUpon>DomainModel.tt</DependentUpon>
     </Compile>

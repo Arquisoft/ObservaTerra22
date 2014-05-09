@@ -226,4 +226,7 @@
     <End Type="DomainModel.Area" Role="Area" Multiplicity="1" />
     <End Type="DomainModel.Indicator" Role="Indicator" Multiplicity="*" />
   </Association>
+  <EntityType Name="HtmlComponent" BaseType="DomainModel.IComponent">
+    <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" />
+  </EntityType>
 </Schema>

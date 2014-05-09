@@ -43,6 +43,8 @@
         <EntityTypeShape EntityType="DomainModel.Pair" Width="1.5" PointX="1.25" PointY="9.25" />
         <AssociationConnector Association="DomainModel.GraphComponentPair" />
         <AssociationConnector Association="DomainModel.AreaIndicator" />
+        <EntityTypeShape EntityType="DomainModel.HtmlComponent" Width="1.5" PointX="3.125" PointY="13.125" />
+        <InheritanceConnector EntityType="DomainModel.HtmlComponent" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
