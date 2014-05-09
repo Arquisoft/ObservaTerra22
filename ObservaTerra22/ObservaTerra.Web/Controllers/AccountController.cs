@@ -12,6 +12,7 @@ using ObservaTerra.Web.Models;
 using ObservaTerra.Web.Models.Users;
 using System.Threading;
 using ObservaTerra.Backend.WebService;
+using ObservaTerra.DomainModel;
 
 namespace ObservaTerra.Web.Controllers
 {
@@ -67,6 +68,7 @@ namespace ObservaTerra.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Factory.GetLoginController().Post(((UserWeb)Session["User"]).Token);
             Session["User"] = null;
             return RedirectToAction("Index", "Home");
         }

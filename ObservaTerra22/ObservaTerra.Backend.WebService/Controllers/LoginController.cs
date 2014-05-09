@@ -25,7 +25,19 @@ namespace ObservaTerra.Backend.WebService.Controllers
             {
                 throw ex;
             }
+        }
 
+
+        public void Post(string token)
+        {
+            try
+            {
+                Session.Logout(token);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

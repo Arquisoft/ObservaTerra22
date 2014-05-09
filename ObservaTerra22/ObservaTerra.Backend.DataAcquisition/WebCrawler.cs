@@ -46,12 +46,16 @@ namespace ObservaTerra.Backend.DataAcquisition
             CrawledPage crawledPage = e.CrawledPage;
             //System.IO.File.WriteAllText(System.IO.Directory.GetCurrentDirectory() + "/crawlTmp.txt", crawledPage.Content.Text);
 
-            if (crawledPage.Uri.AbsoluteUri.Contains(".csv"))
+            if (!crawledPage.Uri.AbsoluteUri.Contains(".csv"))
             {
                 using (System.Net.WebClient client = new System.Net.WebClient())
                 {
-                    this.Files.Add(new HtmlComponent() { Name = crawledPage.Uri.Host, Content = client.DownloadString(crawledPage.Uri) });
-                    Console.WriteLine("Downloaded file from {0}", crawledPage.Uri.AbsoluteUri);
+                    try
+                    {
+                        this.Files.Add(new HtmlComponent() { Name = crawledPage.Uri.Host, Content = client.DownloadString(crawledPage.Uri) });
+                        Console.WriteLine("Downloaded file from {0}", crawledPage.Uri.AbsoluteUri);
+                    }
+                    catch (Exception ) { }
                 }
             }
 
